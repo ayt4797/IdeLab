@@ -1,0 +1,87 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.24.2.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Rick Tolleson, Rochester Institute of Technology, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.24.1
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 5 (build 528)
+Assembler:       Armasm.exe V5.06 update 5 (build 528)
+Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
+Library Manager: ArmAr.exe V5.06 update 5 (build 528)
+Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
+CPU DLL:         SARMCM3.DLL V5.24.1
+Dialog DLL:      DCM.DLL V1.16.0.0
+Target DLL:      UL2CM3.DLL V1.160.3.0
+Dialog DLL:      TCM.DLL V1.32.0.0
+ 
+<h2>Project:</h2>
+C:\Users\ayt4797\Downloads\CMPE_460_Files-master (1)\CMPE_460_Files-master\Lab5\Lab5.uvprojx
+Project File Date:  09/22/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Target 1'
+compiling ControlPins.c...
+ControlPins.c(10): error:  #5: cannot open source input file "Leds.h": No such file or directory
+  #include "Leds.h"
+ControlPins.c: 0 warnings, 1 error
+compiling ADC14.c...
+ADC14.c(151): error:  #29: expected an expression
+  	adcIn = ;
+ADC14.c: 0 warnings, 1 error
+compiling Lab5-ADC.c...
+uart.h(19): warning:  #1295-D: Deprecated declaration uart0_dataAvailable - give arg types
+  BOOLEAN uart0_dataAvailable();
+uart.h(20): warning:  #1-D: last line of file ends without a newline
+  BOOLEAN uart2_dataAvailable();
+uart.h(20): warning:  #1295-D: Deprecated declaration uart2_dataAvailable - give arg types
+  BOOLEAN uart2_dataAvailable();
+Lab1.c(115): warning:  #1-D: last line of file ends without a newline
+  }
+Lab5-ADC.c(48): warning:  #177-D: variable "temp"  was declared but never referenced
+  	char temp[64];
+Lab5-ADC.c(49): warning:  #177-D: variable "analogIn"  was declared but never referenced
+  	unsigned int analogIn = 0;
+Lab5-ADC.c: 6 warnings, 0 errors
+".\Objects\Lab5.axf" - 2 Error(s), 6 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
+
+Package Vendor: TexasInstruments
+                http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/msp432cmsis/latest/exports/TexasInstruments.MSP432P4xx_DFP.3.2.6.pack
+                TexasInstruments.MSP432P4xx_DFP.3.2.6
+                Device Family Pack for Texas Instruments SimpleLink(TM) MSP432 Series
+   * Component: Startup Version: 3.2.2
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Keil_v5\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: TexasInstruments::Device:Startup:3.2.2
+      Source file:   Examples\EmptyMain\main.c
+      Source file:   Examples\BlinkLED\blinkLED.c
+      Source file:   Device\Source\startup_msp432p401r_uvision.s
+      Source file:   Device\Source\system_msp432p401r.c
+      Include file:  Device\Include\msp_compatibility.h
+
+   * Component: ARM::CMSIS:CORE:5.5.0
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
