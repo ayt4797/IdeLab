@@ -1,3 +1,4 @@
+
 /*
 Title: Lab1
 Purpose:
@@ -7,10 +8,16 @@ Date: 08-27-21
 This file prepared by LJBeato
 01/11/2021
 */
+
 #include "msp.h"
 typedef unsigned char BOOLEAN;
 #define FALSE 0
 #define TRUE !FALSE
+
+#ifndef _LAB1_
+#define _LAB1_
+#endif
+
 typedef unsigned char BYTE;
 // Main Program
 // 1. Init LEDs

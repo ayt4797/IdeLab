@@ -257,17 +257,17 @@
                 <Size>0x0</Size>
               </XRAM>
               <OCR_RVCT1>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT1>
               <OCR_RVCT2>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT2>
               <OCR_RVCT3>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT3>
@@ -386,11 +386,6 @@
               <FilePath>.\ADC14.h</FilePath>
             </File>
             <File>
-              <FileName>ControlPins.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\ControlPins.h</FilePath>
-            </File>
-            <File>
               <FileName>CortexM.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\CortexM.h</FilePath>
@@ -416,11 +411,6 @@
               <FilePath>.\ADC14.c</FilePath>
             </File>
             <File>
-              <FileName>ControlPins.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ControlPins.c</FilePath>
-            </File>
-            <File>
               <FileName>CortexM.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\CortexM.c</FilePath>
@@ -434,16 +424,6 @@
               <FileName>Lab5-ADC.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Lab5-ADC.c</FilePath>
-            </File>
-            <File>
-              <FileName>Lab5-Camera.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Lab5-Camera.c</FilePath>
-            </File>
-            <File>
-              <FileName>Lab5-Timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Lab5-Timer.c</FilePath>
             </File>
             <File>
               <FileName>SysTickTimer.c</FileName>
@@ -464,6 +444,11 @@
               <FileName>Common.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Common.h</FilePath>
+            </File>
+            <File>
+              <FileName>Lab1.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Lab1.h</FilePath>
             </File>
           </Files>
         </Group>

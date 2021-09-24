@@ -12,7 +12,7 @@
 
 #include "msp.h"
 #include "uart.h"
-#include "Lab1.c"
+#include "Lab1.h"
 #include "Timer32.h"
 #include "CortexM.h"
 #include "Common.h"
@@ -26,20 +26,33 @@ BOOLEAN Timer1RunningFlag = FALSE;
 BOOLEAN Timer2RunningFlag = FALSE;
 
 unsigned long MillisecondCounter = 0;
-
+BOOLEAN flag;
 
 
 // Interrupt Service Routine for Timer32-1
 void Timer32_1_ISR(void)
 {
-
+	uart0_put("Hello world");
+	if(flag){
+		flag=FALSE;
+		P1->OUT=BIT0;
+	}
+	flag = TRUE;
+	P1->OUT=0;
+		
 }
+
+//
 // Interrupt Service Routine
+//
+//
+//
 void Timer32_2_ISR(void)
 {
 
-}
+		MillisecondCounter++;
 
+}
 
 
 // main
@@ -52,7 +65,6 @@ int main(void)
 	uart0_put("\r\nLab5 ADC demo\r\n");
 
 	
-
 	LED1_Init();
 	LED2_Init();
 	Switch2_Init();
@@ -60,7 +72,11 @@ int main(void)
 	EnableInterrupts();
   while(1)
 	{
-		;
+		if(flag){
+			analogIn = ADC_In();
+			int n=sprintf(temp,"data is %i", analogIn);
+			uart0_put(temp);
+		}
 		
   }
 }

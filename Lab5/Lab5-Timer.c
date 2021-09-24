@@ -12,7 +12,7 @@
 
 #include "msp.h"
 #include "uart.h"
-#include "Lab1.c"
+#include "Lab1.h"
 #include "Timer32.h"
 #include "CortexM.h"
 #include "Common.h"
@@ -32,7 +32,7 @@ int colorIndex = 0;
 #define WHITE BIT0 | BIT1 | BIT2 
 BYTE colors[7] = { RED, GREEN, BLUE, CYAN, MAGENTA, YELLOW, WHITE };
 
-BOOLEAN Timer1RunningFlag = FALSE;
+BOOLEAN Timer1RunningFlag = FALSE; 
 BOOLEAN Timer2RunningFlag = FALSE;
 
 unsigned long MillisecondCounter = 0;
@@ -53,6 +53,7 @@ void Switch1_Interrupt_Init(void)
 	DisableInterrupts();
 	// initialize the Switch as per previous lab
 	Switch1_Init();
+	
 	
  
 	
@@ -175,7 +176,7 @@ void Timer32_2_ISR(void)
 // main
 //
 //
-//
+/*
 int main(void){
 	//initializations
 	uart0_init();
@@ -199,3 +200,4 @@ int main(void){
     WaitForInterrupt();
   }
 }
+*/

@@ -12,7 +12,7 @@
 
 #include "msp.h"
 #include "uart.h"
-#include "Lab1.c"
+#include "Lab1.h"
 #include "Timer32.h"
 #include "CortexM.h"
 #include "Common.h"
@@ -88,6 +88,7 @@ void INIT_Camera(void)
 //
 //
 /////////////////////////////////////////////////////
+/*
 int main(void)
 {
 	int i = 0;
@@ -139,3 +140,4 @@ int main(void)
 		myDelay();
 	}
 }
+*/

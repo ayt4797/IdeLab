@@ -4,11 +4,9 @@
 .\objects\controlpins.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\controlpins.o: C:\Keil_v5\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp_compatibility.h
 .\objects\controlpins.o: C:\Keil_v5\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r_classic.h
-.\objects\controlpins.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm4.h
-.\objects\controlpins.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h
-.\objects\controlpins.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h
-.\objects\controlpins.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armcc.h
-.\objects\controlpins.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h
+.\objects\controlpins.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm4.h
+.\objects\controlpins.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+.\objects\controlpins.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
 .\objects\controlpins.o: C:\Keil_v5\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h
 .\objects\controlpins.o: Timer32.h
 .\objects\controlpins.o: Common.h
@@ -16,3 +14,4 @@
 .\objects\controlpins.o: SysTickTimer.h
 .\objects\controlpins.o: ControlPins.h
 .\objects\controlpins.o: ADC14.h
+.\objects\controlpins.o: Lab1.h
