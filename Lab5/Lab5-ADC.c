@@ -17,6 +17,7 @@
 #include "CortexM.h"
 #include "Common.h"
 #include "ADC14.h"
+#define MAXOUT 16383
 // The sprintf function seemed to cause a hange in the interrupt service routine.
 // I think if we increase the HEAP size, it will work
 // change to Heap_Size       EQU     0x00000200 in startup_msp432p401r_uvision.s
@@ -31,17 +32,42 @@ BOOLEAN flag = FALSE;
 
 
 // Interrupt Service Routine for Timer32-1
+void print_data(void){
+		char temp[64];
+		unsigned int analogIn = 0;
+		analogIn = ADC_In();
+
+		int n=sprintf(temp,"\r\n data is %i\r\n", analogIn);
+			uart0_put(temp);
+
+		double voltageOut = 3.3*((double)analogIn/MAXOUT);
+		int x = sprintf(temp,"voltage %lf",voltageOut);
+			uart0_put(temp);
+	
+			double  celcius = voltageOut*100-50;
+		double fahrenheit = (celcius+32)*2;
+
+	
+
+		int n1=sprintf(temp,"\r\n fahrenheit %lf\r\n", fahrenheit);
+		uart0_put(temp);
+
+		int n2=sprintf(temp,"\r\n celcius is %lf\r\n", celcius);
+			uart0_put(temp);
+
+		flag = TRUE;
+		P1->OUT=0;
+
+}
 void Timer32_1_ISR(void)
 {
 	uart0_put("Debug Statement");
 	if(!flag){
-		flag=TRUE;
 		P1->OUT=BIT0;
+		print_data();
 	}
-	else{
-		flag = FALSE;
-		P1->OUT=0;
-	}
+	flag = FALSE;
+
 }
 
 //
@@ -59,8 +85,6 @@ void Timer32_2_ISR(void)
 // main
 int main(void)
 {
-	char temp[64];
-	unsigned int analogIn = 0;
 	//initializations
 	uart0_init();
 	uart0_put("\r\nLab5 ADC demo\r\n");
@@ -83,11 +107,7 @@ int main(void)
 
   while(1)
 	{
-		if(flag){
-			analogIn = ADC_In();
-			int n=sprintf(temp,"\r\n data is %i\r\n", analogIn);
-			uart0_put(temp);
-		}
+		WaitForInterrupt();
 		
   }
 }
