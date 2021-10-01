@@ -21,25 +21,27 @@
 // I think if we increase the HEAP size, it will work
 // change to Heap_Size       EQU     0x00000200 in startup_msp432p401r_uvision.s
 
+extern uint32_t SystemCoreClock;
 
 BOOLEAN Timer1RunningFlag = FALSE;
 BOOLEAN Timer2RunningFlag = FALSE;
 
 unsigned long MillisecondCounter = 0;
-BOOLEAN flag;
+BOOLEAN flag = FALSE;
 
 
 // Interrupt Service Routine for Timer32-1
 void Timer32_1_ISR(void)
 {
-	uart0_put("Hello world");
-	if(flag){
-		flag=FALSE;
+	uart0_put("Debug Statement");
+	if(!flag){
+		flag=TRUE;
 		P1->OUT=BIT0;
 	}
-	flag = TRUE;
-	P1->OUT=0;
-		
+	else{
+		flag = FALSE;
+		P1->OUT=0;
+	}
 }
 
 //
@@ -54,7 +56,6 @@ void Timer32_2_ISR(void)
 
 }
 
-
 // main
 int main(void)
 {
@@ -64,17 +65,27 @@ int main(void)
 	uart0_init();
 	uart0_put("\r\nLab5 ADC demo\r\n");
 
-	
 	LED1_Init();
 	LED2_Init();
+	Timer32_1_Init(&Timer32_1_ISR, SystemCoreClock/2, T32DIV1); // initialize Timer A32-1;
+	//Timer32_1_Init(&Timer32_1_ISR, SystemCoreClock/2, T32DIV1); // initialize Timer A32-1;
+        
+	// Setup Timer32-2 with a .001 second timeout.
+	// So use DEFAULT_CLOCK_SPEED/(1/0.001) = SystemCoreClock/1000
+	//Timer32_2_Init(&Timer32_2_ISR, SystemCoreClock/1000, T32DIV1); // initialize Timer A32-1;
+	TIMER32_CONTROL1 |= BIT7;
+	NVIC_EnableIRQ(T32_INT1_IRQn); // Enable IRQ
+	TIMER32_CONTROL2 |= BIT7; // stop TIMER 2
+	Switch1_Init();
 	Switch2_Init();
 	ADC0_InitSWTriggerCh6();
 	EnableInterrupts();
+
   while(1)
 	{
 		if(flag){
 			analogIn = ADC_In();
-			int n=sprintf(temp,"data is %i", analogIn);
+			int n=sprintf(temp,"\r\n data is %i\r\n", analogIn);
 			uart0_put(temp);
 		}
 		

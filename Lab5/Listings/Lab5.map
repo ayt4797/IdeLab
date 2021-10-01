@@ -15,11 +15,15 @@ Section Cross References
     lab5-adc.o(i.main) refers to uart.o(i.uart0_put) for uart0_put
     lab5-adc.o(i.main) refers to lab1.o(i.LED1_Init) for LED1_Init
     lab5-adc.o(i.main) refers to lab1.o(i.LED2_Init) for LED2_Init
+    lab5-adc.o(i.main) refers to timer32.o(i.Timer32_1_Init) for Timer32_1_Init
+    lab5-adc.o(i.main) refers to lab1.o(i.Switch1_Init) for Switch1_Init
     lab5-adc.o(i.main) refers to lab1.o(i.Switch2_Init) for Switch2_Init
     lab5-adc.o(i.main) refers to adc14.o(i.ADC0_InitSWTriggerCh6) for ADC0_InitSWTriggerCh6
     lab5-adc.o(i.main) refers to cortexm.o(.emb_text) for EnableInterrupts
     lab5-adc.o(i.main) refers to adc14.o(i.ADC_In) for ADC_In
     lab5-adc.o(i.main) refers to __2sprintf.o(.text) for __2sprintf
+    lab5-adc.o(i.main) refers to system_msp432p401r.o(.data) for SystemCoreClock
+    lab5-adc.o(i.main) refers to lab5-adc.o(i.Timer32_1_ISR) for Timer32_1_ISR
     lab5-adc.o(i.main) refers to lab5-adc.o(.data) for flag
     systicktimer.o(i.SysTickTimer_Init) refers to cortexm.o(.emb_text) for StartCritical
     systicktimer.o(i.SysTickTimer_Init) refers to systicktimer.o(.data) for SysTickPeriodicTask
@@ -35,11 +39,7 @@ Section Cross References
     timer32.o(i.Timer32_1_Init) refers to timer32.o(.data) for timer1Period
     timer32.o(i.Timer32_1_Init) refers to system_msp432p401r.o(.data) for SystemCoreClock
     timer32.o(i.Timer32_2_Init) refers to cortexm.o(.emb_text) for StartCritical
-    timer32.o(i.Timer32_2_Init) refers to dflt_clz.o(x$fpl$dfltu) for __aeabi_ui2d
-    timer32.o(i.Timer32_2_Init) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
-    timer32.o(i.Timer32_2_Init) refers to dfixu.o(x$fpl$dfixu) for __aeabi_d2uiz
     timer32.o(i.Timer32_2_Init) refers to timer32.o(.data) for timer2Period
-    timer32.o(i.Timer32_2_Init) refers to system_msp432p401r.o(.data) for SystemCoreClock
     uart.o(i.uart0_init) refers to system_msp432p401r.o(.data) for SystemCoreClock
     uart.o(i.uart0_put) refers to uart.o(i.uart0_putchar) for uart0_putchar
     uart.o(i.uart2_init) refers to system_msp432p401r.o(.data) for SystemCoreClock
@@ -94,9 +94,6 @@ Section Cross References
     dflt_clz.o(x$fpl$dfltu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dflt_clz.o(x$fpl$dflt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dflt_clz.o(x$fpl$dfltn) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    dmul.o(x$fpl$dmul) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    dmul.o(x$fpl$dmul) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
-    dmul.o(x$fpl$dmul) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000C) for __rt_entry_postli_1
@@ -212,14 +209,12 @@ Removing Unused input sections from the image.
     Removing lab1.o(.revsh_text), (4 bytes).
     Removing lab1.o(.rrx_text), (6 bytes).
     Removing lab1.o(i.LED1_State), (20 bytes).
-    Removing lab1.o(i.Switch1_Init), (72 bytes).
     Removing lab1.o(i.Switch1_Pressed), (20 bytes).
     Removing lab1.o(i.Switch2_Pressed), (20 bytes).
     Removing lab1.o(i.Switches_Init), (136 bytes).
     Removing lab5-adc.o(.rev16_text), (4 bytes).
     Removing lab5-adc.o(.revsh_text), (4 bytes).
     Removing lab5-adc.o(.rrx_text), (6 bytes).
-    Removing lab5-adc.o(i.Timer32_1_ISR), (60 bytes).
     Removing lab5-adc.o(i.Timer32_2_ISR), (16 bytes).
     Removing systicktimer.o(.rev16_text), (4 bytes).
     Removing systicktimer.o(.revsh_text), (4 bytes).
@@ -232,8 +227,7 @@ Removing Unused input sections from the image.
     Removing timer32.o(.rrx_text), (6 bytes).
     Removing timer32.o(i.CalcPeriodFromFrequency), (80 bytes).
     Removing timer32.o(i.MS_Timeout_Handler), (12 bytes).
-    Removing timer32.o(i.Timer32_1_Init), (100 bytes).
-    Removing timer32.o(i.Timer32_2_Init), (144 bytes).
+    Removing timer32.o(i.Timer32_2_Init), (124 bytes).
     Removing uart.o(.rev16_text), (4 bytes).
     Removing uart.o(.revsh_text), (4 bytes).
     Removing uart.o(.rrx_text), (6 bytes).
@@ -249,7 +243,7 @@ Removing Unused input sections from the image.
     Removing system_msp432p401r.o(.rrx_text), (6 bytes).
     Removing system_msp432p401r.o(i.SystemCoreClockUpdate), (628 bytes).
 
-44 unused section(s) (total 1786 bytes) removed from the image.
+41 unused section(s) (total 1534 bytes) removed from the image.
 
 ==============================================================================
 
@@ -260,76 +254,75 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      324  startup_msp432p401r_uvision.o(RESET)
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
     ../clib/misc.s                           0x00000000   Number         0  printf_stubs.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  __printf_nopercent.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  _sputc.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  __printf_wp.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  __printf_flags_ss.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  __printf_ss.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __2sprintf.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  noretval__2sprintf.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __printf.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  _printf_dec.o ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  __printf_flags.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __printf_flags_ss.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __printf_wp.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __printf_flags_wp.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __printf_ss_wp.o ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  __printf_flags_ss_wp.o ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  _printf_intcommon.o ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  _printf_char_common.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  _printf_dec.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  __printf.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  noretval__2sprintf.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  __printf_ss_wp.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  __printf_flags_wp.o ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  __2sprintf.o ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  _printf_percent_end.o ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  _printf_i.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __printf_nopercent.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  _sputc.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __printf_ss.o ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  _printf_percent.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  _printf_i.o ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  _printf_percent_end.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
     ../fplib/ddiv.s                          0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/dfixu.s                         0x00000000   Number         0  dfixu.o ABSOLUTE
     ../fplib/dflt.s                          0x00000000   Number         0  dflt_clz.o ABSOLUTE
-    ../fplib/dmul.s                          0x00000000   Number         0  dmul.o ABSOLUTE
     ../fplib/dnaninf.s                       0x00000000   Number         0  dnaninf.o ABSOLUTE
     ../fplib/dretinf.s                       0x00000000   Number         0  dretinf.o ABSOLUTE
     ../fplib/fpinit.s                        0x00000000   Number         0  fpinit.o ABSOLUTE
@@ -422,17 +415,20 @@ Image Symbol Table
     i.ADC_In                                 0x0000053c   Section        0  adc14.o(i.ADC_In)
     i.LED1_Init                              0x00000574   Section        0  lab1.o(i.LED1_Init)
     i.LED2_Init                              0x000005bc   Section        0  lab1.o(i.LED2_Init)
-    i.Switch2_Init                           0x00000654   Section        0  lab1.o(i.Switch2_Init)
-    i.SysTick_Handler                        0x0000069c   Section        0  systicktimer.o(i.SysTick_Handler)
-    i.SystemInit                             0x000006b8   Section        0  system_msp432p401r.o(i.SystemInit)
-    i.T32_INT1_IRQHandler                    0x00000724   Section        0  timer32.o(i.T32_INT1_IRQHandler)
-    i.T32_INT2_IRQHandler                    0x00000734   Section        0  timer32.o(i.T32_INT2_IRQHandler)
-    i.main                                   0x00000744   Section        0  lab5-adc.o(i.main)
-    i.uart0_init                             0x000007b0   Section        0  uart.o(i.uart0_init)
-    i.uart0_put                              0x00000838   Section        0  uart.o(i.uart0_put)
-    i.uart0_putchar                          0x00000850   Section        0  uart.o(i.uart0_putchar)
-    x$fpl$fpinit                             0x00000868   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x00000868   Number         0  fpinit.o(x$fpl$fpinit)
+    i.Switch1_Init                           0x0000065c   Section        0  lab1.o(i.Switch1_Init)
+    i.Switch2_Init                           0x000006a4   Section        0  lab1.o(i.Switch2_Init)
+    i.SysTick_Handler                        0x000006ec   Section        0  systicktimer.o(i.SysTick_Handler)
+    i.SystemInit                             0x00000708   Section        0  system_msp432p401r.o(i.SystemInit)
+    i.T32_INT1_IRQHandler                    0x00000774   Section        0  timer32.o(i.T32_INT1_IRQHandler)
+    i.T32_INT2_IRQHandler                    0x0000079c   Section        0  timer32.o(i.T32_INT2_IRQHandler)
+    i.Timer32_1_ISR                          0x000007c4   Section        0  lab5-adc.o(i.Timer32_1_ISR)
+    i.Timer32_1_Init                         0x00000804   Section        0  timer32.o(i.Timer32_1_Init)
+    i.main                                   0x00000880   Section        0  lab5-adc.o(i.main)
+    i.uart0_init                             0x00000940   Section        0  uart.o(i.uart0_init)
+    i.uart0_put                              0x000009c8   Section        0  uart.o(i.uart0_put)
+    i.uart0_putchar                          0x000009e0   Section        0  uart.o(i.uart0_putchar)
+    x$fpl$fpinit                             0x000009f8   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x000009f8   Number         0  fpinit.o(x$fpl$fpinit)
     .data                                    0x20000000   Section        9  lab5-adc.o(.data)
     .data                                    0x2000000c   Section        8  systicktimer.o(.data)
     .data                                    0x20000018   Section       25  timer32.o(.data)
@@ -618,21 +614,24 @@ Image Symbol Table
     ADC0_InitSWTriggerCh6                    0x000004bd   Thumb Code   106  adc14.o(i.ADC0_InitSWTriggerCh6)
     ADC_In                                   0x0000053d   Thumb Code    48  adc14.o(i.ADC_In)
     LED1_Init                                0x00000575   Thumb Code    66  lab1.o(i.LED1_Init)
-    LED2_Init                                0x000005bd   Thumb Code   146  lab1.o(i.LED2_Init)
-    Switch2_Init                             0x00000655   Thumb Code    66  lab1.o(i.Switch2_Init)
-    SysTick_Handler                          0x0000069d   Thumb Code    20  systicktimer.o(i.SysTick_Handler)
-    SystemInit                               0x000006b9   Thumb Code    86  system_msp432p401r.o(i.SystemInit)
-    T32_INT1_IRQHandler                      0x00000725   Thumb Code    10  timer32.o(i.T32_INT1_IRQHandler)
-    T32_INT2_IRQHandler                      0x00000735   Thumb Code    10  timer32.o(i.T32_INT2_IRQHandler)
-    main                                     0x00000745   Thumb Code    70  lab5-adc.o(i.main)
-    uart0_init                               0x000007b1   Thumb Code   124  uart.o(i.uart0_init)
-    uart0_put                                0x00000839   Thumb Code    22  uart.o(i.uart0_put)
-    uart0_putchar                            0x00000851   Thumb Code    20  uart.o(i.uart0_putchar)
-    _fp_init                                 0x00000869   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x00000871   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x00000871   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Region$$Table$$Base                      0x00000874   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00000894   Number         0  anon$$obj.o(Region$$Table)
+    LED2_Init                                0x000005bd   Thumb Code   156  lab1.o(i.LED2_Init)
+    Switch1_Init                             0x0000065d   Thumb Code    66  lab1.o(i.Switch1_Init)
+    Switch2_Init                             0x000006a5   Thumb Code    66  lab1.o(i.Switch2_Init)
+    SysTick_Handler                          0x000006ed   Thumb Code    20  systicktimer.o(i.SysTick_Handler)
+    SystemInit                               0x00000709   Thumb Code    86  system_msp432p401r.o(i.SystemInit)
+    T32_INT1_IRQHandler                      0x00000775   Thumb Code    26  timer32.o(i.T32_INT1_IRQHandler)
+    T32_INT2_IRQHandler                      0x0000079d   Thumb Code    26  timer32.o(i.T32_INT2_IRQHandler)
+    Timer32_1_ISR                            0x000007c5   Thumb Code    38  lab5-adc.o(i.Timer32_1_ISR)
+    Timer32_1_Init                           0x00000805   Thumb Code   100  timer32.o(i.Timer32_1_Init)
+    main                                     0x00000881   Thumb Code   140  lab5-adc.o(i.main)
+    uart0_init                               0x00000941   Thumb Code   124  uart.o(i.uart0_init)
+    uart0_put                                0x000009c9   Thumb Code    22  uart.o(i.uart0_put)
+    uart0_putchar                            0x000009e1   Thumb Code    20  uart.o(i.uart0_putchar)
+    _fp_init                                 0x000009f9   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x00000a01   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x00000a01   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Region$$Table$$Base                      0x00000a04   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00000a24   Number         0  anon$$obj.o(Region$$Table)
     Timer1RunningFlag                        0x20000000   Data           1  lab5-adc.o(.data)
     Timer2RunningFlag                        0x20000001   Data           1  lab5-adc.o(.data)
     MillisecondCounter                       0x20000004   Data           4  lab5-adc.o(.data)
@@ -655,118 +654,121 @@ Memory Map of the image
 
   Image Entry point : 0x0000020d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x000008cc, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000a5c, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000894, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000a24, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x00000144   Data   RO          393    RESET               startup_msp432p401r_uvision.o
-    0x00000144   0x00000144   0x00000008   Code   RO          468  * !!!main             c_w.l(__main.o)
-    0x0000014c   0x0000014c   0x00000034   Code   RO          655    !!!scatter          c_w.l(__scatter.o)
-    0x00000180   0x00000180   0x0000001a   Code   RO          657    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x00000000   0x00000000   0x00000144   Data   RO          397    RESET               startup_msp432p401r_uvision.o
+    0x00000144   0x00000144   0x00000008   Code   RO          472  * !!!main             c_w.l(__main.o)
+    0x0000014c   0x0000014c   0x00000034   Code   RO          657    !!!scatter          c_w.l(__scatter.o)
+    0x00000180   0x00000180   0x0000001a   Code   RO          659    !!handler_copy      c_w.l(__scatter_copy.o)
     0x0000019a   0x0000019a   0x00000002   PAD
-    0x0000019c   0x0000019c   0x0000001c   Code   RO          659    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x000001b8   0x000001b8   0x00000000   Code   RO          465    .ARM.Collect$$_printf_percent$$00000000  c_w.l(_printf_percent.o)
-    0x000001b8   0x000001b8   0x00000006   Code   RO          464    .ARM.Collect$$_printf_percent$$00000008  c_w.l(_printf_i.o)
-    0x000001be   0x000001be   0x00000004   Code   RO          493    .ARM.Collect$$_printf_percent$$00000017  c_w.l(_printf_percent_end.o)
-    0x000001c2   0x000001c2   0x00000002   Code   RO          525    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x000001c4   0x000001c4   0x00000004   Code   RO          531    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          534    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          537    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          539    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          541    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          544    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          546    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          548    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          550    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          552    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          554    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          556    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          558    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          560    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          562    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          564    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          568    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          570    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          572    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000000   Code   RO          574    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x000001c8   0x000001c8   0x00000002   Code   RO          575    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
-    0x000001ca   0x000001ca   0x00000002   Code   RO          595    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x000001cc   0x000001cc   0x00000000   Code   RO          608    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x000001cc   0x000001cc   0x00000000   Code   RO          610    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x000001cc   0x000001cc   0x00000000   Code   RO          613    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x000001cc   0x000001cc   0x00000000   Code   RO          616    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x000001cc   0x000001cc   0x00000000   Code   RO          618    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x000001cc   0x000001cc   0x00000000   Code   RO          621    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x000001cc   0x000001cc   0x00000002   Code   RO          622    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x000001ce   0x000001ce   0x00000000   Code   RO          486    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x000001ce   0x000001ce   0x00000000   Code   RO          500    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x000001ce   0x000001ce   0x00000006   Code   RO          512    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x000001d4   0x000001d4   0x00000000   Code   RO          502    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x000001d4   0x000001d4   0x00000004   Code   RO          503    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x000001d8   0x000001d8   0x00000000   Code   RO          505    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x000001d8   0x000001d8   0x00000008   Code   RO          506    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x000001e0   0x000001e0   0x00000002   Code   RO          529    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x000001e2   0x000001e2   0x00000000   Code   RO          577    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x000001e2   0x000001e2   0x00000004   Code   RO          578    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x000001e6   0x000001e6   0x00000006   Code   RO          579    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x0000019c   0x0000019c   0x0000001c   Code   RO          661    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x000001b8   0x000001b8   0x00000000   Code   RO          469    .ARM.Collect$$_printf_percent$$00000000  c_w.l(_printf_percent.o)
+    0x000001b8   0x000001b8   0x00000006   Code   RO          468    .ARM.Collect$$_printf_percent$$00000008  c_w.l(_printf_i.o)
+    0x000001be   0x000001be   0x00000004   Code   RO          495    .ARM.Collect$$_printf_percent$$00000017  c_w.l(_printf_percent_end.o)
+    0x000001c2   0x000001c2   0x00000002   Code   RO          527    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x000001c4   0x000001c4   0x00000004   Code   RO          533    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          536    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          539    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          541    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          543    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          546    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          548    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          550    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          552    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          554    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          556    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          558    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          560    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          562    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          564    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          566    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          570    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          572    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          574    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000000   Code   RO          576    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x000001c8   0x000001c8   0x00000002   Code   RO          577    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
+    0x000001ca   0x000001ca   0x00000002   Code   RO          597    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x000001cc   0x000001cc   0x00000000   Code   RO          610    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x000001cc   0x000001cc   0x00000000   Code   RO          612    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x000001cc   0x000001cc   0x00000000   Code   RO          615    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x000001cc   0x000001cc   0x00000000   Code   RO          618    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x000001cc   0x000001cc   0x00000000   Code   RO          620    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x000001cc   0x000001cc   0x00000000   Code   RO          623    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x000001cc   0x000001cc   0x00000002   Code   RO          624    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x000001ce   0x000001ce   0x00000000   Code   RO          488    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x000001ce   0x000001ce   0x00000000   Code   RO          502    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x000001ce   0x000001ce   0x00000006   Code   RO          514    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x000001d4   0x000001d4   0x00000000   Code   RO          504    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x000001d4   0x000001d4   0x00000004   Code   RO          505    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x000001d8   0x000001d8   0x00000000   Code   RO          507    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x000001d8   0x000001d8   0x00000008   Code   RO          508    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x000001e0   0x000001e0   0x00000002   Code   RO          531    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x000001e2   0x000001e2   0x00000000   Code   RO          579    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x000001e2   0x000001e2   0x00000004   Code   RO          580    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x000001e6   0x000001e6   0x00000006   Code   RO          581    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x000001ec   0x000001ec   0x00000020   Code   RO           72    .emb_text           cortexm.o
-    0x0000020c   0x0000020c   0x0000003c   Code   RO          394  * .text               startup_msp432p401r_uvision.o
-    0x00000248   0x00000248   0x0000002c   Code   RO          436    .text               c_w.l(__2sprintf.o)
-    0x00000274   0x00000274   0x00000068   Code   RO          440    .text               c_w.l(__printf.o)
-    0x000002dc   0x000002dc   0x00000078   Code   RO          442    .text               c_w.l(_printf_dec.o)
-    0x00000354   0x00000354   0x00000006   Code   RO          466    .text               c_w.l(heapauxi.o)
-    0x0000035a   0x0000035a   0x000000b2   Code   RO          487    .text               c_w.l(_printf_intcommon.o)
-    0x0000040c   0x0000040c   0x00000030   Code   RO          489    .text               c_w.l(_printf_char_common.o)
-    0x0000043c   0x0000043c   0x0000000a   Code   RO          491    .text               c_w.l(_sputc.o)
-    0x00000446   0x00000446   0x0000004a   Code   RO          516    .text               c_w.l(sys_stackheap_outer.o)
-    0x00000490   0x00000490   0x00000012   Code   RO          518    .text               c_w.l(exit.o)
+    0x0000020c   0x0000020c   0x0000003c   Code   RO          398  * .text               startup_msp432p401r_uvision.o
+    0x00000248   0x00000248   0x0000002c   Code   RO          440    .text               c_w.l(__2sprintf.o)
+    0x00000274   0x00000274   0x00000068   Code   RO          444    .text               c_w.l(__printf.o)
+    0x000002dc   0x000002dc   0x00000078   Code   RO          446    .text               c_w.l(_printf_dec.o)
+    0x00000354   0x00000354   0x00000006   Code   RO          470    .text               c_w.l(heapauxi.o)
+    0x0000035a   0x0000035a   0x000000b2   Code   RO          489    .text               c_w.l(_printf_intcommon.o)
+    0x0000040c   0x0000040c   0x00000030   Code   RO          491    .text               c_w.l(_printf_char_common.o)
+    0x0000043c   0x0000043c   0x0000000a   Code   RO          493    .text               c_w.l(_sputc.o)
+    0x00000446   0x00000446   0x0000004a   Code   RO          518    .text               c_w.l(sys_stackheap_outer.o)
+    0x00000490   0x00000490   0x00000012   Code   RO          520    .text               c_w.l(exit.o)
     0x000004a2   0x000004a2   0x00000002   PAD
-    0x000004a4   0x000004a4   0x00000008   Code   RO          526    .text               c_w.l(libspace.o)
-    0x000004ac   0x000004ac   0x0000000c   Code   RO          587    .text               c_w.l(sys_exit.o)
-    0x000004b8   0x000004b8   0x00000002   Code   RO          598    .text               c_w.l(use_no_semi.o)
-    0x000004ba   0x000004ba   0x00000000   Code   RO          600    .text               c_w.l(indicate_semi.o)
+    0x000004a4   0x000004a4   0x00000008   Code   RO          528    .text               c_w.l(libspace.o)
+    0x000004ac   0x000004ac   0x0000000c   Code   RO          589    .text               c_w.l(sys_exit.o)
+    0x000004b8   0x000004b8   0x00000002   Code   RO          600    .text               c_w.l(use_no_semi.o)
+    0x000004ba   0x000004ba   0x00000000   Code   RO          602    .text               c_w.l(indicate_semi.o)
     0x000004ba   0x000004ba   0x00000002   PAD
     0x000004bc   0x000004bc   0x00000080   Code   RO            4    i.ADC0_InitSWTriggerCh6  adc14.o
     0x0000053c   0x0000053c   0x00000038   Code   RO            5    i.ADC_In            adc14.o
     0x00000574   0x00000574   0x00000048   Code   RO           91    i.LED1_Init         lab1.o
-    0x000005bc   0x000005bc   0x00000098   Code   RO           93    i.LED2_Init         lab1.o
-    0x00000654   0x00000654   0x00000048   Code   RO           96    i.Switch2_Init      lab1.o
-    0x0000069c   0x0000069c   0x0000001c   Code   RO          214    i.SysTick_Handler   systicktimer.o
-    0x000006b8   0x000006b8   0x0000006c   Code   RO          402    i.SystemInit        system_msp432p401r.o
-    0x00000724   0x00000724   0x00000010   Code   RO          261    i.T32_INT1_IRQHandler  timer32.o
-    0x00000734   0x00000734   0x00000010   Code   RO          262    i.T32_INT2_IRQHandler  timer32.o
-    0x00000744   0x00000744   0x0000006c   Code   RO          159    i.main              lab5-adc.o
-    0x000007b0   0x000007b0   0x00000088   Code   RO          318    i.uart0_init        uart.o
-    0x00000838   0x00000838   0x00000016   Code   RO          319    i.uart0_put         uart.o
-    0x0000084e   0x0000084e   0x00000002   PAD
-    0x00000850   0x00000850   0x00000018   Code   RO          320    i.uart0_putchar     uart.o
-    0x00000868   0x00000868   0x0000000a   Code   RO          585    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x00000872   0x00000872   0x00000002   PAD
-    0x00000874   0x00000874   0x00000020   Data   RO          653    Region$$Table       anon$$obj.o
+    0x000005bc   0x000005bc   0x000000a0   Code   RO           93    i.LED2_Init         lab1.o
+    0x0000065c   0x0000065c   0x00000048   Code   RO           94    i.Switch1_Init      lab1.o
+    0x000006a4   0x000006a4   0x00000048   Code   RO           96    i.Switch2_Init      lab1.o
+    0x000006ec   0x000006ec   0x0000001c   Code   RO          218    i.SysTick_Handler   systicktimer.o
+    0x00000708   0x00000708   0x0000006c   Code   RO          406    i.SystemInit        system_msp432p401r.o
+    0x00000774   0x00000774   0x00000028   Code   RO          265    i.T32_INT1_IRQHandler  timer32.o
+    0x0000079c   0x0000079c   0x00000028   Code   RO          266    i.T32_INT2_IRQHandler  timer32.o
+    0x000007c4   0x000007c4   0x00000040   Code   RO          157    i.Timer32_1_ISR     lab5-adc.o
+    0x00000804   0x00000804   0x0000007c   Code   RO          267    i.Timer32_1_Init    timer32.o
+    0x00000880   0x00000880   0x000000c0   Code   RO          159    i.main              lab5-adc.o
+    0x00000940   0x00000940   0x00000088   Code   RO          322    i.uart0_init        uart.o
+    0x000009c8   0x000009c8   0x00000016   Code   RO          323    i.uart0_put         uart.o
+    0x000009de   0x000009de   0x00000002   PAD
+    0x000009e0   0x000009e0   0x00000018   Code   RO          324    i.uart0_putchar     uart.o
+    0x000009f8   0x000009f8   0x0000000a   Code   RO          587    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x00000a02   0x00000a02   0x00000002   PAD
+    0x00000a04   0x00000a04   0x00000020   Data   RO          655    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000894, Size: 0x00000038, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x20000000   0x00000894   0x00000009   Data   RW          160    .data               lab5-adc.o
-    0x20000009   0x0000089d   0x00000003   PAD
-    0x2000000c   0x000008a0   0x00000008   Data   RW          215    .data               systicktimer.o
-    0x20000014   0x000008a8   0x00000004   PAD
-    0x20000018   0x000008ac   0x00000019   Data   RW          265    .data               timer32.o
-    0x20000031   0x000008c5   0x00000003   PAD
-    0x20000034   0x000008c8   0x00000004   Data   RW          403    .data               system_msp432p401r.o
-
-
-    Execution Region ER_ZI (Exec base: 0x20000038, Load base: 0x000008cc, Size: 0x00000260, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000a24, Size: 0x00000038, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000038        -       0x00000060   Zero   RW          527    .bss                c_w.l(libspace.o)
-    0x20000098        -       0x00000000   Zero   RW          392    HEAP                startup_msp432p401r_uvision.o
-    0x20000098        -       0x00000200   Zero   RW          391    STACK               startup_msp432p401r_uvision.o
+    0x20000000   0x00000a24   0x00000009   Data   RW          160    .data               lab5-adc.o
+    0x20000009   0x00000a2d   0x00000003   PAD
+    0x2000000c   0x00000a30   0x00000008   Data   RW          219    .data               systicktimer.o
+    0x20000014   0x00000a38   0x00000004   PAD
+    0x20000018   0x00000a3c   0x00000019   Data   RW          269    .data               timer32.o
+    0x20000031   0x00000a55   0x00000003   PAD
+    0x20000034   0x00000a58   0x00000004   Data   RW          407    .data               system_msp432p401r.o
+
+
+    Execution Region ER_ZI (Exec base: 0x20000038, Load base: 0x00000a5c, Size: 0x00000260, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000038        -       0x00000060   Zero   RW          529    .bss                c_w.l(libspace.o)
+    0x20000098        -       0x00000000   Zero   RW          396    HEAP                startup_msp432p401r_uvision.o
+    0x20000098        -       0x00000200   Zero   RW          395    STACK               startup_msp432p401r_uvision.o
 
 
 ==============================================================================
@@ -776,18 +778,18 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       184         30          0          0          0       7869   adc14.o
+       184         30          0          0          0     197905   adc14.o
         32          0          0          0          0        564   cortexm.o
-       296         18          0          0          0       1315   lab1.o
-       108         38          0          9          0       1209   lab5-adc.o
+       376         22          0          0          0       1750   lab1.o
+       256         78          0          9          0      32848   lab5-adc.o
         60         22        324          0        512        920   startup_msp432p401r_uvision.o
        108         22          0          4          0        767   system_msp432p401r.o
         28          8          0          8          0       1126   systicktimer.o
-        32         12          0         25          0       1748   timer32.o
+       204         52          0         25          0       2449   timer32.o
        182         16          0          0          0       1461   uart.o
 
     ----------------------------------------------------------------------
-      1032        166        356         56        512      16979   Object Totals
+      1432        250        356         56        512     239790   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0         10          0          0   (incl. Padding)
 
@@ -847,15 +849,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1840        210        356         56        608      16723   Grand Totals
-      1840        210        356         56        608      16723   ELF Image Totals
-      1840        210        356         56          0          0   ROM Totals
+      2240        294        356         56        608     239234   Grand Totals
+      2240        294        356         56        608     239234   ELF Image Totals
+      2240        294        356         56          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 2196 (   2.14kB)
+    Total RO  Size (Code + RO Data)                 2596 (   2.54kB)
     Total RW  Size (RW Data + ZI Data)               664 (   0.65kB)
-    Total ROM Size (Code + RO Data + RW Data)       2252 (   2.20kB)
+    Total ROM Size (Code + RO Data + RW Data)       2652 (   2.59kB)
 
 ==============================================================================
 

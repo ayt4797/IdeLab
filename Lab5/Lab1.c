@@ -1,4 +1,3 @@
-
 /*
 Title: Lab1
 Purpose:
@@ -8,16 +7,10 @@ Date: 08-27-21
 This file prepared by LJBeato
 01/11/2021
 */
-
 #include "msp.h"
 typedef unsigned char BOOLEAN;
 #define FALSE 0
 #define TRUE !FALSE
-
-#ifndef _LAB1_
-#define _LAB1_
-#endif
-
 typedef unsigned char BYTE;
 // Main Program
 // 1. Init LEDs
@@ -34,8 +27,8 @@ P1->SEL0 &= ~BIT0;
 P1->SEL1 &= ~BIT0;
 P1->DIR |=BIT0;
 P1->DS &= BIT0;
-P1->OUT |=BIT0;
-//P1->OUT &=~BIT0;
+//P1->OUT |=BIT0;
+P1->OUT &=~BIT0;
 // make built-in LED1 LED high drive strength
 // make built-in LED1 out
 // turn off LED
@@ -46,15 +39,16 @@ void LED2_Init(void)
 P2->SEL0 &= ~BIT0;
 P2->DIR |=BIT0;
 P2->DS &= BIT0;
-P2->OUT |=BIT0;
+P2->OUT &= ~BIT0;
 P2->SEL0 &= ~BIT1;
 P2->DIR |=BIT1;
 P2->DS &= BIT1;
-P2->OUT |=BIT1;
+P2->OUT &= ~BIT1;
 P2->SEL0 &= ~BIT2;
 P2->DIR |=BIT2;
 P2->DS &= BIT2;
-P2->OUT |=BIT2;
+P2->OUT &= ~BIT2;
+P2->OUT &= ~(BIT0|BIT1|BIT2);
 // make built-in LED2 LEDs high drive strength
 // make built-in LED2 out
 // turn off LED
