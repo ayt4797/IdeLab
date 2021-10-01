@@ -52,6 +52,14 @@ static char str[100];
 
 // main
 
+void LED1_On() {
+	P1->OUT |= BIT0; // TOGGLE LED
+}
+
+void LED1_Off() {
+	P1->OUT &= ~BIT0; // TOGGLE LED
+}
+
 
 /////////////////////////////////////////////////////
 //
@@ -95,7 +103,6 @@ int main(void)
 	DisableInterrupts();
 	uart0_init();
 	uart0_put("\r\nLab5 CAMERA demo\r\n");
-
 	
 	uart0_put("\r\nINIT LEDs\r\n");
 	LED1_Init();
@@ -103,22 +110,18 @@ int main(void)
 	// remember that we double the desired frequency because we need to account
 	// for the toggle from hi to low.
 	//
-	Output_MCLK();
+	//Output_MCLK();
 	uart0_put("\r\nINIT Camera CLK and SI\r\n");
 	uart0_put("\r\nINIT ADC\r\n");	
 	INIT_Camera();
 	
 	uart0_put("\r\nINIT Switch 2\r\n");
 	Switch2_Init();
-
-
 	uart0_put("\r\nEnable Interrupts\r\n");
 	EnableInterrupts();
 	uart0_put("\r\nInterrupts successfully enabled\r\n");
-
 	while(1)
 	{
-
 		if (g_sendData == TRUE) 
 		{
 			LED1_On();
