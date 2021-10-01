@@ -290,9 +290,9 @@ Removing Unused input sections from the image.
     Removing systicktimer.o(.rev16_text), (4 bytes).
     Removing systicktimer.o(.revsh_text), (4 bytes).
     Removing systicktimer.o(.rrx_text), (6 bytes).
-    Removing systicktimer.o(i.DisableSysTickTimer), (2 bytes).
-    Removing systicktimer.o(i.EnableSysTickTimer), (2 bytes).
-    Removing systicktimer.o(i.SysTickTimer_Init), (60 bytes).
+    Removing systicktimer.o(i.DisableSysTickTimer), (18 bytes).
+    Removing systicktimer.o(i.EnableSysTickTimer), (18 bytes).
+    Removing systicktimer.o(i.SysTickTimer_Init), (100 bytes).
     Removing timer32.o(.rev16_text), (4 bytes).
     Removing timer32.o(.revsh_text), (4 bytes).
     Removing timer32.o(.rrx_text), (6 bytes).
@@ -314,7 +314,7 @@ Removing Unused input sections from the image.
     Removing system_msp432p401r.o(.rrx_text), (6 bytes).
     Removing system_msp432p401r.o(i.SystemCoreClockUpdate), (628 bytes).
 
-41 unused section(s) (total 1534 bytes) removed from the image.
+41 unused section(s) (total 1606 bytes) removed from the image.
 
 ==============================================================================
 

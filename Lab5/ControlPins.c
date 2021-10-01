@@ -47,13 +47,14 @@ void SI_Handler(void)
 		P5->OUT &= ~CLK; // set the clock low in case it was high.
 	// This is the SI,CLK sequencing to start the data transfer process
 	// SI HIGH
-	;;
+	P5->OUT|=BIT5;
 	// CLK HIGH
-	;;
+	P5->OUT|=BIT4;
 	// SI LOW
-	;
+	P5->OUT&=~BIT4;
 	// CLK LOW
-	;;
+	P5->OUT|=BIT5;
+
 	// OK, Data should be ready to clock out, so start the clock
 	// Start the clock after we issues a SI pulse.
 	EnableSysTickTimer();                            
@@ -77,15 +78,16 @@ void ControlPin_SI_Init()
 	// Go with 50Hz for now - integration period of 20ms
 	unsigned long period = CalcPeriodFromFrequency (1.0/(double)INTEGRATION_TIME);
 	// initialize P5.5 and make it output (P5.5 SI Pin)
-  ;
-	// configure built-in LED1 as GPIO
-  ; 
+  P5->SEL1&=~BIT5;
+	P5->SEL0&=~BIT5;
+	// configure built-in LED1 as GPIO//WTF BEATO
+  //P1->SEL0; 
 	// make SI high drive strength
-  ;
+  P5->DS|=BIT5;
 	// make P5.5 out	
-  ; 
+  P5->DIR|=BIT5; 
 	// turn off SI
-	;	
+  P5->OUT&=~BIT5;
     // start Timer
 	Timer32_1_Init(*SI_Handler, period, T32DIV1);
 }
@@ -102,15 +104,15 @@ void ControlPin_CLK_Init()
 	// use 200000 to make a 100K clock, 1 interrupt for each edge
 	unsigned long period = CalcPeriodFromFrequency (200000);
 	// initialize P5.4 and make it output (P5.4 CLK Pin)
-  ;
+  P5->DS|=BIT4;
+	P5->DIR|=BIT4; 
+
 	// configure P5.4 as GPIO
-  ; 
-		// make CLK high drive strength
-  ;
+  P5->SEL1&=~BIT4;
+	P5->SEL0&=~BIT4;
 	// make P5.5 out	
-  ; 
 	// turn off CLK
-	;	
+  P5->OUT&=~BIT4;
 	// if the period is based on a 48MHz clock, each tick would be 20.83 ns
 	// i want a 100KHz clock
 	SysTickTimer_Init (*CLK_Handler, period);

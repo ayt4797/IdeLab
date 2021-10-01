@@ -88,7 +88,6 @@ void INIT_Camera(void)
 //
 //
 /////////////////////////////////////////////////////
-/*
 int main(void)
 {
 	int i = 0;
@@ -140,4 +139,3 @@ int main(void)
 		myDelay();
 	}
 }
-*/
