@@ -1,3 +1,7 @@
+#ifndef _UART_
+#define _UART_
+
+
 typedef unsigned char BYTE;
 typedef unsigned char BOOLEAN;
 
@@ -18,3 +22,5 @@ void uart2_put(char *ptr_str);
 BYTE uart2_getchar(void);
 BOOLEAN uart0_dataAvailable(void);
 BOOLEAN uart2_dataAvailable(void);
+
+#endif

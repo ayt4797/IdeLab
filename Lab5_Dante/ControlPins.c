@@ -14,6 +14,8 @@ extern uint32_t SystemCoreClock;
 //
 #define INTEGRATION_TIME .075f
 
+
+
 // default CLK frequency of the camera 180KHz (assume 48MHz clock)
 // NOTE: we have to double 50000, because we need a clock for the rising edge and one for the falling edge.
 //#define HIGH_CLOCK_SPEED 48000000
@@ -48,9 +50,9 @@ void SI_Handler(void)
 	// CLK HIGH
 	P5->OUT|=BIT4;
 	// SI LOW
-	P5->OUT&=~BIT5;
-	// CLK LOW
 	P5->OUT&=~BIT4;
+	// CLK LOW
+	P5->OUT|=BIT5;
 
 	// OK, Data should be ready to clock out, so start the clock
 	// Start the clock after we issues a SI pulse.
@@ -73,18 +75,18 @@ void ControlPin_SI_Init()
 	// frequency of 133 Hz works OK, but could use more light
 	// so try 50Hz?
 	// Go with 50Hz for now - integration period of 20ms
-	//double converted_integration_time = INTEGRATION_TIME;
-	unsigned long period = CalcPeriodFromFrequency (1.0/(double)INTEGRATION_TIME); // Period = 0x0036EE80
+	unsigned long period = CalcPeriodFromFrequency (1.0/(double)INTEGRATION_TIME);
 	// initialize P5.5 and make it output (P5.5 SI Pin)
   P5->SEL1&=~BIT5;
 	P5->SEL0&=~BIT5;
-	
+	// configure built-in LED1 as GPIO//WTF BEATO
+  //P1->SEL0; 
 	// make SI high drive strength
   P5->DS|=BIT5;
 	// make P5.5 out	
   P5->DIR|=BIT5; 
 	// turn off SI
-	P5->OUT&=~BIT5;
+  P5->OUT&=~BIT5;
     // start Timer
 	Timer32_1_Init(*SI_Handler, period, T32DIV1);
 }
@@ -99,7 +101,7 @@ void ControlPin_SI_Init()
 void ControlPin_CLK_Init()
 {
 	// use 200000 to make a 100K clock, 1 interrupt for each edge
-	unsigned long period = CalcPeriodFromFrequency (200000); // period = 0x000000F0;
+	unsigned long period = CalcPeriodFromFrequency (200000);
 	// initialize P5.4 and make it output (P5.4 CLK Pin)
   P5->DS|=BIT4;
 	P5->DIR|=BIT4; 
@@ -107,7 +109,7 @@ void ControlPin_CLK_Init()
 	// configure P5.4 as GPIO
   P5->SEL1&=~BIT4;
 	P5->SEL0&=~BIT4;
-
+	// make P5.5 out	
 	// turn off CLK
   P5->OUT&=~BIT4;
 	// if the period is based on a 48MHz clock, each tick would be 20.83 ns
@@ -137,9 +139,9 @@ void CLK_Handler(void)
 		// read data from ADC
 		ADC_val = ADC_In();
 		// save into the line buffer
-		line[pixelCounter++] = ADC_val;
+		line[pixelCounter] = ADC_val;
 		// increment the pixelCounter
-		//pixelCounter = (pixelCounter + 1);
+		pixelCounter = (pixelCounter + 1);
 		//are we done??
 		if (pixelCounter == 128)
 		{

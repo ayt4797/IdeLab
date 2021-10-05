@@ -41,8 +41,8 @@ EUSCI_A0->CTLW0 |=BIT6; //*
 // baud rate
 // N = clock/baud rate = clock_speed/BAUD_RATE
 // set BRW register
-uint32_t mod=SystemCoreClock/BAUD_RATE;
-EUSCI_A0->BRW=mod ;
+
+EUSCI_A0->BRW=SystemCoreClock/BAUD_RATE ;
 
 
 
@@ -98,8 +98,7 @@ EUSCI_A2->CTLW0 |=BIT6; //*
 // baud rate
 // N = clock/baud rate = clock_speed/BAUD_RATE
 // set BRW register
-uint32_t mod=SystemCoreClock/BAUD_RATE;
-EUSCI_A2->BRW=mod ;
+EUSCI_A2->BRW=SystemCoreClock/BAUD_RATE; ;
 
 
 
