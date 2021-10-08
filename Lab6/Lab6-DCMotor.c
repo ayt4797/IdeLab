@@ -17,7 +17,7 @@
  * 
  * del - The delay in milliseconds
  */
-void delay(int del){
+void delay1(int del){
 	volatile int i;
 	for (i=0; i<del*50000; i++){
 		;// Do nothing
@@ -29,7 +29,7 @@ int main(void) {
 	// INSERT CODE HERE
 
 	// Print welcome over serial
-	put("Running... \n\r");
+	uart0_put("Running... \n\r");
 	
 	/* Part 1 - UNCOMMENT THIS
 	// Generate 20% duty cycle at 10kHz

@@ -1,0 +1,252 @@
+Component: ARM Compiler 5.06 update 5 (build 528) Tool: armlink [4d35e2]
+
+==============================================================================
+
+Section Cross References
+
+    controlpins.o(i.CLK_Handler) refers to adc14.o(i.ADC_In) for ADC_In
+    controlpins.o(i.CLK_Handler) refers to systicktimer.o(i.DisableSysTickTimer) for DisableSysTickTimer
+    controlpins.o(i.CLK_Handler) refers to controlpins.o(.data) for pixelCounter
+    controlpins.o(i.CLK_Handler) refers to controlpins.o(.bss) for line
+    controlpins.o(i.ControlPin_CLK_Init) refers to timer32.o(i.CalcPeriodFromFrequency) for CalcPeriodFromFrequency
+    controlpins.o(i.ControlPin_CLK_Init) refers to systicktimer.o(i.SysTickTimer_Init) for SysTickTimer_Init
+    controlpins.o(i.ControlPin_CLK_Init) refers to systicktimer.o(i.DisableSysTickTimer) for DisableSysTickTimer
+    controlpins.o(i.ControlPin_CLK_Init) refers to controlpins.o(i.CLK_Handler) for CLK_Handler
+    controlpins.o(i.ControlPin_SI_Init) refers to timer32.o(i.CalcPeriodFromFrequency) for CalcPeriodFromFrequency
+    controlpins.o(i.ControlPin_SI_Init) refers to timer32.o(i.Timer32_1_Init) for Timer32_1_Init
+    controlpins.o(i.ControlPin_SI_Init) refers to controlpins.o(i.SI_Handler) for SI_Handler
+    controlpins.o(i.SI_Handler) refers to systicktimer.o(i.EnableSysTickTimer) for EnableSysTickTimer
+    cortexm.o(i.Clock_Delay1ms) refers to cortexm.o(.emb_text) for delay
+    systicktimer.o(i.SysTickTimer_Init) refers to cortexm.o(.emb_text) for StartCritical
+    systicktimer.o(i.SysTickTimer_Init) refers to systicktimer.o(i.DisableSysTickTimer) for DisableSysTickTimer
+    systicktimer.o(i.SysTickTimer_Init) refers to systicktimer.o(i.EnableSysTickTimer) for EnableSysTickTimer
+    systicktimer.o(i.SysTickTimer_Init) refers to systicktimer.o(.data) for SysTickPeriodicTask
+    systicktimer.o(i.SysTick_Handler) refers to systicktimer.o(.data) for g_SysTickTimerCounter
+    timer32.o(i.CalcPeriodFromFrequency) refers to dflt_clz.o(x$fpl$dfltu) for __aeabi_ui2d
+    timer32.o(i.CalcPeriodFromFrequency) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    timer32.o(i.CalcPeriodFromFrequency) refers to dfixu.o(x$fpl$dfixu) for __aeabi_d2uiz
+    timer32.o(i.CalcPeriodFromFrequency) refers to system_msp432p401r.o(.data) for SystemCoreClock
+    timer32.o(i.MS_Timeout_Handler) refers to timer32.o(.data) for timeOut
+    timer32.o(i.T32_INT1_IRQHandler) refers to timer32.o(.data) for Timer32_1_PeriodicTask
+    timer32.o(i.T32_INT2_IRQHandler) refers to timer32.o(.data) for Timer32_2_PeriodicTask
+    timer32.o(i.Timer32_1_Init) refers to cortexm.o(.emb_text) for StartCritical
+    timer32.o(i.Timer32_1_Init) refers to timer32.o(.data) for timer1Period
+    timer32.o(i.Timer32_1_Init) refers to system_msp432p401r.o(.data) for SystemCoreClock
+    timer32.o(i.Timer32_2_Init) refers to cortexm.o(.emb_text) for StartCritical
+    timer32.o(i.Timer32_2_Init) refers to timer32.o(.data) for timer2Period
+    timera.o(i.TIMER_A0_PWM_Init) refers to dflt_clz.o(x$fpl$dfltu) for __aeabi_ui2d
+    timera.o(i.TIMER_A0_PWM_Init) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    timera.o(i.TIMER_A0_PWM_Init) refers to dfixu.o(x$fpl$dfixu) for __aeabi_d2uiz
+    timera.o(i.TIMER_A0_PWM_Init) refers to timera.o(.bss) for DEFAULT_PERIOD_A0
+    uart.o(i.uart0_init) refers to system_msp432p401r.o(.data) for SystemCoreClock
+    uart.o(i.uart0_put) refers to uart.o(i.uart0_putchar) for uart0_putchar
+    uart.o(i.uart2_init) refers to system_msp432p401r.o(.data) for SystemCoreClock
+    uart.o(i.uart2_put) refers to uart.o(i.uart2_putchar) for uart2_putchar
+    startup_msp432p401r_uvision.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_msp432p401r_uvision.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_msp432p401r_uvision.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_msp432p401r_uvision.o(RESET) refers to startup_msp432p401r_uvision.o(STACK) for __initial_sp
+    startup_msp432p401r_uvision.o(RESET) refers to startup_msp432p401r_uvision.o(.text) for Reset_Handler
+    startup_msp432p401r_uvision.o(RESET) refers to systicktimer.o(i.SysTick_Handler) for SysTick_Handler
+    startup_msp432p401r_uvision.o(RESET) refers to timer32.o(i.T32_INT1_IRQHandler) for T32_INT1_IRQHandler
+    startup_msp432p401r_uvision.o(RESET) refers to timer32.o(i.T32_INT2_IRQHandler) for T32_INT2_IRQHandler
+    startup_msp432p401r_uvision.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_msp432p401r_uvision.o(.text) refers to system_msp432p401r.o(i.SystemInit) for SystemInit
+    startup_msp432p401r_uvision.o(.text) refers to __main.o(!!!main) for __main
+    startup_msp432p401r_uvision.o(.text) refers to startup_msp432p401r_uvision.o(HEAP) for Heap_Mem
+    startup_msp432p401r_uvision.o(.text) refers to startup_msp432p401r_uvision.o(STACK) for Stack_Mem
+    system_msp432p401r.o(i.SystemCoreClockUpdate) refers to system_msp432p401r.o(.data) for SystemCoreClock
+    __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
+    ddiv.o(x$fpl$drdiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ddiv.o(x$fpl$drdiv) refers to ddiv.o(x$fpl$ddiv) for ddiv_entry
+    ddiv.o(x$fpl$ddiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ddiv.o(x$fpl$ddiv) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
+    ddiv.o(x$fpl$ddiv) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dfixu.o(x$fpl$dfixu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dfixu.o(x$fpl$dfixu) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dfixu.o(x$fpl$dfixur) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dfixu.o(x$fpl$dfixur) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dflt_clz.o(x$fpl$dfltu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dflt_clz.o(x$fpl$dflt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dflt_clz.o(x$fpl$dfltn) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dmul.o(x$fpl$dmul) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dmul.o(x$fpl$dmul) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
+    dmul.o(x$fpl$dmul) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000C) for __rt_entry_postli_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000009) for __rt_entry_postsh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000002) for __rt_entry_presh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for __rt_entry_sh
+    dnaninf.o(x$fpl$dnaninf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dretinf.o(x$fpl$dretinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    __rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to lab6-dcmotor.o(i.main) for main
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to exit.o(.text) for exit
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000001) for .ARM.Collect$$rtentry$$00000001
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000008) for .ARM.Collect$$rtentry$$00000008
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for .ARM.Collect$$rtentry$$0000000A
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) for .ARM.Collect$$rtentry$$0000000B
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for .ARM.Collect$$rtentry$$0000000D
+    __rtentry4.o(.ARM.Collect$$rtentry$$00000004) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
+    __rtentry4.o(.ARM.exidx) refers to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
+    sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
+    sys_stackheap_outer.o(.text) refers to startup_msp432p401r_uvision.o(.text) for __user_initial_stackheap
+    exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002E) for __rt_lib_init_alloca_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002C) for __rt_lib_init_argv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001B) for __rt_lib_init_atexit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000021) for __rt_lib_init_clock_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000032) for __rt_lib_init_cpp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000030) for __rt_lib_init_exceptions_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000001) for __rt_lib_init_fp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001F) for __rt_lib_init_fp_trap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000023) for __rt_lib_init_getenv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000A) for __rt_lib_init_heap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000011) for __rt_lib_init_lc_collate_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000013) for __rt_lib_init_lc_ctype_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000015) for __rt_lib_init_lc_monetary_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000017) for __rt_lib_init_lc_numeric_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000019) for __rt_lib_init_lc_time_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000004) for __rt_lib_init_preinit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000E) for __rt_lib_init_rand_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000033) for __rt_lib_init_return
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001D) for __rt_lib_init_signal_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000025) for __rt_lib_init_stdio_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000C) for __rt_lib_init_user_alloc_1
+    libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for .ARM.Collect$$rtexit$$00000000
+    libinit2.o(.ARM.Collect$$libinit$$00000001) refers to fpinit.o(x$fpl$fpinit) for _fp_init
+    libinit2.o(.ARM.Collect$$libinit$$00000010) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000018) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000026) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    libinit2.o(.ARM.Collect$$libinit$$00000027) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    rtexit2.o(.ARM.Collect$$rtexit$$00000003) refers to libshutdown.o(.ARM.Collect$$libshutdown$$00000000) for __rt_lib_shutdown
+    rtexit2.o(.ARM.Collect$$rtexit$$00000004) refers to sys_exit.o(.text) for _sys_exit
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000001) for .ARM.Collect$$rtexit$$00000001
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for .ARM.Collect$$rtexit$$00000003
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for .ARM.Collect$$rtexit$$00000004
+    argv_veneer.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
+    sys_exit.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    _get_argv_nomalloc.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
+    _get_argv_nomalloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv_nomalloc.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000002) for __rt_lib_shutdown_cpp_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000007) for __rt_lib_shutdown_fp_trap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F) for __rt_lib_shutdown_heap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000010) for __rt_lib_shutdown_return
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A) for __rt_lib_shutdown_signal_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000004) for __rt_lib_shutdown_stdio_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C) for __rt_lib_shutdown_user_alloc_1
+    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    rt_raise.o(.text) refers to __raise.o(.text) for __raise
+    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
+    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
+    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_abrt_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_fpe_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_stak_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_pvfn_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_cppl_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_segv_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_other.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing adc14.o(.rev16_text), (4 bytes).
+    Removing adc14.o(.revsh_text), (4 bytes).
+    Removing adc14.o(.rrx_text), (6 bytes).
+    Removing adc14.o(i.ADC0_InitSWTriggerCh6), (128 bytes).
+    Removing adc14.o(i.ADC_In), (56 bytes).
+    Removing controlpins.o(.rev16_text), (4 bytes).
+    Removing controlpins.o(.revsh_text), (4 bytes).
+    Removing controlpins.o(.rrx_text), (6 bytes).
+    Removing controlpins.o(i.CLK_Handler), (92 bytes).
+    Removing controlpins.o(i.ControlPin_CLK_Init), (112 bytes).
+    Removing controlpins.o(i.ControlPin_SI_Init), (100 bytes).
+    Removing controlpins.o(i.SI_Handler), (76 bytes).
+    Removing controlpins.o(.bss), (256 bytes).
+    Removing controlpins.o(.data), (9 bytes).
+    Removing cortexm.o(.emb_text), (32 bytes).
+    Removing cortexm.o(i.Clock_Delay1ms), (22 bytes).
+    Removing lab1.o(.rev16_text), (4 bytes).
+    Removing lab1.o(.revsh_text), (4 bytes).
+    Removing lab1.o(.rrx_text), (6 bytes).
+    Removing lab1.o(i.LED1_Init), (72 bytes).
+    Removing lab1.o(i.LED1_State), (20 bytes).
+    Removing lab1.o(i.LED2_Init), (160 bytes).
+    Removing lab1.o(i.Switch1_Init), (72 bytes).
+    Removing lab1.o(i.Switch1_Pressed), (20 bytes).
+    Removing lab1.o(i.Switch2_Init), (72 bytes).
+    Removing lab1.o(i.Switch2_Pressed), (20 bytes).
+    Removing lab1.o(i.Switches_Init), (136 bytes).
+    Removing lab6-dcmotor.o(.rev16_text), (4 bytes).
+    Removing lab6-dcmotor.o(.revsh_text), (4 bytes).
+    Removing lab6-dcmotor.o(.rrx_text), (6 bytes).
+    Removing lab6-dcmotor.o(i.delay1), (30 bytes).
+    Removing systicktimer.o(.rev16_text), (4 bytes).
+    Removing systicktimer.o(.revsh_text), (4 bytes).
+    Removing systicktimer.o(.rrx_text), (6 bytes).
+    Removing systicktimer.o(i.DisableSysTickTimer), (38 bytes).
+    Removing systicktimer.o(i.EnableSysTickTimer), (38 bytes).
+    Removing systicktimer.o(i.SysTickTimer_Init), (72 bytes).
+    Removing timer32.o(.rev16_text), (4 bytes).
+    Removing timer32.o(.revsh_text), (4 bytes).
+    Removing timer32.o(.rrx_text), (6 bytes).
+    Removing timer32.o(i.CalcPeriodFromFrequency), (80 bytes).
+    Removing timer32.o(i.MS_Timeout_Handler), (12 bytes).
+    Removing timer32.o(i.Timer32_1_Init), (128 bytes).
+    Removing timer32.o(i.Timer32_2_Init), (128 bytes).
+    Removing timera.o(.rev16_text), (4 bytes).
+    Removing timera.o(.revsh_text), (4 bytes).
+    Removing timera.o(.rrx_text), (6 bytes).
+    Removing timera.o(i.TIMER_A0_PWM_DutyCycle), (2 bytes).
+    Removing timera.o(i.TIMER_A0_PWM_Init), (120 bytes).
+    Removing timera.o(i.TIMER_A2_PWM_DutyCycle), (2 bytes).
+    Removing timera.o(i.TIMER_A2_PWM_Init), (16 bytes).
+    Removing timera.o(.bss), (40 bytes).
+    Removing uart.o(.rev16_text), (4 bytes).
+    Removing uart.o(.revsh_text), (4 bytes).
+    Removing uart.o(.rrx_text), (6 bytes).
+    Removing uart.o(i.uart0_dataAvailable), (20 bytes).
+    Removing uart.o(i.uart0_getchar), (28 bytes).
+    Removing uart.o(i.uart0_init), (136 bytes).
+    Removing uart.o(i.uart0_put), (22 bytes).
+    Removing uart.o(i.uart0_putchar), (24 bytes).
+    Removing uart.o(i.uart2_dataAvailable), (20 bytes).
+    Removing uart.o(i.uart2_getchar), (28 bytes).
+    Removing uart.o(i.uart2_init), (148 bytes).
+    Removing uart.o(i.uart2_put), (22 bytes).
+    Removing uart.o(i.uart2_putchar), (28 bytes).
+    Removing system_msp432p401r.o(.rev16_text), (4 bytes).
+    Removing system_msp432p401r.o(.revsh_text), (4 bytes).
+    Removing system_msp432p401r.o(.rrx_text), (6 bytes).
+    Removing system_msp432p401r.o(i.SystemCoreClockUpdate), (628 bytes).
+    Removing system_msp432p401r.o(.data), (4 bytes).
+
+70 unused section(s) (total 3395 bytes) removed from the image.

@@ -11,7 +11,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "TimerA.h"
-#include "Uart.h"
+#include "uart.h"
 
 // Make these arrays 5 deep, since we are using indexes 1-4 for the pins
 static uint32_t DEFAULT_PERIOD_A0[5] = {0,0,0,0,0};
@@ -26,11 +26,11 @@ static uint32_t DEFAULT_PERIOD_A2[5] = {0,0,0,0,0};
 
 int TIMER_A0_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin)
 {
-
+	P2->SEL0|=BIT4;
+	P2->SEL1|=BIT7;
 	// Timer A0.1
 	if (pin == 1)
 	{
-            
 	}
     // Timer A0.2
 	else if (pin == 2)
@@ -56,7 +56,7 @@ int TIMER_A0_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin)
 	// DEFAULT_PERIOD_A0[pin] where pin is the pin number
 	DEFAULT_PERIOD_A0[pin] = period;
 	// TIMER_A0->CCR[0]
-	;
+	//TIMER_A0->CCR[0];
 	
 	
 

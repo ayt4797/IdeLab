@@ -1,0 +1,88 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.24.2.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Rick Tolleson, Rochester Institute of Technology, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.24.1
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 5 (build 528)
+Assembler:       Armasm.exe V5.06 update 5 (build 528)
+Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
+Library Manager: ArmAr.exe V5.06 update 5 (build 528)
+Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
+CPU DLL:         SARMCM3.DLL V5.24.1
+Dialog DLL:      DCM.DLL V1.16.0.0
+Target DLL:      UL2CM3.DLL V1.160.3.0
+Dialog DLL:      TCM.DLL V1.32.0.0
+ 
+<h2>Project:</h2>
+C:\Users\ayt4797\Desktop\IDE\IdeLab\Lab6.uvprojx
+Project File Date:  10/08/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Target 1'
+compiling TimerA.c...
+TimerA.c(18): warning:  #177-D: variable "DEFAULT_PERIOD_A2"  was declared but never referenced
+  static uint32_t DEFAULT_PERIOD_A2[5] = {0,0,0,0,0};
+TimerA.c: 1 warning, 0 errors
+linking...
+.\Objects\Lab6.axf: Error: L6200E: Symbol line multiply defined (by lab5-timer.o and controlpins.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol g_sendData multiply defined (by lab5-timer.o and controlpins.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol delay multiply defined (by lab6-dcmotor.o and cortexm.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol LED1_Init multiply defined (by lab4.o and lab1.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol LED2_Init multiply defined (by lab4.o and lab1.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol __ARM_use_no_argv multiply defined (by lab5-camera.o and lab5-adc.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol __ARM_use_no_argv multiply defined (by lab6-dcmotor.o and lab5-adc.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol Timer1RunningFlag multiply defined (by lab5-timer.o and lab5-adc.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol Timer2RunningFlag multiply defined (by lab5-timer.o and lab5-adc.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol MillisecondCounter multiply defined (by lab5-timer.o and lab5-adc.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol flag multiply defined (by lab5-timer.o and lab5-adc.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol Timer32_1_ISR multiply defined (by lab5-timer.o and lab5-adc.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol Timer32_2_ISR multiply defined (by lab5-timer.o and lab5-adc.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol main multiply defined (by lab5-camera.o and lab5-adc.o).
+.\Objects\Lab6.axf: Error: L6200E: Symbol main multiply defined (by lab6-dcmotor.o and lab5-adc.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 15 error messages.
+".\Objects\Lab6.axf" - 15 Error(s), 1 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.0.1.pack
+                ARM.CMSIS.5.0.1
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.0.1
+
+Package Vendor: TexasInstruments
+                http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/msp432cmsis/latest/exports/TexasInstruments.MSP432P4xx_DFP.3.2.6.pack
+                TexasInstruments.MSP432P4xx_DFP.3.2.6
+                Device Family Pack for Texas Instruments SimpleLink(TM) MSP432 Series
+   * Component: Startup Version: 3.2.2
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include
+  C:\Keil_v5\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: TexasInstruments::Device:Startup:3.2.2
+      Source file:   Device\Source\system_msp432p401r.c
+      Source file:   Examples\EmptyMain\main.c
+      Source file:   Examples\BlinkLED\blinkLED.c
+      Source file:   Device\Source\startup_msp432p401r_uvision.s
+      Include file:  Device\Include\msp_compatibility.h
+
+   * Component: ARM::CMSIS:CORE:5.0.1
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
