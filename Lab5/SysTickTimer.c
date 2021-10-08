@@ -75,7 +75,7 @@ void SysTickTimer_Init(void(*task)(void), unsigned long period)
 	//	1 TICKINT R/W 0h
 	//	0 ENABLE R/W 0h Enable SysTick counter
 	//	0b (R/W) = Counter disabled
-
+	
 	// 4) enable SysTick with core clock and interrupts
 	EnableSysTickTimer();
 	EndCritical(sr);

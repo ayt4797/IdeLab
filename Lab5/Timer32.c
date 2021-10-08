@@ -82,7 +82,7 @@ void Timer32_1_Init(void(*task)(void), unsigned long period, enum timer32divider
 	
 	// enable interrupt 25 in NVIC, NVIC_ISER0
 	// NVIC_ISER0
-  NVIC_ISER0 = 25;         
+  NVIC_ISER0 = 33554432;         
 
   EndCritical(sr);
 }
@@ -153,7 +153,8 @@ void Timer32_2_Init(void(*task)(void), unsigned long period, enum timer32divider
 	
 	// enable interrupt 26 in NVIC, NVIC_ISER0
 	// NVIC_ISER0
-  NVIC_ISER0 = 26;            
+	
+  NVIC_ISER0 = 67108864;            
 
   EndCritical(sr);
 }
