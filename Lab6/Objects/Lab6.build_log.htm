@@ -34,24 +34,25 @@ compiling Motors.c...
 compiling Lab1.c...
 compiling ServoMotors.c...
 compiling Lab6-DCMotor.c...
-Lab6-DCMotor.c(32): warning:  #223-D: function "put" declared implicitly
-  	put("Running... \n\r");
-Lab6-DCMotor.c: 1 warning, 0 errors
+TimerA.h(1): warning:  #1-D: last line of file ends without a newline
+  int TIMER_A0_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin);
+Lab6-DCMotor.c(83): warning:  #111-D: statement is unreachable
+  	return 0;
+Lab6-DCMotor.c: 2 warnings, 0 errors
 compiling SysTickTimer.c...
 compiling Timer32.c...
 assembling startup_msp432p401r_uvision.s...
 compiling TimerA.c...
+TimerA.h(1): warning:  #1-D: last line of file ends without a newline
+  int TIMER_A0_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin);
 TimerA.c(18): warning:  #177-D: variable "DEFAULT_PERIOD_A2"  was declared but never referenced
   static uint32_t DEFAULT_PERIOD_A2[5] = {0,0,0,0,0};
-TimerA.c: 1 warning, 0 errors
+TimerA.c: 2 warnings, 0 errors
 compiling uart.c...
 compiling system_msp432p401r.c...
 linking...
-.\Objects\Lab6.axf: Error: L6218E: Undefined symbol put (referred from lab6-dcmotor.o).
-Not enough information to list image symbols.
-Not enough information to list load addresses in the image map.
-Finished: 2 information, 0 warning and 1 error messages.
-".\Objects\Lab6.axf" - 1 Error(s), 2 Warning(s).
+Program Size: Code=1848 RO-data=356 RW-data=40 ZI-data=648  
+".\Objects\Lab6.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -75,15 +76,14 @@ Package Vendor: TexasInstruments
 <h2>Collection of Component Files used:</h2>
 
    * Component: TexasInstruments::Device:Startup:3.2.2
+      Source file:   Device\Source\system_msp432p401r.c
+      Source file:   Examples\EmptyMain\main.c
       Include file:  Device\Include\msp_compatibility.h
       Source file:   Examples\BlinkLED\blinkLED.c
-      Source file:   Examples\EmptyMain\main.c
-      Source file:   Device\Source\system_msp432p401r.c
       Source file:   Device\Source\startup_msp432p401r_uvision.s
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Target not created.
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

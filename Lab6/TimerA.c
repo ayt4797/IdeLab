@@ -26,26 +26,34 @@ static uint32_t DEFAULT_PERIOD_A2[5] = {0,0,0,0,0};
 
 int TIMER_A0_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin)
 {
-	P2->SEL0|=BIT4;
-	P2->SEL1|=BIT7;
 	// Timer A0.1
 	if (pin == 1)
 	{
+			P2->SEL1&=~BIT4;
+			P2->SEL0|=BIT4;
+			P2->DIR|=BIT4;
 	}
     // Timer A0.2
 	else if (pin == 2)
 	{
-            
+			P2->SEL1&=~BIT5;
+			P2->SEL0|=BIT5;
+			P2->DIR|=BIT5;
+			
 	}	
     // Timer A0.3
 	else if (pin == 3)
 	{
-             
+      			P2->SEL1&=~BIT6;
+			P2->SEL0|=BIT6;
+			P2->DIR|=BIT6;       
 	}	
     // Timer A0.4
 	else if (pin == 4)
 	{
-            
+			P2->SEL1&=~BIT7;
+			P2->SEL0|=BIT7;
+			P2->DIR|=BIT7;
 	}
 	else return -2;
 
@@ -56,23 +64,24 @@ int TIMER_A0_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin)
 	// DEFAULT_PERIOD_A0[pin] where pin is the pin number
 	DEFAULT_PERIOD_A0[pin] = period;
 	// TIMER_A0->CCR[0]
-	//TIMER_A0->CCR[0];
+	TIMER_A0->CCR[0]=DEFAULT_PERIOD_A0[pin];
 	
 	
 
 	// TIMER_A0->CCTL[pin]
-    ;
+    TIMER_A0->CCTL[pin]|=BIT6;
 	
 	// set the duty cycle
 	uint16_t dutyCycle = (uint16_t) (percentDutyCycle * (double)DEFAULT_PERIOD_A0[pin]);
 
 	// CCR[n] contains the dutyCycle just calculated, where n is the pin number
     //TIMER_A0->CCR[pin]
-    ;
+  TIMER_A0->CCR[pin]=dutyCycle;
 	
 	// Timer CONTROL register
 	// TIMER_A0->CTL
-	; 
+	//0x230=0b1000110000
+	TIMER_A0->CTL|=0x230; 
 	return 0;
 }
 //***************************PWM_Duty1*******************************

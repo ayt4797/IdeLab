@@ -9,3 +9,4 @@
 .\objects\lab6-dcmotor.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
 .\objects\lab6-dcmotor.o: C:\Keil_v5\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h
 .\objects\lab6-dcmotor.o: uart.h
+.\objects\lab6-dcmotor.o: TimerA.h

@@ -10,7 +10,7 @@
 
 #include "msp.h"
 #include "uart.h"
-
+#include "TimerA.h"
 
 /**
  * Waits for a delay (in milliseconds)
@@ -29,14 +29,17 @@ int main(void) {
 	// INSERT CODE HERE
 
 	// Print welcome over serial
+	uart0_init();
 	uart0_put("Running... \n\r");
-	
-	/* Part 1 - UNCOMMENT THIS
+	TIMER_A0_PWM_Init(SystemCoreClock/20000, .2, 1);
+	TIMER_A0_PWM_Init(SystemCoreClock/20000, .2, 2);
+	TIMER_A0_PWM_Init(SystemCoreClock/20000, 0, 3);
+	TIMER_A0_PWM_Init(SystemCoreClock/20000, .2, 4);
+
+	// Part 1 - UNCOMMENT THIS
 	// Generate 20% duty cycle at 10kHz
-	// INSERT CODE HERE
-	
 	for(;;) ;  //then loop forever
-	*/
+	
 	
 	/* Part 2 - UNCOMMENT THIS
 	for(;;)  //loop forever

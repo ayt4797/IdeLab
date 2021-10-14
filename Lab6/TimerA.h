@@ -1,0 +1,1 @@
+int TIMER_A0_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin);
