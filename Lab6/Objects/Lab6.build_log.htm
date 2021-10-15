@@ -27,15 +27,23 @@ Project File Date:  10/08/2021
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling TimerA.c...
-TimerA.h(1): warning:  #1-D: last line of file ends without a newline
-  int TIMER_A0_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin);
-TimerA.c(18): warning:  #177-D: variable "DEFAULT_PERIOD_A2"  was declared but never referenced
-  static uint32_t DEFAULT_PERIOD_A2[5] = {0,0,0,0,0};
-TimerA.c: 2 warnings, 0 errors
+compiling Lab6-DCMotor.c...
+Lab6-DCMotor.c(46): warning:  #177-D: variable "dc"  was declared but never referenced
+  		uint16_t dc = 0;
+Lab6-DCMotor.c(47): warning:  #177-D: variable "freq"  was declared but never referenced
+  		uint16_t freq = 10000; // Frequency = 10 kHz 
+Lab6-DCMotor.c(48): warning:  #177-D: variable "dir"  was declared but never referenced
+  		uint16_t dir = 0;
+Lab6-DCMotor.c(49): warning:  #177-D: variable "c"  was declared but never referenced
+  		char c = 48;
+Lab6-DCMotor.c(44): warning:  #128-D: loop is not reachable
+  	for(;;)  //loop forever
+Lab6-DCMotor.c(89): warning:  #111-D: statement is unreachable
+  	return 0;
+Lab6-DCMotor.c: 6 warnings, 0 errors
 linking...
-Program Size: Code=1868 RO-data=356 RW-data=40 ZI-data=648  
-".\Objects\Lab6.axf" - 0 Error(s), 2 Warning(s).
+Program Size: Code=1840 RO-data=356 RW-data=40 ZI-data=648  
+".\Objects\Lab6.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 

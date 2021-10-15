@@ -91,6 +91,12 @@ int TIMER_A0_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin)
 // percentDutyCycle is a number between 0 and 1  (ie. 0.5 = 50%)
 void TIMER_A0_PWM_DutyCycle(double percentDutyCycle, uint16_t pin)
 {
+	
+	uint16_t dutyCycle = (uint16_t) (percentDutyCycle * (double)DEFAULT_PERIOD_A0[pin]);
+
+	// CCR[n] contains the dutyCycle just calculated, where n is the pin number
+    //TIMER_A0->CCR[pin]
+  TIMER_A0->CCR[pin]=dutyCycle;
 
 }
 
