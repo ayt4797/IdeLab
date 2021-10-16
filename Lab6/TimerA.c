@@ -109,17 +109,41 @@ void TIMER_A0_PWM_DutyCycle(double percentDutyCycle, uint16_t pin)
 int TIMER_A2_PWM_Init(uint16_t period, double percentDutyCycle, uint16_t pin)
 {
 
+
 	// NOTE: Timer A2 only exposes 1 PWM pin
 	// TimerA2.1
 	if (pin == 1)
 	{
+			P5->SEL1&=~BIT6;
+			P5->SEL0|=BIT6;
+			P5->DIR|=BIT6;
 
 	}
 	else return -2; 
+	TIMER_A2->CTL|=BIT5|BIT4|BIT6|BIT7|BIT9; 
 
+		// save the period for this timer instance
+	// DEFAULT_PERIOD_A0[pin] where pin is the pin number
+	DEFAULT_PERIOD_A2[pin] = period;
+	// TIMER_A0->CCR[0]
+	TIMER_A2->CCR[0]=DEFAULT_PERIOD_A2[pin];
+	
+	
+
+	// TIMER_A0->CCTL[pin]
+    TIMER_A2->CCTL[pin]|=BIT6;
+	// set the duty cycle
+	uint16_t dutyCycle = (uint16_t) (percentDutyCycle * (double)DEFAULT_PERIOD_A2[pin]);
+	// CCR[n] contains the dutyCycle just calculated, where n is the pin number
+    //TIMER_A0->CCR[pin]
+  TIMER_A2->CCR[pin]=dutyCycle;
+	
+	// Timer CONTROL register
+	// TIMER_A0->CTL
+	//0x230=0b1000110000
+	return 0;
     // NOTE: Setup similar to TimerA0
     // You will have to use the prescaler (clock divider) to get down to 20ms
-	return 0;
 }
 //***************************PWM_Duty1*******************************
 // change duty cycle of PWM output on P5.6

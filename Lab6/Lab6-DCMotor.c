@@ -35,11 +35,12 @@ int main(void) {
 	TIMER_A0_PWM_Init(SystemCoreClock/20000, 0.2, 2);
 	TIMER_A0_PWM_Init(SystemCoreClock/20000, 0.2, 3);
 	TIMER_A0_PWM_Init(SystemCoreClock/20000, 0.2, 4);
+	
+	TIMER_A2_PWM_Init(SystemCoreClock/(50*8), 0.2, 1);
 
 	// Part 1 - UNCOMMENT THIS
 	// Generate 20% duty cycle at 10kHz
 	
-	for(;;);
 	//Part 2 - UNCOMMENT THIS
 	for(;;)  //loop forever
 	{
