@@ -39,13 +39,13 @@ int main(void) {
 	TIMER_A2_PWM_Init(SystemCoreClock/(50*8*2), 0.1, 1);
 	for(;;){
 			TIMER_A2_PWM_DutyCycle(.05,1);
-		delay1(10);
+		delay1(1);
 			TIMER_A2_PWM_DutyCycle(.075,1);
-		delay1(10);
+		delay1(1);
 			TIMER_A2_PWM_DutyCycle(.01,1);
-		delay1(10);
+		delay1(1);
 				TIMER_A2_PWM_DutyCycle(.075,1);
-		delay1(10);
+		delay1(1);
 		
 	}
 	// Part 1 - UNCOMMENT THIS
