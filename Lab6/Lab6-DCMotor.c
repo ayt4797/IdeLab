@@ -36,8 +36,18 @@ int main(void) {
 	TIMER_A0_PWM_Init(SystemCoreClock/20000, 0.2, 3);
 	TIMER_A0_PWM_Init(SystemCoreClock/20000, 0.2, 4);
 	
-	TIMER_A2_PWM_Init(SystemCoreClock/(50*8), 0.2, 1);
-
+	TIMER_A2_PWM_Init(SystemCoreClock/(50*8*2), 0.1, 1);
+	for(;;){
+			TIMER_A2_PWM_DutyCycle(.05,1);
+		delay1(10);
+			TIMER_A2_PWM_DutyCycle(.075,1);
+		delay1(10);
+			TIMER_A2_PWM_DutyCycle(.01,1);
+		delay1(10);
+				TIMER_A2_PWM_DutyCycle(.075,1);
+		delay1(10);
+		
+	}
 	// Part 1 - UNCOMMENT THIS
 	// Generate 20% duty cycle at 10kHz
 	
