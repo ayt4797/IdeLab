@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Lab6.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Lab6.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Oct 19 12:35:59 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Oct 21 10:14:58 2021
 <BR><P>
 <H3>Maximum Stack Usage =         72 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -491,13 +491,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[55]"></a>delay1</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, lab6-dcmotor.o(i.delay1))
+<P><STRONG><a name="[55]"></a>delay1</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lab6-dcmotor.o(i.delay1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = delay1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[45]"></a>main</STRONG> (Thumb, 208 bytes, Stack size 0 bytes, lab6-dcmotor.o(i.main))
+<P><STRONG><a name="[45]"></a>main</STRONG> (Thumb, 192 bytes, Stack size 0 bytes, lab6-dcmotor.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = main &rArr; TIMER_A2_PWM_Init &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_put

@@ -19,7 +19,7 @@
  */
 void delay1(int del){
 	volatile int i;
-	for (i=0; i<del*50; i++){
+	for (i=0; i<del*5000; i++){
 		;// Do nothing
 	}
 }
@@ -38,15 +38,12 @@ int main(void) {
 	
 	TIMER_A2_PWM_Init(SystemCoreClock/(50*8*2), 0.1, 1);
 	for(;;){
-			TIMER_A2_PWM_DutyCycle(.05,1);
-		delay1(1);
-			TIMER_A2_PWM_DutyCycle(.075,1);
-		delay1(1);
-			TIMER_A2_PWM_DutyCycle(.01,1);
-		delay1(1);
-				TIMER_A2_PWM_DutyCycle(.075,1);
-		delay1(1);
-		
+			TIMER_A2_PWM_DutyCycle(.075,1);//center
+		delay1(10);
+			TIMER_A2_PWM_DutyCycle(.0625,1);//left
+		delay1(10);
+			TIMER_A2_PWM_DutyCycle(.0875,1); //right
+		delay1(10);		
 	}
 	// Part 1 - UNCOMMENT THIS
 	// Generate 20% duty cycle at 10kHz
