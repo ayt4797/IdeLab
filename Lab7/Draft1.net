@@ -1,0 +1,7 @@
+* C:\Users\johnd\Desktop\IDE\IdeLab\Lab7\Draft1.asc
+R1 P001 Frequency 10000
+C1 Frequency 0 100nf
+V 0 P001 AC 1
+.ac oct 10 1000 1000000
+.backanno
+.end
