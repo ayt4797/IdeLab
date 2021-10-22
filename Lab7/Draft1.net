@@ -1,11 +1,11 @@
 * C:\Users\johnd\Desktop\IDE\IdeLab\Lab7\Draft1.asc
 V1 N001 0 ac 1
-R1 VOut VOut 10k
-C1 VOut 0 10nf
-R2 VOut N002 1k
-C2 VOut 0 100nf
-R3 N002 N001 100
-C3 N002 0 1000nf
+R1 Vout3 Vout2 10k
+C1 Vout3 0 10nf
+R2 Vout2 Vout1 1k
+C2 Vout2 0 100nf
+R3 Vout1 N001 100
+C3 Vout1 0 1000nf
 .ac dec 10 1 1Meg
 .step param C list 100p 1n 10n 100n
 .backanno
