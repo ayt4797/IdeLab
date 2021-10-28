@@ -1,0 +1,13 @@
+* C:\Users\aubre\Desktop\ide\IdeLab\Lab7\Draft2.asc
+R1 N004 P001 1k
+C1 N001 N004 1.591549E-7
+R2 N002 N004 1k
+C2 N002 0 1.591549E-7
+XU1 N003 N002 NC_01 NC_02 N001 level3a Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=25m Rail=0 Vos=0 Phimargin=45 En=0 Enk=0 In=0 Ink=0 Rin=500Meg Ro=1k Ccm=1p Cdiff=2p
+R3 N003 0 1k
+R4 N001 N003 1k
+V1 P001 0 ac 1
+.ac dec 10 1 1Meg
+.lib UniversalOpamp.lib
+.backanno
+.end
