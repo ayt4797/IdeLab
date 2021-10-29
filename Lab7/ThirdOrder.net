@@ -1,0 +1,12 @@
+* C:\Users\aubre\Desktop\ide\IdeLab\Lab7\ThirdOrder.asc
+V1 N001 0 ac 1
+R1 VOut N003 10k
+C1 VOut 0 10nf
+C2 N003 0 100nf
+R2 N003 N002 1000
+R3 N002 N001 100
+C3 N002 0 1000nf
+.ac dec 10 1 1Meg
+.step param C list 100p 1n 10n 100n
+.backanno
+.end
