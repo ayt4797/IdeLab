@@ -17,7 +17,7 @@
 #include "CortexM.h"
 #include "Common.h"
 #include "ADC14.h"
-#define MAXOUT 16383
+#define MAXOUT 16383.0
 // The sprintf function seemed to cause a hange in the interrupt service routine.
 // I think if we increase the HEAP size, it will work
 // change to Heap_Size       EQU     0x00000200 in startup_msp432p401r_uvision.s
@@ -29,7 +29,6 @@ BOOLEAN Timer2RunningFlag = FALSE;
 
 unsigned long MillisecondCounter = 0;
 BOOLEAN flag = FALSE;
-double totalTime=0;
 double lastPulse=0;
 int periodPassed(int START, int analogin){
 	if(START==analogin){//a tolerance may be needed
@@ -49,16 +48,16 @@ void print_data(void){
 		uart0_put(temp);//printing that data for debug purpses
 		
 		double voltageOut = 3.3*((double)analogIn/MAXOUT);
-		
-		totalTime++;
-		int x = sprintf(temp,"totalTime: %lf",totalTime);
+		int y = sprintf(temp,"voltage %lf",voltageOut);
+			uart0_put(temp);
+		int x = sprintf(temp,"totalTime: %lu",MillisecondCounter);
 		uart0_put(temp);
 		if(periodPassed(START,analogIn)){
-			double period_ms = totalTime-lastPulse;
+			double period_ms = MillisecondCounter-lastPulse;
 			double period_s= period_ms*1000;
 			double freq = 1/(period_s);
 			double bpm= (freq)*60;
-			lastPulse=totalTime;
+			lastPulse=MillisecondCounter;
 			x = sprintf(temp,"heart rate is  %lf bpm",bpm);
 			uart0_put(temp);
 		}
@@ -70,7 +69,7 @@ void print_data(void){
 
 void Timer32_1_ISR(void)
 {
-	uart0_put("Debug Statement");
+	uart0_put("\r\nDebug Statement");
 	if(!flag){
 		P1->OUT=BIT0;
 		print_data();
@@ -87,7 +86,7 @@ void Timer32_1_ISR(void)
 void Timer32_2_ISR(void)
 {
 
-		MillisecondCounter++;
+		//MillisecondCounter++;
 
 }
 

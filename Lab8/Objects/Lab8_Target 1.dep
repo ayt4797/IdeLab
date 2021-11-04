@@ -1,6 +1,6 @@
 Dependencies for Project 'Lab8', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
-F (.\ADC14.c)(0x617C6BE9)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\adc14.o --omf_browse .\objects\adc14.crf --depend .\objects\adc14.d)
+F (.\ADC14.c)(0x618371B2)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\adc14.o --omf_browse .\objects\adc14.crf --depend .\objects\adc14.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025CC3E)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r.h)(0x5B69EB34)
@@ -34,6 +34,8 @@ I (SysTickTimer.h)(0x617A36DC)
 I (ControlPins.h)(0x617A36DC)
 I (ADC14.h)(0x617C6BE9)
 I (Lab1.h)(0x617C6BE9)
+F (.\CortexM.c)(0x617A36DC)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\cortexm.o --omf_browse .\objects\cortexm.crf --depend .\objects\cortexm.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025CC3E)
 F (.\Lab1.c)(0x617C6BE9)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\lab1.o --omf_browse .\objects\lab1.crf --depend .\objects\lab1.d)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r.h)(0x5B69EB34)
@@ -46,7 +48,7 @@ I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cms
 I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armcc.h)(0x60D491A2)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h)(0x60D491A2)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h)(0x5B69EB36)
-F (.\Lab8.c)(0x61835CDC)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\lab8.o --omf_browse .\objects\lab8.crf --depend .\objects\lab8.d)
+F (.\Lab8.c)(0x6183730A)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\lab8.o --omf_browse .\objects\lab8.crf --depend .\objects\lab8.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025CC34)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025CC34)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)
@@ -66,6 +68,21 @@ I (Timer32.h)(0x617C6BE9)
 I (CortexM.h)(0x617C6BE9)
 I (Common.h)(0x617C6BE9)
 I (ADC14.h)(0x617C6BE9)
+F (.\SysTickTimer.c)(0x617A36DC)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\systicktimer.o --omf_browse .\objects\systicktimer.crf --depend .\objects\systicktimer.d)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r.h)(0x5B69EB34)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025CC3E)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp_compatibility.h)(0x5B69EB34)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r_classic.h)(0x5B69EB34)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm4.h)(0x60D491A2)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h)(0x60D491A2)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h)(0x60D491A2)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armcc.h)(0x60D491A2)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h)(0x60D491A2)
+I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h)(0x5B69EB36)
+I (SysTickTimer.h)(0x617A36DC)
+I (Common.h)(0x617C6BE9)
+I (CortexM.h)(0x617C6BE9)
 F (.\Timer32.c)(0x617C6BE9)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\timer32.o --omf_browse .\objects\timer32.crf --depend .\objects\timer32.d)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r.h)(0x5B69EB34)
@@ -96,30 +113,13 @@ I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\
 I (uart.h)(0x617C6BE9)
 F (.\ADC14.h)(0x617C6BE9)()
 F (.\Common.h)(0x617C6BE9)()
+F (.\ControlPins.h)(0x617A36DC)()
 F (.\CortexM.h)(0x617C6BE9)()
 F (.\Lab1.h)(0x617C6BE9)()
+F (.\SysTickTimer.h)(0x617A36DC)()
 F (.\Timer32.h)(0x617C6BE9)()
 F (.\uart.h)(0x617C6BE9)()
-F (.\SysTickTimer.c)(0x617A36DC)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\systicktimer.o --omf_browse .\objects\systicktimer.crf --depend .\objects\systicktimer.d)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r.h)(0x5B69EB34)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025CC3E)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp_compatibility.h)(0x5B69EB34)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r_classic.h)(0x5B69EB34)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm4.h)(0x60D491A2)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h)(0x60D491A2)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h)(0x60D491A2)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armcc.h)(0x60D491A2)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h)(0x60D491A2)
-I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h)(0x5B69EB36)
-I (SysTickTimer.h)(0x617A36DC)
-I (Common.h)(0x617C6BE9)
-I (CortexM.h)(0x617C6BE9)
-F (.\SysTickTimer.h)(0x617A36DC)()
-F (.\ControlPins.h)(0x617A36DC)()
-F (.\CortexM.c)(0x617A36DC)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\cortexm.o --omf_browse .\objects\cortexm.crf --depend .\objects\cortexm.d)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025CC3E)
-F (RTE\Device\MSP432P401R\startup_msp432p401r_uvision.s)(0x617C6BE9)(--cpu Cortex-M4.fp.sp --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include--pd "__UVISION_VERSION SETA 535" --pd "_RTE_ SETA 1" --pd "_RTE_ SETA 1" --pd "__MSP432P401R__ SETA 1"--list .\listings\startup_msp432p401r_uvision.lst --xref -o .\objects\startup_msp432p401r_uvision.o --depend .\objects\startup_msp432p401r_uvision.d)
+F (RTE\Device\MSP432P401R\startup_msp432p401r_uvision.s)(0x61837413)(--cpu Cortex-M4.fp.sp --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include--pd "__UVISION_VERSION SETA 535" --pd "_RTE_ SETA 1" --pd "_RTE_ SETA 1" --pd "__MSP432P401R__ SETA 1"--list .\listings\startup_msp432p401r_uvision.lst --xref -o .\objects\startup_msp432p401r_uvision.o --depend .\objects\startup_msp432p401r_uvision.d)
 F (RTE\Device\MSP432P401R\system_msp432p401r.c)(0x617C6BE9)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\aubre\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__-o .\objects\system_msp432p401r.o --omf_browse .\objects\system_msp432p401r.crf --depend .\objects\system_msp432p401r.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025CC3E)
 I (C:\Users\aubre\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)

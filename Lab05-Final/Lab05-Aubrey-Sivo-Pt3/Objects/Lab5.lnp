@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp
+--cpu=Cortex-M4.fp.sp
 ".\objects\adc14.o"
 ".\objects\cortexm.o"
 ".\objects\lab1.o"
