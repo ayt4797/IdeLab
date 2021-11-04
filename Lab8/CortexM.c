@@ -11,7 +11,7 @@
   __asm void
   __weak DisableInterrupts(void)
   {
-    CPSID   I // Interrupt disable
+    CPSID   I
     bx      lr
   }
 
@@ -64,7 +64,7 @@
   __asm void
   __weak WaitForInterrupt(void)
   {
-    WFI // Assembly for Wait for Interrupt <- Low Power mode. Waits for interrupt
+    WFI
     bx      lr
   }
 	

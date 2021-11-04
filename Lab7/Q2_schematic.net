@@ -1,8 +1,0 @@
-* C:\Users\aubre\Desktop\ide\IdeLab\Lab7\Q2_schematic.asc
-V1 N001 0 ac 1
-R1 VOut N001 10k
-C1 VOut 0 1.591545e-8
-.ac dec 10 1 1Meg
-.step param C list 100p 1n 10n 100n
-.backanno
-.end
