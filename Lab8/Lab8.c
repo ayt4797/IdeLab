@@ -26,39 +26,55 @@ extern uint32_t SystemCoreClock;
 
 BOOLEAN Timer1RunningFlag = FALSE;
 BOOLEAN Timer2RunningFlag = FALSE;
-
+int start =-1;
 unsigned long MillisecondCounter = 0;
 BOOLEAN flag = FALSE;
+int tolerance = 3;
 double lastPulse=0;
-int periodPassed(int START, int analogin){
-	if(START==analogin){//a tolerance may be needed
-		return 1;
+int state=0;
+int prevAnalog=0;
+int peak=0;
+int periodPassed(int analogin, char* temp){
+	if(state==0 && analogin>prevAnalog){
+			state=1;
 	}
-	return 0;
-	
+	if(state==1 && analogin<prevAnalog){
+		peak = prevAnalog;
+		state=2;
+	}
+	//int y = sprintf(temp,"state %d\r\n",state);
+	//uart0_put(temp);
+	prevAnalog=analogin;
+		if(state==2){
+			state=0;
+			return 1;
+		}
+		else return 0;
 }
 // Interrupt Service Routine for Timer32-1
 void print_data(void){
 		char temp[64]; //purely for printing data		
 		unsigned int analogIn = ADC_In(); //data recieved
 		
-		int const START =analogIn;
+		if(start==-1){
+
+				start =analogIn;
+	}
+		//int n=sprintf(temp,"\r\n data is %i\r\n", analogIn); //the unsigned analog value
+		//uart0_put(temp);//printing that data for debug purpses
 		
-		int n=sprintf(temp,"\r\n data is %i\r\n", analogIn); //the unsigned analog value
-		uart0_put(temp);//printing that data for debug purpses
-		
-		double voltageOut = 3.3*((double)analogIn/MAXOUT);
-		int y = sprintf(temp,"voltage %lf",voltageOut);
-			uart0_put(temp);
-		int x = sprintf(temp,"totalTime: %lu",MillisecondCounter);
+		//double voltageOut = 3.3*((double)analogIn/MAXOUT);
+		//int x = sprintf(temp,"totalTime: %lu",MillisecondCounter);
 		uart0_put(temp);
-		if(periodPassed(START,analogIn)){
-			double period_ms = MillisecondCounter-lastPulse;
-			double period_s= period_ms*1000;
-			double freq = 1/(period_s);
-			double bpm= (freq)*60;
+		if(periodPassed(analogIn,temp)){
+			double period_ms =(MillisecondCounter-lastPulse);
+			double period_s= period_ms/1000.0;
+			double freq = 1.0/period_s;
+			double bpm= freq*60;
+			int y = sprintf(temp,"freq %lf\r\n",freq);
+			uart0_put(temp);
 			lastPulse=MillisecondCounter;
-			x = sprintf(temp,"heart rate is  %lf bpm",bpm);
+			int x = sprintf(temp,"heart rate is  %lf bpm\r\n",bpm);
 			uart0_put(temp);
 		}
 		flag = TRUE;
@@ -69,10 +85,8 @@ void print_data(void){
 
 void Timer32_1_ISR(void)
 {
-	uart0_put("\r\nDebug Statement");
 	if(!flag){
 		P1->OUT=BIT0;
-		print_data();
 	}
 	flag = FALSE;
 
@@ -86,7 +100,7 @@ void Timer32_1_ISR(void)
 void Timer32_2_ISR(void)
 {
 
-		//MillisecondCounter++;
+		MillisecondCounter++;
 
 }
 
@@ -104,7 +118,7 @@ int main(void)
         
 	// Setup Timer32-2 with a .001 second timeout.
 	// So use DEFAULT_CLOCK_SPEED/(1/0.001) = SystemCoreClock/1000
-	//Timer32_2_Init(&Timer32_2_ISR, SystemCoreClock/1000, T32DIV1); // initialize Timer A32-1;
+	Timer32_2_Init(&Timer32_2_ISR, SystemCoreClock/1000, T32DIV1); // initialize Timer A32-1;
 	TIMER32_CONTROL1 |= BIT7;
 	NVIC_EnableIRQ(T32_INT1_IRQn); // Enable IRQ
 	TIMER32_CONTROL2 |= BIT7; // stop TIMER 2
@@ -115,7 +129,7 @@ int main(void)
 
   while(1)
 	{
-		WaitForInterrupt();
+		print_data();
 		
   }
 }
