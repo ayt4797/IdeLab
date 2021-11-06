@@ -66,30 +66,37 @@ void OLED_Camera_Debug(short select) {
 ////////////////////////////////////
 // Generic Startup
 ////////////////////////////////////
+void put(char* temp){ //prints to both putty & phone
+    uart0_put(temp);
+    uart2_put(temp);
+}
+
 void car_startup() {
 	DisableInterrupts();
 	uart0_init();
-	uart0_put("\r\nTI CUP Project\r\n");
-	uart0_put("\r\nINIT LEDs");
+	uart2_init();
+
+	put("\r\nTI CUP Project\r\n");
+	put("\r\nINIT LEDs");
 	LED1_Init();
 	LED2_Init();
-  uart0_put("- ENABLED\r\n");
-  uart0_put("OLED DISPLAY");
+  put("- ENABLED\r\n");
+  put("OLED DISPLAY");
 	OLED_Init();
-  uart0_put("- ENABLED\r\n");
+  put("- ENABLED\r\n");
 	
-	uart0_put("INIT Switches");
+	put("INIT Switches");
 	Switches_Init();
-	uart0_put("- ENABLED\r\n");
-	uart0_put("Enable Interrupts");
+	put("- ENABLED\r\n");
+	put("Enable Interrupts");
 	EnableInterrupts();
-  uart0_put("- ENABLED\r\n");
+  put("- ENABLED\r\n");
 	
-  uart0_put("INIT CAMERA");
+  put("INIT CAMERA");
 	INIT_Camera();
-  uart0_put("- ENABLED\r\n");
+  put("- ENABLED\r\n");
 	
-	uart0_put("INIT DC MOTORS");
+	put("INIT DC MOTORS");
 	driveMotors_init();
 	
 	P3->SEL0 &= ~BIT6;
@@ -166,7 +173,7 @@ void steering_adjust() {
 	}
 	servo_move(correction);
 	sprintf(str,"Correction=%lf\n\r",correction);
-	uart0_put(str);
+	put(str);
 }
 
 /////////////////////////////////////////////////////
@@ -184,27 +191,27 @@ int main(void)
 	// 2 - Binarized Data (1/0)
 	OLED_Output = 0;
 	sprintf(str,"OLED Mode=%d\n\r",OLED_Output);
-	uart0_put(str);
+	put(str);
 	
 	// Preform generic initalizations
 	car_startup();
 	camera_calibration();
 	
-	uart0_put("Press Switch1 to calibrate center\r\n");
+	put("Press Switch1 to calibrate center\r\n");
 	while (Switch1_Pressed() == 0) {}; // Determine the center point of the track on a straight portion.
 	while (g_sendData == FALSE) {}; // wait until data is able to be parsed.
 	parsedata();
 	calibrate_center();
 	g_sendData = FALSE;
 		
-	uart0_put("Use Switch 1 to index through the OLED modes\r\n");
-	uart0_put("Use Switch 2 for Start/E-Stop!\r\n");
+	put("Use Switch 1 to index through the OLED modes\r\n");
+	put("Use Switch 2 for Start/E-Stop!\r\n");
 	ms_delay(1000);
 	
 	while (Switch2_Pressed() != 0) {}; // Use a button to wait to drive the car
 	ms_delay(1000);
 	driveMotors_setSpeed(25); // 5% forward
-	uart0_put("Oh boy! Time to drive!\r\n");
+	put("Oh boy! Time to drive!\r\n");
 	while(1)
 	{
 		cameraUpsidedown(line);
@@ -243,7 +250,12 @@ int main(void)
 			driveMotors_stop();
 			break;
 		}
-		
+	OLED_Print(1, 1, "press left button for green");
+	sprintf(str,"%i\n\r",-2); // end value
+	uart0_put(str);
+	OLED_Print(2, 2, "press right button for red");
+	//OLED_DisplayCameraData(line);
+
 		// Steering adjustment. Based on how far out the wheels are. Adjust left or right
 		steering_adjust();
 		ms_delay(150);
