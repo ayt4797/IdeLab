@@ -151,8 +151,14 @@ int main(void)
 				default:
 					break;
 			}
+			    // write "Hello World" on line 1, column 1
+			OLED_Print(1, 1, "press left button for green");
 			sprintf(str,"%i\n\r",-2); // end value
 			uart0_put(str);
+			OLED_Print(2, 2, "press right button for red");
+
+			//OLED_Print(1,1,"Debug");
+			//OLED_DisplayCameraData(line);
 			LED1_Off();
 			g_sendData = FALSE; // LED OFF = DATA TRANSFER COMPLETE
 		}
