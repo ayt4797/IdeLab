@@ -130,8 +130,8 @@ void steering_adjust() {
 	int current_rightmost = 127;
 	double error = 0; // Error in P control
 	double kp = 0; // Gain of proportional control
-	short right_gain = 20; // Difference in error achieves max response at this value
-	short left_gain = 20;
+	short right_gain = 6; // Difference in error achieves max response at this value
+	short left_gain = 6;
 	double correction = servo_state_center; // By default
 	for (i=0;i<128;i++) {
 		if (binline[i] > 0) { // If the left most value has been identified
@@ -146,25 +146,22 @@ void steering_adjust() {
 		}
 	}
 	
-	if (current_rightmost < center_rightlimit) { // Steer Left!
-		kp = (servo_limit_left-servo_state_center)/right_gain;
-		error = center_rightlimit - current_rightmost;
+	if (current_leftmost < center_leftlimit) { // Steer Left!
+		kp = (servo_limit_left-servo_state_center)/left_gain;
+		error = center_leftlimit - current_leftmost;
 		correction = servo_state_center + (kp*error);
 		if (correction > servo_limit_left) {
 			correction = servo_limit_left;
 		}
-		driveMotors_forwardRight(27);
-	} else if (current_leftmost > center_leftlimit) { // Steer Right!
-		kp = (current_leftmost - center_leftlimit);
-		error = (servo_state_center - servo_limit_right)/20;
+	} else if (current_rightmost > center_rightlimit) { // Steer Right!
+		kp = (servo_state_center - servo_limit_right)/right_gain;
+		error = (center_rightlimit - current_rightmost);
 		correction = servo_state_center + (kp*error);
 		if (correction < servo_limit_right) {
 			correction = servo_limit_right;
 		}
-		driveMotors_forwardLeft(20);
 	} else { // Go straight!
 		correction = servo_state_center;
-		driveMotors_setSpeed(27);
 	}
 	
 	servo_move(correction);
@@ -210,7 +207,7 @@ int main(void)
 	
 	while (Switch2_Pressed() != 0) {}; // Use a button to wait to drive the car
 	ms_delay(1000);
-	driveMotors_setSpeed(25); // 5% forward
+	driveMotors_setSpeed(20); // 5% forward
 	put("Oh boy! Time to drive!\r\n");
 	while(1)
 	{
@@ -253,7 +250,5 @@ int main(void)
 
 		// Steering adjustment. Based on how far out the wheels are. Adjust left or right
 		steering_adjust();
-		ms_delay(150);
-		driveMotors_stop();
 	}
 }
