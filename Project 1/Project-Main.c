@@ -66,7 +66,7 @@ void OLED_Camera_Debug(short select) {
 ////////////////////////////////////
 // Generic Startup
 ////////////////////////////////////
-void put(char* temp){ //prints to both putty & phone
+void put(char *temp){ //prints to both putty & phone
     uart0_put(temp);
     uart2_put(temp);
 }
@@ -231,7 +231,7 @@ int main(void)
 				OLED_Output = 0;
 			}
 			sprintf(str,"OLED Mode=%d\n\r",OLED_Output);
-			uart0_put(str);
+			put(str);
 			ms_delay(1000);
 		}
 		
@@ -250,11 +250,11 @@ int main(void)
 			driveMotors_stop();
 			break;
 		}
-	OLED_Print(1, 1, "press left button for green");
+	//OLED_Print(1, 1, "press left button for green");
 	sprintf(str,"%i\n\r",-2); // end value
-	uart0_put(str);
-	OLED_Print(2, 2, "press right button for red");
-	//OLED_DisplayCameraData(line);
+	put(str);
+	//OLED_Print(2, 2, "press right button for red");
+	OLED_DisplayCameraData(line);
 
 		// Steering adjustment. Based on how far out the wheels are. Adjust left or right
 		steering_adjust();
