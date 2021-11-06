@@ -158,20 +158,20 @@ void steering_adjust() {
 		kp = (current_leftmost - center_leftlimit);
 		error = (servo_state_center - servo_limit_right)/20;
 		correction = servo_state_center + (kp*error);
-		if (correction > servo_limit_right) {
+		if (correction < servo_limit_right) {
 			correction = servo_limit_right;
 		}
-		driveMotors_forwardLeft(27);
+		driveMotors_forwardLeft(20);
 	} else { // Go straight!
 		correction = servo_state_center;
 		driveMotors_setSpeed(27);
 	}
-	if (correction > servo_limit_right) {
-		correction = servo_limit_right;
-	} else if (correction < servo_limit_left){
-		correction = servo_limit_left;
-	}
+	
 	servo_move(correction);
+	sprintf(str,"Error=%lf\n\r",error);
+	put(str);
+	sprintf(str,"kp=%lf\n\r",kp);
+	put(str);
 	sprintf(str,"Correction=%lf\n\r",correction);
 	put(str);
 }
@@ -250,11 +250,6 @@ int main(void)
 			driveMotors_stop();
 			break;
 		}
-	OLED_Print(1, 1, "press left button for green");
-	sprintf(str,"%i\n\r",-2); // end value
-	uart0_put(str);
-	OLED_Print(2, 2, "press right button for red");
-	//OLED_DisplayCameraData(line);
 
 		// Steering adjustment. Based on how far out the wheels are. Adjust left or right
 		steering_adjust();
