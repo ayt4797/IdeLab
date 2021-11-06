@@ -212,6 +212,11 @@ int main(void)
 	ms_delay(1000);
 	driveMotors_setSpeed(25); // 5% forward
 	put("Oh boy! Time to drive!\r\n");
+	OLED_Print(1, 1, "press left button for green");
+	sprintf(str,"%i\n\r",-2); // end value
+	put(str);
+	OLED_Print(2, 2, "press right button for red");
+//	OLED_DisplayCameraData(line);
 	while(1)
 	{
 		cameraUpsidedown(line);
@@ -250,11 +255,7 @@ int main(void)
 			driveMotors_stop();
 			break;
 		}
-	//OLED_Print(1, 1, "press left button for green");
-	sprintf(str,"%i\n\r",-2); // end value
-	put(str);
-	//OLED_Print(2, 2, "press right button for red");
-	OLED_DisplayCameraData(line);
+
 
 		// Steering adjustment. Based on how far out the wheels are. Adjust left or right
 		steering_adjust();
