@@ -49,7 +49,7 @@ extern int i;
 extern int j;
 extern short OLED_Output;
 extern BOOLEAN debugReporting;
-
+BOOLEAN useOled = 1;
 /////////////////////////////////////////////////////
 // simple delay function
 /////////////////////////////////////////////////////
@@ -68,6 +68,10 @@ void myDelay(void)
 //
 //
 /////////////////////////////////////////////////////
+void put(char* temp){ //prints to both putty & phone
+	uart0_put(temp);
+	uart2_put(temp);
+}
 int main(void)
 {
 	//initializations
@@ -76,6 +80,7 @@ int main(void)
 	debugReporting = FALSE;
 	DisableInterrupts();
 	uart0_init();
+	uart2_init();
 	uart0_put("\r\nLab5 CAMERA demo\r\n");
 	uart0_put("\r\nINIT LEDs");
 	LED1_Init();
@@ -151,14 +156,18 @@ int main(void)
 				default:
 					break;
 			}
-			    // write "Hello World" on line 1, column 1
-			OLED_Print(1, 1, "press left button for green");
-			sprintf(str,"%i\n\r",-2); // end value
-			uart0_put(str);
-			OLED_Print(2, 2, "press right button for red");
-
-			//OLED_Print(1,1,"Debug");
-			//OLED_DisplayCameraData(line);
+			    // Debugging
+			if(useOled==1){
+				OLED_Print(1, 1, "press left button for green");
+				sprintf(str,"%i\n\r",-2); // end value
+				uart0_put(str);
+				OLED_Print(2, 2, "press right button for red");
+				//OLED_DisplayCameraData(line);
+			}
+			if(useBluetooth==1){
+				uart2_put("debug");
+				
+			}
 			LED1_Off();
 			g_sendData = FALSE; // LED OFF = DATA TRANSFER COMPLETE
 		}
