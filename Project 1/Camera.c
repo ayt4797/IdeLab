@@ -54,6 +54,11 @@ void ms_delay(int del){
 	}
 }
 
+void bl_put(char *temp){ //prints to both putty & phone
+    uart0_put(temp);
+    uart2_put(temp);
+}
+
 
 /////////////////////////////////////////////////////
 //
@@ -94,7 +99,7 @@ void bin_plotline(uint16_t in_line[128]) {
 void edge_detection(void) {
 	int maxval = absolute_white;
 	int minval = absolute_dark;
-	double thresehold = .50; // Thereshold for binary high value (percentage of maxval)
+	double thresehold = 15; // Thereshold for binary high value (percentage of maxval)
 	// Determine the max value found by the camera
 //	for (i=0; i<128; i++) {
 //		if (smoothline[i] > maxval && smoothline[i] < minval) {
@@ -107,7 +112,8 @@ void edge_detection(void) {
 //			uart0_put(str);
 //			sprintf(str,"Condition=%lf\n\r",((double)((maxval-minval)/2)+minval));
 //			uart0_put(str);
-		if (smoothline[i] > ((maxval-minval)/2)+minval) {
+		// if (smoothline[i] > ((maxval-minval)/2)+minval) {
+		if (smoothline[i] > ((maxval-minval)/2)+(minval*thresehold)) {
 			binline[i] = 1;
 		} else {
 			binline[i] = 0;
@@ -162,28 +168,46 @@ void cameraUpsidedown (uint16_t line[128]) {
 
 void camera_calibration() {
 		LED2_White();
-		uart0_put("\r\nCalibrate White - Press Switch1 to record\r\n");
-		while(Switch1_Pressed() == 0) {} // Wait for capture
-		// Get started by getting the whitemost value
-		double acc = 0;
-		for (i = 0; i<128; i++) {
-			acc+= line[i];
+//		uart0_put("\r\nCalibrate White - Press Switch1 to record\r\n");
+//		while(Switch1_Pressed() == 0) {} // Wait for capture
+//		// Get started by getting the whitemost value
+//		double acc = 0;
+//		for (i = 0; i<128; i++) {
+//			acc+= line[i];
+//		}
+//		absolute_white = acc/128;
+//		sprintf(str,"Absolute White value is =%lf\r\n",absolute_white);
+//		uart0_put(str);	
+//		
+//		acc = 0;
+//		LED2_Blue();
+//		uart0_put("Calibrate Dark - Press Switch2 to record\r\n");
+//		while(Switch2_Pressed() == 0) {} // Wait for capture
+//		// Now get the darkest value
+//		for (i = 0; i<128; i++) {
+//			acc+= line[i];
+//		}
+//		absolute_dark = acc/128;
+//		sprintf(str,"Absolute Dark value is =%lf\r\n",absolute_dark);
+//		uart0_put(str);
+		absolute_white = line[0];
+		absolute_dark = line[0];
+		for (i=0; i<128; i++) {
+			if (line[i] > absolute_white) {
+				absolute_white = line[i];
+			}
+			if (line[i] < absolute_dark) {
+				absolute_dark = line[i];
+			}
 		}
-		absolute_white = acc/128;
-		sprintf(str,"Absolute White value is =%lf\r\n",absolute_white);
-		uart0_put(str);	
+			sprintf(str,"Absolute Dark value is =%lf\r\n",absolute_dark);
+			uart0_put(str);
+		  uart2_put(str);
+			sprintf(str,"Absolute White value is =%lf\r\n",absolute_white);
+			uart0_put(str);	
+			uart2_put(str);
+			
 		
-		acc = 0;
-		LED2_Blue();
-		uart0_put("Calibrate Dark - Press Switch2 to record\r\n");
-		while(Switch2_Pressed() == 0) {} // Wait for capture
-		// Now get the darkest value
-		for (i = 0; i<128; i++) {
-			acc+= line[i];
-		}
-		absolute_dark = acc/128;
-		sprintf(str,"Absolute Dark value is =%lf\r\n",absolute_dark);
-		uart0_put(str);
 		LED2_Off();
 }
 
@@ -195,7 +219,7 @@ void calibrate_center() {
 		}
 	}
 	sprintf(str,"Left most for Center =%d\r\n",center_leftlimit);
-	uart0_put(str);
+	bl_put(str);
 	for (i=127; i>0; i--) {
 		if (binline[i] > 0) { // If the left most value has been identified
 			center_rightlimit = i;
@@ -203,7 +227,7 @@ void calibrate_center() {
 		}
 	}
 	sprintf(str,"Right most for Center =%d\r\n",center_rightlimit);
-	uart0_put(str);
+	bl_put(str);
 }
 
 BOOLEAN isOffTrack() {

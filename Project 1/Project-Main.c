@@ -66,7 +66,7 @@ void OLED_Camera_Debug(short select) {
 ////////////////////////////////////
 // Generic Startup
 ////////////////////////////////////
-void put(char* temp){ //prints to both putty & phone
+void put(char *temp){ //prints to both putty & phone
     uart0_put(temp);
     uart2_put(temp);
 }
@@ -131,19 +131,66 @@ void steering_adjust() {
 	double error = 0; // Error in P control
 	double kp = 0; // Gain of proportional control
 	short right_gain = 6; // Difference in error achieves max response at this value
-	short left_gain = 6;
+	short left_gain = 19;
 	double correction = servo_state_center; // By default
-	for (i=0;i<128;i++) {
-		if (binline[i] > 0) { // If the left most value has been identified
-			current_leftmost = i;
-			break;
+	char temp[128];
+
+	// Find all Rising and Falling edges in the code.
+	short edges[128];
+	short num_edges = 0;
+	BOOLEAN found_rising = FALSE;
+	for (i=0; i<128; i++) {
+		if ((binline[i] == 1) && (found_rising == FALSE)) { // Rising Edge Found!
+			edges[num_edges] = i;
+			num_edges++;
+			found_rising = TRUE;
+		} else if ((binline[i] != 1) && (found_rising == TRUE)) { // Falling Edge Found!
+			if (i>0) {
+				edges[num_edges] = i-1; // The last index was the falling edge.
+			} else {
+				edges[num_edges] = 0;
+			}
+			num_edges++;
+			found_rising=FALSE;
 		}
 	}
-	for (i=127; i>0; i--) {
-		if (binline[i] > 0) { // If the left most value has been identified
-			current_rightmost = i;
-			break;
+	for (i=0; i<num_edges; i++) {
+		sprintf(str, "%d, ", edges[i]);
+		put(str);
+	}
+	put("\r\n");
+	short pulse_lengths[num_edges/2];
+	
+	if(num_edges%2 == 0 && num_edges > 2) { // Number of edges found were even. Multiple pulses found
+		for (i=0; i<(num_edges/2); i++) {
+			pulse_lengths[i] = edges[(2*i)+1] - edges[2*i];
+			sprintf(str, "Pulse=%d", pulse_lengths[i]);
+			put(str);
 		}
+		put("\r\n");
+		short longest_pulse = 0;
+		for (i=0; i<(num_edges/2); i++) {
+			if (pulse_lengths[longest_pulse] > pulse_lengths[i]) {
+				longest_pulse = i;
+			}
+		}
+		put("A");
+		current_leftmost = edges[longest_pulse*2];
+		current_rightmost = edges[(longest_pulse*2)+1];
+	} else if (num_edges%2 == 1) { // Number of edges found are odd. Anaylze differently
+		current_leftmost = edges[0];
+		current_rightmost = edges[num_edges-1];
+		put("B");
+	} else if (num_edges == 2) { // Only two edges were found
+		current_leftmost = edges[0];
+		current_rightmost = edges[num_edges-1];
+	}
+	
+	if (current_rightmost < current_leftmost) {
+		put("Something is werid, switching left & right currents\r\n");
+		short temp = current_rightmost;
+		current_leftmost = current_rightmost;
+		current_rightmost = temp;
 	}
 	
 	if (current_leftmost < center_leftlimit) { // Steer Left!
@@ -162,15 +209,13 @@ void steering_adjust() {
 		}
 	} else { // Go straight!
 		correction = servo_state_center;
+		driveMotors_setSpeed(20);
 	}
-	
 	servo_move(correction);
-	sprintf(str,"Error=%lf\n\r",error);
-	put(str);
-	sprintf(str,"kp=%lf\n\r",kp);
-	put(str);
-	sprintf(str,"Correction=%lf\n\r",correction);
-	put(str);
+	sprintf(str, "error=%f ", error);
+	uart2_put(str);
+	sprintf(str, "kp=%f\n\r", kp);
+	uart2_put(str);
 }
 
 /////////////////////////////////////////////////////
@@ -209,6 +254,9 @@ int main(void)
 	ms_delay(1000);
 	driveMotors_setSpeed(20); // 5% forward
 	put("Oh boy! Time to drive!\r\n");
+	OLED_Print(1, 1, "press left button for green");
+	OLED_Print(2, 2, "press right button for red");
+//	OLED_DisplayCameraData(line);
 	while(1)
 	{
 		cameraUpsidedown(line);
@@ -228,13 +276,10 @@ int main(void)
 				OLED_Output = 0;
 			}
 			sprintf(str,"OLED Mode=%d\n\r",OLED_Output);
-			uart0_put(str);
+			put(str);
 			ms_delay(1000);
 		}
-		
-		// Fun Math Here to stop car
-		
-		
+
 		P2->OUT &= ~BIT0; // No Light
 		P2->OUT &= ~BIT1;
 		P2->OUT &= ~BIT2;
