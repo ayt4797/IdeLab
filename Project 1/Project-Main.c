@@ -41,7 +41,8 @@ extern double servo_limit_right;
 extern double servo_limit_left; 
 extern int center_rightlimit;
 extern int center_leftlimit;
-
+#define LEFT_MOST_TOLERANCE 28
+#define RIGHT_MOST_TOLERANCE 100
 
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED
@@ -124,7 +125,33 @@ void car_startup() {
 	servo_center();
 	
 }
-
+int moving_off_center(){ //if i between left and right is not 0 than darkness is incoming and we need to turn
+	
+	for (i=LEFT_MOST_TOLERANCE; i<RIGHT_MOST_TOLERANCE; i++) {
+		if(binline[i]==0){
+			return i;
+		}
+	}
+	return 0;
+}
+int turn_right(){ //if i returned is greater than RIGHT_MOST_TOLERANCE turn left if less than LEFT_MOST_TOLERANCE turn right
+		short max=0;
+		for (int i=0; i<LEFT_MOST_TOLERANCE; i++) {
+			if(binline[i]==0){
+				max=i;
+			}
+	} 
+	return max;
+}
+int turn_left(){ 
+		short max=0;
+		for (i=RIGHT_MOST_TOLERANCE; i<128; i++) {//if i returned is greater than RIGHT_MOST_TOLERANCE turn left if less than LEFT_MOST_TOLERANCE turn right
+			if(binline[i]==0){
+				max=i;
+			}
+	}
+	return max;
+}
 void steering_adjust() {
 	int current_leftmost = 0;
 	int current_rightmost = 127;
@@ -133,59 +160,11 @@ void steering_adjust() {
 	short right_gain = 6; // Difference in error achieves max response at this value
 	short left_gain = 19;
 	double correction = servo_state_center; // By default
-	char temp[128];
-
-	// Find all Rising and Falling edges in the code.
-	short edges[128];
-	short num_edges = 0;
-	BOOLEAN found_rising = FALSE;
-	for (i=0; i<128; i++) {
-		if ((binline[i] == 1) && (found_rising == FALSE)) { // Rising Edge Found!
-			edges[num_edges] = i;
-			num_edges++;
-			found_rising = TRUE;
-		} else if ((binline[i] != 1) && (found_rising == TRUE)) { // Falling Edge Found!
-			if (i>0) {
-				edges[num_edges] = i-1; // The last index was the falling edge.
-			} else {
-				edges[num_edges] = 0;
-			}
-			num_edges++;
-			found_rising=FALSE;
-		}
+	if(moving_off_center()){
+		current_leftmost=turn_right();
+		current_rightmost=turn_left();
+		
 	}
-	for (i=0; i<num_edges; i++) {
-		sprintf(str, "%d, ", edges[i]);
-		put(str);
-	}
-	put("\r\n");
-	short pulse_lengths[num_edges/2];
-	
-	if(num_edges%2 == 0 && num_edges > 2) { // Number of edges found were even. Multiple pulses found
-		for (i=0; i<(num_edges/2); i++) {
-			pulse_lengths[i] = edges[(2*i)+1] - edges[2*i];
-			sprintf(str, "Pulse=%d", pulse_lengths[i]);
-			put(str);
-		}
-		put("\r\n");
-		short longest_pulse = 0;
-		for (i=0; i<(num_edges/2); i++) {
-			if (pulse_lengths[longest_pulse] > pulse_lengths[i]) {
-				longest_pulse = i;
-			}
-		}
-		put("A");
-		current_leftmost = edges[longest_pulse*2];
-		current_rightmost = edges[(longest_pulse*2)+1];
-	} else if (num_edges%2 == 1) { // Number of edges found are odd. Anaylze differently
-		current_leftmost = edges[0];
-		current_rightmost = edges[num_edges-1];
-		put("B");
-	} else if (num_edges == 2) { // Only two edges were found
-		current_leftmost = edges[0];
-		current_rightmost = edges[num_edges-1];
-	}
-	
 	if (current_leftmost < center_leftlimit) { // Steer Left!
 		kp = (servo_limit_left-servo_state_center)/left_gain;
 		error = center_leftlimit - current_leftmost;
