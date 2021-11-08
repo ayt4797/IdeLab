@@ -53,11 +53,11 @@ X Pin_1 1 200 0 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# OPB745_OPB745
+# kicad-rescue_OPB745-OPB745
 #
-DEF OPB745_OPB745 U 0 40 Y Y 1 L N
+DEF kicad-rescue_OPB745-OPB745 U 0 40 Y Y 1 L N
 F0 "U" 0 0 50 H V L CNN
-F1 "OPB745_OPB745" 0 100 50 H V L CNN
+F1 "kicad-rescue_OPB745-OPB745" 0 100 50 H V L CNN
 F2 "TT_Electronics-OPB745-*" 0 200 50 H I L CNN
 F3 "https://upverter.com/datasheet/4f8d3d5f99316b04551580b4d6f54087dceae820.pdf" 0 300 50 H I L CNN
 F4 "IC" 0 400 50 H I L CNN "category"

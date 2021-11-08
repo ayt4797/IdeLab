@@ -210,12 +210,12 @@ Wire Wire Line
 	3400 3250 2800 3250
 Connection ~ 3800 3250
 $Comp
-L OPB745:OPB745 U1
+L kicad-rescue:OPB745-OPB745 U1
 U 1 1 61872E79
 P 2800 3150
 F 0 "U1" H 4028 2496 50  0000 L CNN
 F 1 "OPB745" H 4028 2405 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 2800 3350 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 2800 3350 50  0001 L CNN
 F 3 "https://upverter.com/datasheet/4f8d3d5f99316b04551580b4d6f54087dceae820.pdf" H 2800 3450 50  0001 L CNN
 F 4 "IC" H 2800 3550 50  0001 L CNN "category"
 F 5 "SENSR OPTO TRANS 3.81MM REFL PCB" H 2800 3650 50  0001 L CNN "digikey description"
@@ -335,14 +335,14 @@ F 3 "~" H 6150 3750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Amplifier_Operational:TLC277 U3
-U 1 1 61881D6C
+L Amplifier_Operational:TLC277 U?
+U 2 1 6188DFF6
 P 6750 3450
-F 0 "U3" H 6750 3817 50  0000 C CNN
+F 0 "U?" H 6750 3817 50  0000 C CNN
 F 1 "TLC277" H 6750 3726 50  0000 C CNN
-F 2 "TLC277CP:DIP794W45P254L959H508Q8" H 6750 3450 50  0001 C CNN
+F 2 "" H 6750 3450 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/tlc272.pdf" H 6750 3450 50  0001 C CNN
-	1    6750 3450
+	2    6750 3450
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

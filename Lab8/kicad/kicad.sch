@@ -129,7 +129,7 @@ U 1 1 61887F63
 P 3200 2700
 F 0 "Vin1" H 3308 2881 50  0000 C CNN
 F 1 "Conn_01x01_Male" H 3308 2790 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical_SMD_Pin1Left" H 3200 2700 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 3200 2700 50  0001 C CNN
 F 3 "~" H 3200 2700 50  0001 C CNN
 	1    3200 2700
 	1    0    0    -1  
@@ -140,7 +140,7 @@ U 1 1 6188AA28
 P 5350 4550
 F 0 "gnd1" V 5504 4462 50  0000 R CNN
 F 1 "Conn_01x01_Male" V 5413 4462 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical_SMD_Pin1Left" H 5350 4550 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 5350 4550 50  0001 C CNN
 F 3 "~" H 5350 4550 50  0001 C CNN
 	1    5350 4550
 	0    -1   -1   0   
@@ -210,7 +210,7 @@ Wire Wire Line
 	3400 3250 2800 3250
 Connection ~ 3800 3250
 $Comp
-L OPB745:OPB745 U1
+L kicad-rescue:OPB745-OPB745 U1
 U 1 1 61872E79
 P 2800 3150
 F 0 "U1" H 4028 2496 50  0000 L CNN
@@ -252,7 +252,7 @@ U 1 1 618E2A83
 P 7500 3050
 F 0 "Vin2" H 7608 3231 50  0000 C CNN
 F 1 "Conn_01x01_Male" H 7608 3140 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical_SMD_Pin1Left" H 7500 3050 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 7500 3050 50  0001 C CNN
 F 3 "~" H 7500 3050 50  0001 C CNN
 	1    7500 3050
 	1    0    0    -1  
@@ -308,7 +308,7 @@ U 1 1 6193298D
 P 8850 3450
 F 0 "OUT1" H 8958 3631 50  0000 C CNN
 F 1 "Conn_01x01_Male" H 8958 3540 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical_SMD_Pin1Left" H 8850 3450 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 8850 3450 50  0001 C CNN
 F 3 "~" H 8850 3450 50  0001 C CNN
 	1    8850 3450
 	-1   0    0    1   
@@ -335,14 +335,14 @@ F 3 "~" H 6150 3750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Amplifier_Operational:TLC277 U3
-U 1 1 61881D6C
+L Amplifier_Operational:TLC277 U2
+U 2 1 6188DFF6
 P 6750 3450
-F 0 "U3" H 6750 3817 50  0000 C CNN
+F 0 "U2" H 6750 3817 50  0000 C CNN
 F 1 "TLC277" H 6750 3726 50  0000 C CNN
 F 2 "TLC277CP:DIP794W45P254L959H508Q8" H 6750 3450 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/tlc272.pdf" H 6750 3450 50  0001 C CNN
-	1    6750 3450
+	2    6750 3450
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
