@@ -43,7 +43,14 @@ extern int center_rightlimit;
 extern int center_leftlimit;
 #define LEFT_MOST_TOLERANCE 28
 #define RIGHT_MOST_TOLERANCE 100
+//#define SERVO_LIMIT_CENTER 0.0725
+//#define SERVO_LIMIT_LEFT 0.1 // 0.085
+//#define SERVO_LIMIT_RIGHT 0.0475 //0.045
 
+//#define RIGHT_G 6
+//#define LEFT_G 19
+#define LEFT_KP 0.00144736842 // (SERVO_LIMIT_LEFT-SERVO_LIMIT_CENTER)/LEFT_G
+#define RIGHT_KP 0.00416666666;
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED
 ////////////////////////////////////////////////////
@@ -157,8 +164,6 @@ void steering_adjust() {
 	int current_rightmost = 127;
 	double error = 0; // Error in P control
 	double kp = 0; // Gain of proportional control
-	short right_gain = 6; // Difference in error achieves max response at this value
-	short left_gain = 19;
 	double correction = servo_state_center; // By default
 	if(moving_off_center()){
 		current_leftmost=turn_right();
@@ -166,14 +171,14 @@ void steering_adjust() {
 		
 	}
 	if (current_leftmost < center_leftlimit) { // Steer Left!
-		kp = (servo_limit_left-servo_state_center)/left_gain;
+		kp = LEFT_KP;
 		error = center_leftlimit - current_leftmost;
 		correction = servo_state_center + (kp*error);
 		if (correction > servo_limit_left) {
 			correction = servo_limit_left;
 		}
 	} else if (current_rightmost > center_rightlimit) { // Steer Right!
-		kp = (servo_state_center - servo_limit_right)/right_gain;
+		kp = RIGHT_KP;
 		error = (center_rightlimit - current_rightmost);
 		correction = servo_state_center + (kp*error);
 		if (correction < servo_limit_right) {
