@@ -91,17 +91,6 @@ F 3 "~" H 5750 3350 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L pspice:CAP C2
-U 1 1 61883FA3
-P 6150 3750
-F 0 "C2" V 5835 3750 50  0000 C CNN
-F 1 "97.3uf" V 5926 3750 50  0000 C CNN
-F 2 "Capacitor_SMD:CP_Elec_4x3" H 6150 3750 50  0001 C CNN
-F 3 "~" H 6150 3750 50  0001 C CNN
-	1    6150 3750
-	1    0    0    -1  
-$EndComp
-$Comp
 L pspice:R R9
 U 1 1 61885D58
 P 7450 3450
@@ -140,7 +129,7 @@ U 1 1 61887F63
 P 3200 2700
 F 0 "Vin1" H 3308 2881 50  0000 C CNN
 F 1 "Conn_01x01_Male" H 3308 2790 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 3200 2700 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical_SMD_Pin1Left" H 3200 2700 50  0001 C CNN
 F 3 "~" H 3200 2700 50  0001 C CNN
 	1    3200 2700
 	1    0    0    -1  
@@ -151,7 +140,7 @@ U 1 1 6188AA28
 P 5350 4550
 F 0 "gnd1" V 5504 4462 50  0000 R CNN
 F 1 "Conn_01x01_Male" V 5413 4462 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 5350 4550 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical_SMD_Pin1Left" H 5350 4550 50  0001 C CNN
 F 3 "~" H 5350 4550 50  0001 C CNN
 	1    5350 4550
 	0    -1   -1   0   
@@ -160,20 +149,6 @@ Wire Wire Line
 	6000 3350 6150 3350
 Wire Wire Line
 	6150 3350 6150 3500
-Connection ~ 6150 3350
-Wire Wire Line
-	6150 3350 6450 3350
-$Comp
-L Amplifier_Operational:TLC277 U3
-U 1 1 61881D6C
-P 6750 3450
-F 0 "U3" H 6750 3817 50  0000 C CNN
-F 1 "TLC277" H 6750 3726 50  0000 C CNN
-F 2 "TLC277CP:DIP794W45P254L959H508Q8" H 6750 3450 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/tlc272.pdf" H 6750 3450 50  0001 C CNN
-	1    6750 3450
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6950 3850 7100 3850
 Wire Wire Line
@@ -240,7 +215,7 @@ U 1 1 61872E79
 P 2800 3150
 F 0 "U1" H 4028 2496 50  0000 L CNN
 F 1 "OPB745" H 4028 2405 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical" H 2800 3350 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 2800 3350 50  0001 L CNN
 F 3 "https://upverter.com/datasheet/4f8d3d5f99316b04551580b4d6f54087dceae820.pdf" H 2800 3450 50  0001 L CNN
 F 4 "IC" H 2800 3550 50  0001 L CNN "category"
 F 5 "SENSR OPTO TRANS 3.81MM REFL PCB" H 2800 3650 50  0001 L CNN "digikey description"
@@ -277,7 +252,7 @@ U 1 1 618E2A83
 P 7500 3050
 F 0 "Vin2" H 7608 3231 50  0000 C CNN
 F 1 "Conn_01x01_Male" H 7608 3140 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 7500 3050 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical_SMD_Pin1Left" H 7500 3050 50  0001 C CNN
 F 3 "~" H 7500 3050 50  0001 C CNN
 	1    7500 3050
 	1    0    0    -1  
@@ -326,23 +301,48 @@ $EndComp
 Wire Wire Line
 	6400 3950 6400 3850
 Wire Wire Line
-	6400 3550 6450 3550
-Wire Wire Line
 	6450 3850 6400 3850
-Connection ~ 6400 3850
-Wire Wire Line
-	6400 3850 6400 3550
 $Comp
-L Connector:Conn_01x01_Male OUT
+L Connector:Conn_01x01_Male OUT1
 U 1 1 6193298D
 P 8850 3450
-F 0 "OUT" H 8958 3631 50  0000 C CNN
+F 0 "OUT1" H 8958 3631 50  0000 C CNN
 F 1 "Conn_01x01_Male" H 8958 3540 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 8850 3450 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical_SMD_Pin1Left" H 8850 3450 50  0001 C CNN
 F 3 "~" H 8850 3450 50  0001 C CNN
 	1    8850 3450
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
 	7700 3450 8650 3450
+Connection ~ 6400 3850
+Connection ~ 6150 3350
+Wire Wire Line
+	6400 3850 6400 3550
+Wire Wire Line
+	6400 3550 6450 3550
+Wire Wire Line
+	6150 3350 6450 3350
+$Comp
+L pspice:CAP C2
+U 1 1 61883FA3
+P 6150 3750
+F 0 "C2" V 5835 3750 50  0000 C CNN
+F 1 "97.3uf" V 5926 3750 50  0000 C CNN
+F 2 "Capacitor_SMD:CP_Elec_4x3" H 6150 3750 50  0001 C CNN
+F 3 "~" H 6150 3750 50  0001 C CNN
+	1    6150 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:TLC277 U3
+U 1 1 61881D6C
+P 6750 3450
+F 0 "U3" H 6750 3817 50  0000 C CNN
+F 1 "TLC277" H 6750 3726 50  0000 C CNN
+F 2 "TLC277CP:DIP794W45P254L959H508Q8" H 6750 3450 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/tlc272.pdf" H 6750 3450 50  0001 C CNN
+	1    6750 3450
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

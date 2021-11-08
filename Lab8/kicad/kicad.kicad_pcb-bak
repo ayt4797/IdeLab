@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 4)
+    (drawings 8)
     (tracks 95)
     (zones 0)
     (modules 20)
@@ -1006,6 +1006,18 @@
     )
   )
 
+  (gr_text gnd (at 146.05 109.22) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.25)))
+  )
+  (gr_text GND (at 146.05 106.68) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.25)))
+  )
+  (gr_text "K\n" (at 151.13 111.76) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.25)))
+  )
+  (gr_text "E\n" (at 151.13 104.14) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.25)))
+  )
   (gr_line (start 262.89 73.66) (end 262.89 165.1) (layer Edge.Cuts) (width 0.15) (tstamp 618B2643))
   (gr_line (start 116.84 73.66) (end 262.89 73.66) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 116.84 165.1) (end 116.84 73.66) (layer Edge.Cuts) (width 0.15))
