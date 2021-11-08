@@ -41,8 +41,9 @@ extern double servo_limit_right;
 extern double servo_limit_left; 
 extern int center_rightlimit;
 extern int center_leftlimit;
-#define LEFT_MOST_TOLERANCE 28
-#define RIGHT_MOST_TOLERANCE 100
+#define LEFT_MOST_TOLERANCE 32
+#define RIGHT_MOST_TOLERANCE 96
+#define DRIVE_STRAIGHT_SPEED 20
 //#define SERVO_LIMIT_CENTER 0.0725
 //#define SERVO_LIMIT_LEFT 0.1 // 0.085
 //#define SERVO_LIMIT_RIGHT 0.0475 //0.045
@@ -165,19 +166,30 @@ void steering_adjust() {
 	double error = 0; // Error in P control
 	double kp = 0; // Gain of proportional control
 	double correction = servo_state_center; // By default
+	int dir; //0=straight, 1=left, 2=right;
 	if(moving_off_center()){
 		current_leftmost=turn_right();
 		current_rightmost=turn_left();
-		
+		short left_most_adjusted = 32-current_leftmost;
+		short right_most_adjusted = 128 - current_rightmost;
+		if(left_most_adjusted>right_most_adjusted){
+			dir = 1;
+		}
+		else {
+			dir=2;
+		}
+	}else{
+		dir=0;
 	}
-	if (current_leftmost < center_leftlimit) { // Steer Left!
+	
+	if (dir==1) { // Steer Left!
 		kp = LEFT_KP;
 		error = center_leftlimit - current_leftmost;
 		correction = servo_state_center + (kp*error);
 		if (correction > servo_limit_left) {
 			correction = servo_limit_left;
 		}
-	} else if (current_rightmost > center_rightlimit) { // Steer Right!
+	} else if (dir==2) { // Steer Right!
 		kp = RIGHT_KP;
 		error = (center_rightlimit - current_rightmost);
 		correction = servo_state_center + (kp*error);
@@ -186,7 +198,7 @@ void steering_adjust() {
 		}
 	} else { // Go straight!
 		correction = servo_state_center;
-		driveMotors_setSpeed(20);
+		driveMotors_setSpeed(DRIVE_STRAIGHT_SPEED);
 	}
 	servo_move(correction);
 	sprintf(str, "error=%f ", error);
