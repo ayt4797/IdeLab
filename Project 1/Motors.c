@@ -2,9 +2,9 @@
 #include "uart.h"
 #include "TimerA.h"
 
-double servo_state_center = 0.0775; 
-double servo_limit_left = 0.0975; // 0.085
-double servo_limit_right= 0.0575; //0.045
+double servo_state_center = 0.0725; 
+double servo_limit_left = 0.1; // 0.085
+double servo_limit_right= 0.0475; //0.045
 short DC_right_forward = 4;
 short DC_right_reverse = 3;
 short DC_left_forward = 2;
@@ -62,14 +62,8 @@ void driveMotors_setSpeed(double percentage) {
 
 void driveMotors_forwardRight(double percentage) {
 	TIMER_A0_PWM_DutyCycle(percentage/100,DC_right_forward);
-	TIMER_A0_PWM_DutyCycle(((percentage*18)/20)/100,DC_left_forward);
-	TIMER_A0_PWM_DutyCycle(0,DC_left_reverse);
-	TIMER_A0_PWM_DutyCycle(0,DC_right_reverse);
 }
 
 void driveMotors_forwardLeft(double percentage) {
 	TIMER_A0_PWM_DutyCycle(percentage/100,DC_left_forward);
-	TIMER_A0_PWM_DutyCycle(((percentage*3)/4)/100,DC_right_forward);
-	TIMER_A0_PWM_DutyCycle(0,DC_left_reverse);
-	TIMER_A0_PWM_DutyCycle(0,DC_right_reverse);
 }
