@@ -44,6 +44,7 @@ extern int center_leftlimit;
 #define LEFT_MOST_TOLERANCE 32
 #define RIGHT_MOST_TOLERANCE 96
 #define DRIVE_STRAIGHT_SPEED 20
+#define PULSE_LENGTH_TOLERANCE 5
 //#define SERVO_LIMIT_CENTER 0.0725
 //#define SERVO_LIMIT_LEFT 0.1 // 0.085
 //#define SERVO_LIMIT_RIGHT 0.0475 //0.045
@@ -133,16 +134,20 @@ void car_startup() {
 	servo_center();
 	
 }
-int moving_off_center(){ //if i between left and right is not 0 than darkness is incoming and we need to turn
+int moving_off_center(){ //darkness is between the two tolerance then we need to turn
 	
 	for (i=LEFT_MOST_TOLERANCE; i<RIGHT_MOST_TOLERANCE; i++) {
+		int pulse_length;
 		if(binline[i]==0){
+			pulse_length++;
+		}
+		if(pulse_length>PULSE_LENGTH_TOLERANCE){ //we may see sudden sparks of darkness if the darkness goes on for more than TOLERANCE pixels than it's not a camera error
 			return i;
 		}
 	}
 	return 0;
 }
-int turn_right(){ //if i returned is greater than RIGHT_MOST_TOLERANCE turn left if less than LEFT_MOST_TOLERANCE turn right
+int turn_right(){ //returns the point at which the darkness becomes light, indicating how far to the left we are
 		short max=0;
 		for (int i=0; i<LEFT_MOST_TOLERANCE; i++) {
 			if(binline[i]==0){
@@ -151,9 +156,9 @@ int turn_right(){ //if i returned is greater than RIGHT_MOST_TOLERANCE turn left
 	} 
 	return max;
 }
-int turn_left(){ 
+int turn_left(){ //returns the point at which the darkness becomes light, indicating how far to the right we are
 		short max=0;
-		for (i=RIGHT_MOST_TOLERANCE; i<128; i++) {//if i returned is greater than RIGHT_MOST_TOLERANCE turn left if less than LEFT_MOST_TOLERANCE turn right
+		for (i=RIGHT_MOST_TOLERANCE; i<128; i++) {
 			if(binline[i]==0){
 				max=i;
 			}
@@ -170,9 +175,8 @@ void steering_adjust() {
 	if(moving_off_center()){
 		current_leftmost=turn_right();
 		current_rightmost=turn_left();
-		short left_most_adjusted = 32-current_leftmost;
-		short right_most_adjusted = 128 - current_rightmost;
-		if(left_most_adjusted>right_most_adjusted){
+		short right_most_adjusted = 128 - current_rightmost; //we need to adjust this because the value will always be greater on the right most b/c it's labeled 0-127
+		if(current_leftmost>right_most_adjusted){
 			dir = 1;
 		}
 		else {
