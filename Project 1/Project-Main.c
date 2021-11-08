@@ -186,13 +186,6 @@ void steering_adjust() {
 		current_rightmost = edges[num_edges-1];
 	}
 	
-	if (current_rightmost < current_leftmost) {
-		put("Something is werid, switching left & right currents\r\n");
-		short temp = current_rightmost;
-		current_leftmost = current_rightmost;
-		current_rightmost = temp;
-	}
-	
 	if (current_leftmost < center_leftlimit) { // Steer Left!
 		kp = (servo_limit_left-servo_state_center)/left_gain;
 		error = center_leftlimit - current_leftmost;
