@@ -5,7 +5,7 @@
 
 	TI CUP PROJECT 1 CODE
 	Created: 11/1/2021
-	Modified: 11/1/2021
+	Modified: 11/10/2021
 	Authors: Dante Sivo & Aubrey Tarmu
 */
 
@@ -44,7 +44,7 @@ extern int center_leftlimit;
 #define LEFT_MOST_TOLERANCE 32
 #define RIGHT_MOST_TOLERANCE 96
 #define DRIVE_STRAIGHT_SPEED 20
-#define PULSE_LENGTH_TOLERANCE 5
+#define PULSE_LENGTH_TOLERANCE 3 // Play with this.
 //#define SERVO_LIMIT_CENTER 0.0725
 //#define SERVO_LIMIT_LEFT 0.1 // 0.085
 //#define SERVO_LIMIT_RIGHT 0.0475 //0.045
@@ -77,8 +77,8 @@ void OLED_Camera_Debug(short select) {
 // Generic Startup
 ////////////////////////////////////
 void put(char *temp){ //prints to both putty & phone
-    uart0_put(temp);
-    uart2_put(temp);
+    uart0_put(temp); // UART
+    uart2_put(temp); // BLUETOOTH
 }
 
 void car_startup() {
@@ -135,9 +135,8 @@ void car_startup() {
 	
 }
 int moving_off_center(){ //darkness is between the two tolerance then we need to turn
-	
+	int pulse_length;
 	for (i=LEFT_MOST_TOLERANCE; i<RIGHT_MOST_TOLERANCE; i++) {
-		int pulse_length;
 		if(binline[i]==0){
 			pulse_length++;
 		}
@@ -175,14 +174,14 @@ void steering_adjust() {
 	if(moving_off_center()){
 		current_leftmost=turn_right();
 		current_rightmost=turn_left();
-		short right_most_adjusted = 128 - current_rightmost; //we need to adjust this because the value will always be greater on the right most b/c it's labeled 0-127
+		short right_most_adjusted = 127 - current_rightmost; //we need to adjust this because the value will always be greater on the right most b/c it's labeled 0-127
 		if(current_leftmost>right_most_adjusted){
 			dir = 1;
 		}
 		else {
 			dir=2;
 		}
-	}else{
+	} else {
 		dir=0;
 	}
 	
@@ -195,7 +194,7 @@ void steering_adjust() {
 		}
 	} else if (dir==2) { // Steer Right!
 		kp = RIGHT_KP;
-		error = (center_rightlimit - current_rightmost);
+		error = (current_rightmost - center_rightlimit);
 		correction = servo_state_center + (kp*error);
 		if (correction < servo_limit_right) {
 			correction = servo_limit_right;
@@ -206,9 +205,9 @@ void steering_adjust() {
 	}
 	servo_move(correction);
 	sprintf(str, "error=%f ", error);
-	uart2_put(str);
+	put(str);
 	sprintf(str, "kp=%f\n\r", kp);
-	uart2_put(str);
+	put(str);
 }
 
 /////////////////////////////////////////////////////
@@ -247,9 +246,7 @@ int main(void)
 	ms_delay(1000);
 	driveMotors_setSpeed(20); // 5% forward
 	put("Oh boy! Time to drive!\r\n");
-	OLED_Print(1, 1, "press left button for green");
-	OLED_Print(2, 2, "press right button for red");
-//	OLED_DisplayCameraData(line);
+		
 	while(1)
 	{
 		cameraUpsidedown(line);

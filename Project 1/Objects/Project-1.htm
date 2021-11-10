@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project-1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project-1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Nov 08 00:22:07 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Nov 10 10:53:01 2021
 <BR><P>
 <H3>Maximum Stack Usage =       1600 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1179,8 +1179,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[bf]"></a>moving_off_center</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, project-main.o(i.moving_off_center))
-<BR><BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
+<P><STRONG><a name="[bf]"></a>moving_off_center</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, project-main.o(i.moving_off_center))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = moving_off_center
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
 <P><STRONG><a name="[af]"></a>ms_delay</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, camera.o(i.ms_delay))
@@ -1248,8 +1250,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[bd]"></a>steering_adjust</STRONG> (Thumb, 256 bytes, Stack size 48 bytes, project-main.o(i.steering_adjust))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
+<P><STRONG><a name="[bd]"></a>steering_adjust</STRONG> (Thumb, 252 bytes, Stack size 40 bytes, project-main.o(i.steering_adjust))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = steering_adjust &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;turn_right
