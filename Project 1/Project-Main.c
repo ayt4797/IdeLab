@@ -41,6 +41,7 @@ extern double servo_limit_right;
 extern double servo_limit_left; 
 extern int center_rightlimit;
 extern int center_leftlimit;
+BOOLEAN printCameraOutput;
 #define LEFT_MOST_TOLERANCE 32
 #define RIGHT_MOST_TOLERANCE 96
 #define DRIVE_STRAIGHT_SPEED 20
@@ -51,8 +52,9 @@ extern int center_leftlimit;
 
 //#define RIGHT_G 6
 //#define LEFT_G 19
-#define LEFT_KP 0.00144736842 // (SERVO_LIMIT_LEFT-SERVO_LIMIT_CENTER)/LEFT_G
-#define RIGHT_KP 0.00416666666;
+#define LEFT_KP 0.0275/19; // (SERVO_LIMIT_LEFT-SERVO_LIMIT_CENTER)/LEFT_G
+#define RIGHT_KP 0.025/6; // (SERVO_LIMIT_CENTER - SERVO_LIMIT_RIGHT)/RIGHT_G
+
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED
 ////////////////////////////////////////////////////
@@ -134,6 +136,7 @@ void car_startup() {
 	servo_center();
 	
 }
+
 int moving_off_center(){ //darkness is between the two tolerance then we need to turn
 	int pulse_length;
 	for (i=LEFT_MOST_TOLERANCE; i<RIGHT_MOST_TOLERANCE; i++) {
@@ -146,16 +149,16 @@ int moving_off_center(){ //darkness is between the two tolerance then we need to
 	}
 	return 0;
 }
-int turn_right(){ //returns the point at which the darkness becomes light, indicating how far to the left we are
+int get_leftmost(){ //returns the point at which the darkness becomes light, indicating how far to the left we are
 		short max=0;
-		for (int i=0; i<LEFT_MOST_TOLERANCE; i++) {
-			if(binline[i]==0){
+		for (i=0; i<LEFT_MOST_TOLERANCE; i++) {
+			if(binline[i]==0){ 
 				max=i;
 			}
 	} 
 	return max;
 }
-int turn_left(){ //returns the point at which the darkness becomes light, indicating how far to the right we are
+int get_rightmost(){ //returns the point at which the darkness becomes light, indicating how far to the right we are
 		short max=0;
 		for (i=RIGHT_MOST_TOLERANCE; i<128; i++) {
 			if(binline[i]==0){
@@ -165,22 +168,25 @@ int turn_left(){ //returns the point at which the darkness becomes light, indica
 	return max;
 }
 void steering_adjust() {
-	int current_leftmost = 0;
-	int current_rightmost = 127;
+	short current_leftmost = 0;
+	short current_rightmost = 127;
 	double error = 0; // Error in P control
 	double kp = 0; // Gain of proportional control
 	double correction = servo_state_center; // By default
-	int dir; //0=straight, 1=left, 2=right;
+	short dir; //0=straight, 1=left, 2=right;
 	if(moving_off_center()){
-		current_leftmost=turn_right();
-		current_rightmost=turn_left();
-		short right_most_adjusted = 127 - current_rightmost; //we need to adjust this because the value will always be greater on the right most b/c it's labeled 0-127
-		if(current_leftmost>right_most_adjusted){
+		current_leftmost=get_leftmost(); // Current left most rising edge
+		current_rightmost=get_rightmost(); // Current right most falling edge
+		
+		short left_most_adjusted = RIGHT_MOST_TOLERANCE + current_leftmost; //we need to adjust this because the value will always be greater on the right most b/c it's labeled 0-127
+		
+		if(left_most_adjusted > current_rightmost){
 			dir = 1;
 		}
 		else {
-			dir=2;
-		}
+			dir = 2;
+		} 
+		
 	} else {
 		dir=0;
 	}
@@ -216,7 +222,7 @@ int main(void)
 	// Generic Initializations
 	i = 0;
 	j = 0;
-	
+	printCameraOutput = TRUE; // Show Camera Output on Terminal
 	// OLED_Output - Show Camera Values on OLED Display
 	// 0 - Analog unfilter data
 	// 1 - Smooth filtered data
@@ -247,10 +253,20 @@ int main(void)
 		
 	while(1)
 	{
-		cameraUpsidedown(line);
 		if (g_sendData == TRUE) 
 		{
 			LED1_On(); // LED ON = DATA TRANSFER
+			LED2_Off();
+		}
+		if (printCameraOutput) {
+			for (i=0; i<127; i++) {
+					if (binline[i] == 1) {
+						uart0_putchar('O');
+					} else {
+						uart0_putchar('-');
+				}
+			}
+			uart0_put("\r\n");
 		}
 		
 		parsedata(); // Binary Edge Detection
@@ -268,11 +284,8 @@ int main(void)
 			ms_delay(1000);
 		}
 
-		P2->OUT &= ~BIT0; // No Light
-		P2->OUT &= ~BIT1;
-		P2->OUT &= ~BIT2;
+		LED2_Green(); // Indicate ready for next signal.
 		g_sendData = FALSE; // Ready for next signal.
-		LED1_Off();
 		
 		if (Switch2_Pressed()) {
 			OLED_display_clear();

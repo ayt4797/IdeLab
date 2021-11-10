@@ -99,20 +99,9 @@ void bin_plotline(uint16_t in_line[128]) {
 void edge_detection(void) {
 	int maxval = absolute_white;
 	int minval = absolute_dark;
-	double thresehold = 15; // Thereshold for binary high value (percentage of maxval)
-	// Determine the max value found by the camera
-//	for (i=0; i<128; i++) {
-//		if (smoothline[i] > maxval && smoothline[i] < minval) {
-//			maxval = smoothline[i];
-//		}
-//	}
+	double thresehold = 7; // Thereshold for binary high value (percentage of maxval)
 	// Generate binary result.
 	for (i=0; i<128; i++) {
-//			sprintf(str,"Smoothline[i]=%lf\n\r",(double)smoothline[i]);
-//			uart0_put(str);
-//			sprintf(str,"Condition=%lf\n\r",((double)((maxval-minval)/2)+minval));
-//			uart0_put(str);
-		// if (smoothline[i] > ((maxval-minval)/2)+minval) {
 		if (smoothline[i] > ((maxval-minval)/2)+(minval*thresehold)) {
 			binline[i] = 1;
 		} else {
