@@ -26,13 +26,10 @@
 
 // line stores the current array of camera data
 extern uint16_t line[128];
-uint16_t inversed_line[128];
-uint16_t scaled_binline[128];
 extern uint16_t smoothline[128];
 extern uint16_t binline[128];
 extern BOOLEAN g_sendData;
 static char str[100];
-extern int parseMode;
 extern int i;
 extern int j;
 extern short OLED_Output;
@@ -54,6 +51,8 @@ BOOLEAN printCameraOutput;
 //#define LEFT_G 19
 #define LEFT_KP 0.0275/19; // (SERVO_LIMIT_LEFT-SERVO_LIMIT_CENTER)/LEFT_G
 #define RIGHT_KP 0.025/6; // (SERVO_LIMIT_CENTER - SERVO_LIMIT_RIGHT)/RIGHT_G
+#define KI 0; // Gain for Integral Control
+#define KD 0; // Gain for Derivative Control
 
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED

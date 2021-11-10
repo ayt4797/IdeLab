@@ -19,7 +19,6 @@ int center_leftlimit = 0;
 int center_rightlimit = 127;
 extern BOOLEAN g_sendData;
 char str[100];
-int parseMode;
 extern int i;
 int j;
 short OLED_Output;
@@ -99,7 +98,7 @@ void bin_plotline(uint16_t in_line[128]) {
 void edge_detection(void) {
 	int maxval = absolute_white;
 	int minval = absolute_dark;
-	double thresehold = 7; // Thereshold for binary high value (percentage of maxval)
+	double thresehold = 3; // Thereshold for binary high value (percentage of maxval)
 	// Generate binary result.
 	for (i=0; i<128; i++) {
 		if (smoothline[i] > ((maxval-minval)/2)+(minval*thresehold)) {
