@@ -188,6 +188,8 @@ void steering_adjust() {
 	if (dir==1) { // Steer Left!
 		kp = LEFT_KP;
 		error = center_leftlimit - current_leftmost;
+		sprintf(str, "error=%f", error);
+		put(str);
 		correction = servo_state_center + (kp*error);
 		if (correction > servo_limit_left) {
 			correction = servo_limit_left;
@@ -204,10 +206,6 @@ void steering_adjust() {
 		driveMotors_setSpeed(DRIVE_STRAIGHT_SPEED);
 	}
 	servo_move(correction);
-	sprintf(str, "error=%f ", error);
-	put(str);
-	sprintf(str, "kp=%f\n\r", kp);
-	put(str);
 }
 
 /////////////////////////////////////////////////////
@@ -276,7 +274,7 @@ int main(void)
 		g_sendData = FALSE; // Ready for next signal.
 		LED1_Off();
 		
-		if (Switch2_Pressed() || isOffTrack()) {
+		if (Switch2_Pressed()) {
 			OLED_display_clear();
 			OLED_display_off();
 			driveMotors_stop();
