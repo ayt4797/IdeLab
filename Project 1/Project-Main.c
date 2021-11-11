@@ -159,7 +159,7 @@ void steering_adjust() {
 	short current_leftmost = 0;
 	short current_rightmost = 127;
 	double error = 0; // Error in P control
-	double kp = 0.025/3; // Gain of proportional control
+	double kp = 0.025/5; // Gain of proportional control
 	double correction = servo_state_center; // By default
 	// short dir; //0=straight, 1=left, 2=right;
 	current_leftmost=get_leftmost(); // Current left most rising edge
