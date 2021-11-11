@@ -137,7 +137,7 @@ void new_steering_adjust() {
 	short dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	double error = 0; // Ideally error is 0 so straight
 	double correction = servo_state_center;
-	double kp = 0.0525/10; // Proportional gain.
+	double kp = 0.0525/16; // Proportional gain.
 	
 	for (i=0; i<127; i++) {
 		if (binline[i] == 0) {
@@ -306,7 +306,7 @@ int main(void)
 	// Generic Initializations
 	i = 0;
 	j = 0;
-	printCameraOutput = TRUE; // Show Camera Output on Terminal
+	printCameraOutput = FALSE; // Show Camera Output on Terminal
 	// OLED_Output - Show Camera Values on OLED Display
 	// 0 - Analog unfilter data
 	// 1 - Smooth filtered data
@@ -332,7 +332,7 @@ int main(void)
 	
 	while (Switch2_Pressed() != 0) {}; // Use a button to wait to drive the car
 	ms_delay(1000);
-	driveMotors_setSpeed(20); // 5% forward
+	driveMotors_setSpeed(21); // 5% forward
 	put("Oh boy! Time to drive!\r\n");
 	OLED_Print(1, 1, "press left button for green");
 	OLED_Print(2, 2, "press right button for red");
