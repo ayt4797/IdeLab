@@ -41,7 +41,8 @@ extern double servo_limit_right;
 extern double servo_limit_left; 
 extern int center_rightlimit;
 extern int center_leftlimit;
-
+#define TOLERANCE_LEFT 5
+#define TOLERANCE_RIGHT 122
 
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED
@@ -183,9 +184,14 @@ void steering_adjust() {
 		put("B");
 	} else if (num_edges == 2) { // Only two edges were found
 		current_leftmost = edges[0];
-		current_rightmost = edges[num_edges-1];
+		current_rightmost = edges[1];
 	}
-	
+	if(current_leftmost<TOLERANCE_LEFT){
+		current_leftmost = 127;
+	}
+	if(current_rightmost>TOLERANCE_RIGHT){
+		current_rightmost = 0;
+	}
 	if (current_leftmost < center_leftlimit) { // Steer Left!
 		kp = (servo_limit_left-servo_state_center)/left_gain;
 		error = center_leftlimit - current_leftmost;
