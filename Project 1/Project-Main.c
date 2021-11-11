@@ -41,6 +41,7 @@ extern double servo_limit_right;
 extern double servo_limit_left; 
 extern int center_rightlimit;
 extern int center_leftlimit;
+BOOLEAN printCameraOutput;
 #define TOLERANCE_LEFT 5
 #define TOLERANCE_RIGHT 122
 
@@ -225,7 +226,7 @@ int main(void)
 	// Generic Initializations
 	i = 0;
 	j = 0;
-	
+	printCameraOutput = TRUE; // Show Camera Output on Terminal
 	// OLED_Output - Show Camera Values on OLED Display
 	// 0 - Analog unfilter data
 	// 1 - Smooth filtered data
@@ -262,7 +263,17 @@ int main(void)
 		if (g_sendData == TRUE) 
 		{
 			LED1_On(); // LED ON = DATA TRANSFER
+			if (printCameraOutput) {
+			for (i=0; i<127; i++) {
+					if (binline[i] == 1) {
+						uart0_putchar('O');
+					} else {
+						uart0_putchar('-');
+				}
+			}
+			uart0_put("\r\n");
 		}
+		} 
 		
 		parsedata(); // Binary Edge Detection
 		LED1_Off();
@@ -285,7 +296,7 @@ int main(void)
 		g_sendData = FALSE; // Ready for next signal.
 		LED1_Off();
 		
-		if (Switch2_Pressed() || isOffTrack()) {
+		if (Switch2_Pressed()) {
 			OLED_display_clear();
 			OLED_display_off();
 			driveMotors_stop();
