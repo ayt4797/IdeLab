@@ -202,7 +202,7 @@ int main(void)
 	// Generic Initializations
 	i = 0;
 	j = 0;
-	printCameraOutput = FALSE; // Show Camera Output on Terminal
+	printCameraOutput = TRUE; // Show Camera Output on Terminal
 	// OLED_Output - Show Camera Values on OLED Display
 	// 0 - Analog unfilter data
 	// 1 - Smooth filtered data
