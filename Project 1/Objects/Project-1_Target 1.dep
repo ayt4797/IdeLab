@@ -15,7 +15,7 @@ I (C:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\
 I (Common.h)(0x61571D86)
 I (CortexM.h)(0x61571D86)
 I (ADC14.h)(0x61571D86)
-F (.\Camera.c)(0x618D7CE3)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O2 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\camera.o --omf_browse .\objects\camera.crf --depend .\objects\camera.d)
+F (.\Camera.c)(0x618D7FEF)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O2 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\camera.o --omf_browse .\objects\camera.crf --depend .\objects\camera.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025CC34)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025CC34)
 I (C:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)
@@ -37,7 +37,7 @@ I (Common.h)(0x61571D86)
 I (ADC14.h)(0x61571D86)
 I (ControlPins.h)(0x61571D86)
 I (oled.h)(0x61808E94)
-F (.\ControlPins.c)(0x618D7E87)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O2 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\controlpins.o --omf_browse .\objects\controlpins.crf --depend .\objects\controlpins.d)
+F (.\ControlPins.c)(0x618D7F66)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O2 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\controlpins.o --omf_browse .\objects\controlpins.crf --depend .\objects\controlpins.d)
 I (C:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)
 I (C:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r.h)(0x5B69EB34)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025CC3E)
@@ -99,7 +99,7 @@ I (C:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cms
 I (C:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armcc.h)(0x60D491A2)
 I (C:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h)(0x60D491A2)
 I (C:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h)(0x5B69EB36)
-F (.\Project-Main.c)(0x618D7E0E)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O2 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\project-main.o --omf_browse .\objects\project-main.crf --depend .\objects\project-main.d)
+F (.\Project-Main.c)(0x618D8009)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O2 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\project-main.o --omf_browse .\objects\project-main.crf --depend .\objects\project-main.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025CC34)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x6025CC34)
 I (C:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)

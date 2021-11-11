@@ -259,7 +259,6 @@ int main(void)
 //	OLED_DisplayCameraData(line);
 	while(1)
 	{
-		cameraUpsidedown(line);
 		if (g_sendData == TRUE) 
 		{
 			LED1_On(); // LED ON = DATA TRANSFER
