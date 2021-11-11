@@ -129,7 +129,7 @@ void car_startup() {
 
 void new_steering_adjust() {
 	// New method using 3 basic cases
-	short tolerance_factor = 5;
+	short tolerance_factor = 0;
 	int current_leftmost = 0;
 	int current_rightmost = 127;
 	int tolerance_left = tolerance_factor + center_leftlimit;
