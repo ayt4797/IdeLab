@@ -127,7 +127,70 @@ void car_startup() {
 	
 }
 
-void steering_adjust() {
+void new_steering_adjust() {
+	// New method using 3 basic cases
+	short tolerance_factor = 5;
+	int current_leftmost = 0;
+	int current_rightmost = 127;
+	int tolerance_left = tolerance_factor + center_leftlimit;
+	int tolerance_right = center_rightlimit - tolerance_factor;
+	short dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
+	double error = 0; // Ideally error is 0 so straight
+	double correction = servo_state_center;
+	double kp = 0.0525/10; // Proportional gain.
+	
+	// Case 1.
+	if ((current_leftmost < tolerance_left) && (current_rightmost) > tolerance_right) {
+		dir = 0; // Straight
+	} 
+	// Case 2.
+	else if (current_leftmost >= tolerance_left) {
+		dir = 1; // Turn Right
+	} 
+	// Case 3
+	else if (current_rightmost <= tolerance_right) {
+		dir = 2; // Turn Left
+	} 
+	// Error Case
+	else {
+		put("Error! Direction not found\r\n");
+		dir = 3;
+	}
+	
+	// Calculate error - e(t)
+	switch(dir) {
+		case(0): // Straight!
+			error = 0;
+			break;
+		case(1): // Turn Right
+			// Negative error
+			error = tolerance_left - current_leftmost;
+			break;
+		case(2): // Turn Left
+			// Positive error
+			error = tolerance_right - current_rightmost;
+			break;
+		case(3): // Error case. Straight?
+			error = 0;
+			 break;
+		default:
+			 put("dir out of range");
+			 error = 0;
+			 break;
+	}
+	
+	correction = servo_state_center + kp*error;
+	if (correction > servo_limit_left) {
+		correction = servo_limit_left;
+	} else if (correction < servo_limit_right) {
+		correction = servo_limit_right;
+	}
+	sprintf(str, "Correction=%f\r\n", correction);
+	put(str);
+	servo_move(correction);
+}
+
+void old_steering_adjust() {
 	int current_leftmost = 0;
 	int current_rightmost = 127;
 	double error = 0; // Error in P control
@@ -176,7 +239,6 @@ void steering_adjust() {
 				longest_pulse = i;
 			}
 		}
-		put("A");
 		current_leftmost = edges[longest_pulse*2];
 		current_rightmost = edges[(longest_pulse*2)+1];
 	} else if (num_edges%2 == 1) { // Number of edges found are odd. Anaylze differently
@@ -212,10 +274,6 @@ void steering_adjust() {
 		driveMotors_setSpeed(20);
 	}
 	servo_move(correction);
-	sprintf(str, "error=%f ", error);
-	uart2_put(str);
-	sprintf(str, "kp=%f\n\r", kp);
-	uart2_put(str);
 }
 
 /////////////////////////////////////////////////////
@@ -231,7 +289,7 @@ int main(void)
 	// 0 - Analog unfilter data
 	// 1 - Smooth filtered data
 	// 2 - Binarized Data (1/0)
-	OLED_Output = 0;
+	OLED_Output = 2;
 	sprintf(str,"OLED Mode=%d\n\r",OLED_Output);
 	put(str);
 	
@@ -295,7 +353,7 @@ int main(void)
 		g_sendData = FALSE; // Ready for next signal.
 		LED1_Off();
 		
-		if (Switch2_Pressed()) {
+		if (Switch2_Pressed() || isOffTrack()) {
 			OLED_display_clear();
 			OLED_display_off();
 			driveMotors_stop();
@@ -303,6 +361,7 @@ int main(void)
 		}
 
 		// Steering adjustment. Based on how far out the wheels are. Adjust left or right
-		steering_adjust();
+		//old_steering_adjust();
+		new_steering_adjust();
 	}
 }
