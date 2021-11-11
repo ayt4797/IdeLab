@@ -137,7 +137,7 @@ void new_steering_adjust() {
 	short dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	double error = 0; // Ideally error is 0 so straight
 	double correction = servo_state_center;
-	double kp = 0.0525/6; // Proportional gain.
+	double kp = 0.0525/10; // Proportional gain.
 	
 	for (i=0; i<127; i++) {
 		if (binline[i] == 0) {
@@ -201,12 +201,14 @@ void new_steering_adjust() {
 	} else if (correction < servo_limit_right) {
 		correction = servo_limit_right;
 	}
-	sprintf(str, "dir=%f", (double)dir);
-	put(str);
-	sprintf(str, " error=%f", error);
-	put(str);
-	sprintf(str, " correction=%f\r\n", correction);
-	put(str);
+	if (FALSE) {
+		sprintf(str, "dir=%f", (double)dir);
+		put(str);
+		sprintf(str, " error=%f", error);
+		put(str);
+		sprintf(str, " correction=%f\r\n", correction);
+		put(str);
+	}
 	servo_move(correction);
 }
 

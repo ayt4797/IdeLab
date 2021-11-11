@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project-1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project-1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Nov 11 17:23:32 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Nov 11 17:29:00 2021
 <BR><P>
 <H3>Maximum Stack Usage =       1608 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -471,8 +471,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calibrate_center
 </UL>
@@ -1180,9 +1179,8 @@ Global Symbols
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[c2]"></a>new_steering_adjust</STRONG> (Thumb, 312 bytes, Stack size 56 bytes, project-main.o(i.new_steering_adjust))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
-<LI>Call Chain = new_steering_adjust &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
+<P><STRONG><a name="[c2]"></a>new_steering_adjust</STRONG> (Thumb, 244 bytes, Stack size 48 bytes, project-main.o(i.new_steering_adjust))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = new_steering_adjust &rArr; servo_move &rArr; TIMER_A2_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_move
@@ -1191,7 +1189,6 @@ Global Symbols
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
