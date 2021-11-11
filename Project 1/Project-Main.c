@@ -39,8 +39,8 @@ extern double servo_limit_left;
 extern int center_rightlimit;
 extern int center_leftlimit;
 BOOLEAN printCameraOutput;
-#define LEFT_MOST_TOLERANCE 32
-#define RIGHT_MOST_TOLERANCE 96
+#define LEFT_MOST_TOLERANCE 40
+#define RIGHT_MOST_TOLERANCE 80
 #define DRIVE_STRAIGHT_SPEED 20
 #define PULSE_LENGTH_TOLERANCE 3 // Play with this.
 //#define SERVO_LIMIT_CENTER 0.0725
@@ -136,18 +136,7 @@ void car_startup() {
 	
 }
 
-int moving_off_center(){ //darkness is between the two tolerance then we need to turn
-	int pulse_length;
-	for (i=LEFT_MOST_TOLERANCE; i<RIGHT_MOST_TOLERANCE; i++) {
-		if(binline[i]==0){
-			pulse_length++;
-		}
-		if(pulse_length>PULSE_LENGTH_TOLERANCE){ //we may see sudden sparks of darkness if the darkness goes on for more than TOLERANCE pixels than it's not a camera error
-			return i;
-		}
-	}
-	return 0;
-}
+
 int get_leftmost(){ //returns the point at which the darkness becomes light, indicating how far to the left we are
 		short max=0;
 		for (i=0; i<LEFT_MOST_TOLERANCE; i++) {
@@ -170,46 +159,38 @@ void steering_adjust() {
 	short current_leftmost = 0;
 	short current_rightmost = 127;
 	double error = 0; // Error in P control
-	double kp = 0; // Gain of proportional control
+	double kp = 0.025/3; // Gain of proportional control
 	double correction = servo_state_center; // By default
-	short dir; //0=straight, 1=left, 2=right;
-	if(moving_off_center()){
-		current_leftmost=get_leftmost(); // Current left most rising edge
-		current_rightmost=get_rightmost(); // Current right most falling edge
-		
-		short left_most_adjusted = RIGHT_MOST_TOLERANCE + current_leftmost; //we need to adjust this because the value will always be greater on the right most b/c it's labeled 0-127
-		
-		if(left_most_adjusted > current_rightmost){
-			dir = 1;
-		}
-		else {
-			dir = 2;
-		} 
-		
-	} else {
-		dir=0;
-	}
+	// short dir; //0=straight, 1=left, 2=right;
+	current_leftmost=get_leftmost(); // Current left most rising edge
+	current_rightmost=get_rightmost(); // Current right most falling edge
+	// short left_most_adjusted = RIGHT_MOST_TOLERANCE - current_leftmost; //we need to adjust this because the value will always be greater on the right most b/c it's labeled 0-127
+	//short left_difference = current_leftmost - center_leftlimit; // Positive values indicate a need to turn right
+	//short right_difference = center_rightlimit - current_rightmost; // Postivie values indicate a need to turn left
 	
-	if (dir==1) { // Steer Left!
-		kp = LEFT_KP;
+	if (current_leftmost < center_leftlimit) { // Steer Left!
 		error = center_leftlimit - current_leftmost;
-		sprintf(str, "error=%f", error);
-		put(str);
 		correction = servo_state_center + (kp*error);
 		if (correction > servo_limit_left) {
 			correction = servo_limit_left;
 		}
-	} else if (dir==2) { // Steer Right!
-		kp = RIGHT_KP;
-		error = (current_rightmost - center_rightlimit);
+	} else if (current_rightmost > center_rightlimit) { // Steer Right!
+		error = (center_rightlimit - current_rightmost);
 		correction = servo_state_center + (kp*error);
 		if (correction < servo_limit_right) {
 			correction = servo_limit_right;
 		}
 	} else { // Go straight!
 		correction = servo_state_center;
-		driveMotors_setSpeed(DRIVE_STRAIGHT_SPEED);
+		driveMotors_setSpeed(20);
 	}
+	
+	if (correction > servo_limit_left) {
+		correction = servo_limit_left;
+	} else if (correction < servo_limit_right) {
+		correction = servo_limit_right;
+	}
+	
 	servo_move(correction);
 }
 
@@ -221,7 +202,7 @@ int main(void)
 	// Generic Initializations
 	i = 0;
 	j = 0;
-	printCameraOutput = TRUE; // Show Camera Output on Terminal
+	printCameraOutput = FALSE; // Show Camera Output on Terminal
 	// OLED_Output - Show Camera Values on OLED Display
 	// 0 - Analog unfilter data
 	// 1 - Smooth filtered data
