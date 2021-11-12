@@ -22,7 +22,7 @@ char str[100];
 int parseMode;
 extern int i;
 int j;
-short OLED_Output;
+short OLED_Output=0;
 BOOLEAN debugReporting = FALSE;
 double absolute_white = 0;
 double absolute_dark = 0;
@@ -85,7 +85,7 @@ void bin_plotline(uint16_t in_line[128]) {
 	uint16_t temp[128];
 	for (i=0; i<128; i++) {
 			if (in_line[i] == 1) {
-				temp[i] = 15000*in_line[i];
+				temp[i] = 15000;
 			} else {
 				temp[i] = 2000;
 			}
@@ -189,12 +189,12 @@ void camera_calibration() {
 				absolute_dark = line[i];
 			}
 		}
-			sprintf(str,"Absolute Dark value is =%lf\r\n",absolute_dark);
-			uart0_put(str);
-		  uart2_put(str);
-			sprintf(str,"Absolute White value is =%lf\r\n",absolute_white);
-			uart0_put(str);	
-			uart2_put(str);
+		//	sprintf(str,"Absolute Dark value is =%lf\r\n",absolute_dark);
+			//uart0_put(str);
+		 // uart2_put(str);
+//			sprintf(str,"Absolute White value is =%lf\r\n",absolute_white);
+			//uart0_put(str);	
+			//uart2_put(str);
 			
 		
 		LED2_Off();
@@ -207,16 +207,16 @@ void calibrate_center() {
 			break;
 		}
 	}
-	sprintf(str,"Left most for Center =%d\r\n",center_leftlimit);
-	bl_put(str);
+//	sprintf(str,"Left most for Center =%d\r\n",center_leftlimit);
+	//bl_put(str);
 	for (i=127; i>0; i--) {
 		if (binline[i] > 0) { // If the left most value has been identified
 			center_rightlimit = i;
 			break;
 		}
 	}
-	sprintf(str,"Right most for Center =%d\r\n",center_rightlimit);
-	bl_put(str);
+//	sprintf(str,"Right most for Center =%d\r\n",center_rightlimit);
+	//bl_put(str);
 }
 
 BOOLEAN isOffTrack() {

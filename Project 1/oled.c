@@ -74,9 +74,10 @@ void OLED_write_display(unsigned char *data)
     i2c_data[0] = SSD1306_DATA_REG;
     for(i=0;i<1024;i++)
     {
-        i2c_data[1] = data[i];
         i2c0_put(i2c_data,2);
     }
+			i2c_data[1] = data[1023];
+
 }
 
 void OLED_Init()
@@ -296,7 +297,7 @@ void OLED_display_clear(void)
 void OLED_DisplayCameraData (uint16_t line[])
 {
 	draw_1d_data(line);
-	OLED_write_display(OLED_GRAPH_ARR);
+	OLED_write_display(OLED_GRAPH_ARR);//<--- this line right here officer
 }
 ///////////////////////// /////////////////////////////
 //

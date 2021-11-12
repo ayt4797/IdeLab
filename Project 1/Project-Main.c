@@ -31,7 +31,7 @@ uint16_t scaled_binline[128];
 extern uint16_t smoothline[128];
 extern uint16_t binline[128];
 extern BOOLEAN g_sendData;
-static char str[100];
+//static char str[100];
 extern int parseMode;
 extern int i;
 extern int j;
@@ -44,7 +44,8 @@ extern int center_leftlimit;
 BOOLEAN printCameraOutput;
 #define TOLERANCE_LEFT 5
 #define TOLERANCE_RIGHT 122
-
+char phone_input[6];
+int phone_count =0;	
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED
 ////////////////////////////////////////////////////
@@ -126,6 +127,23 @@ void car_startup() {
 	servo_center();
 	
 }
+char* get_gain(){
+
+    if ((EUSCI_A2->IFG &BIT0)) {
+            char ch = uart2_getchar();
+            phone_input[phone_count]=ch;
+            phone_count++;
+            if(ch=='\n'){
+							put(phone_input);
+							
+                for(int i=0;i<6;i++){
+                    phone_input[i]=0;
+                }
+                phone_count=0;
+            }
+        }
+    return phone_input;
+}
 
 void new_steering_adjust() {
 	// New method using 3 basic cases
@@ -137,7 +155,16 @@ void new_steering_adjust() {
 	short dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	double error = 0; // Ideally error is 0 so straight
 	double correction = servo_state_center;
-	double kp = 0.0525/16; // Proportional gain.
+	float gain = 16.0f;
+//	char* g= get_gain();
+	//put(g);
+	//float phone_gain = atof(g);
+	//if(phone_gain){
+		//gain = phone_gain;
+	//}
+	//sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
+	//put(str);
+	double kp = 0.0525/gain; // Proportional gain.
 	
 	for (i=0; i<127; i++) {
 		if (binline[i] == 0) {
@@ -202,12 +229,8 @@ void new_steering_adjust() {
 		correction = servo_limit_right;
 	}
 	if (FALSE) {
-		sprintf(str, "dir=%f", (double)dir);
-		put(str);
-		sprintf(str, " error=%f", error);
-		put(str);
-		sprintf(str, " correction=%f\r\n", correction);
-		put(str);
+//		sprintf(str, "dir=%d", dir);
+//		put(str);
 	}
 	servo_move(correction);
 }
@@ -228,8 +251,8 @@ int main(void)
 	// 1 - Smooth filtered data
 	// 2 - Binarized Data (1/0)
 	OLED_Output = 2;
-	sprintf(str,"OLED Mode=%d\n\r",OLED_Output);
-	put(str);
+//	sprintf(str,"OLED Mode=%d\n\r",OLED_Output);
+	//put(str);
 	
 	// Preform generic initalizations
 	car_startup();
@@ -255,6 +278,8 @@ int main(void)
 //	OLED_DisplayCameraData(line);
 	while(1)
 	{
+		get_gain();
+		//continue;
 		if (g_sendData == TRUE) 
 		{
 			LED1_On(); // LED ON = DATA TRANSFER
@@ -271,8 +296,9 @@ int main(void)
 		} 
 		
 		parsedata(); // Binary Edge Detection
+		//
 		LED1_Off();
-		
+
 		OLED_Camera_Debug(OLED_Output);
 		if (Switch1_Pressed()) {
 			if (OLED_Output < 2) {
@@ -280,8 +306,6 @@ int main(void)
 			} else {
 				OLED_Output = 0;
 			}
-			sprintf(str,"OLED Mode=%d\n\r",OLED_Output);
-			put(str);
 			ms_delay(1000);
 		}
 
@@ -290,6 +314,7 @@ int main(void)
 		P2->OUT &= ~BIT2;
 		g_sendData = FALSE; // Ready for next signal.
 		LED1_Off();
+		//
 		
 		if (Switch2_Pressed() || isOffTrack()) {
 			OLED_display_clear();
