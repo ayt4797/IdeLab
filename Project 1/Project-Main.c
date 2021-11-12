@@ -23,6 +23,7 @@
 #include "Camera.h"
 #include "TimerA.h"
 #include "Motors.h"
+#include "PID.h"
 
 // line stores the current array of camera data
 extern uint16_t line[128];
@@ -42,8 +43,6 @@ extern double servo_limit_left;
 extern int center_rightlimit;
 extern int center_leftlimit;
 BOOLEAN printCameraOutput;
-#define TOLERANCE_LEFT 5
-#define TOLERANCE_RIGHT 122
 char phone_input[2];
 int phone_count =0;	
 double gain = 16.0f;
@@ -71,10 +70,6 @@ void OLED_Camera_Debug(short select) {
 ////////////////////////////////////
 // Generic Startup
 ////////////////////////////////////
-void put(char *temp){ //prints to both putty & phone
-    uart0_put(temp);
-    uart2_put(temp);
-}
 
 void car_startup() {
 	DisableInterrupts();
@@ -129,121 +124,29 @@ void car_startup() {
 	servo_center();
 	
 }
-char* get_gain(){
-	char temp[2];
-    if ((EUSCI_A2->IFG &BIT0)) {
-			char ch = uart2_getchar();
-			if(ch=='\n'){
-
-						for(int i=0;i<2;i++){
-								temp[i]=phone_input[i];
-								phone_input[i]=0;
-						}
-						phone_count=0;
-						return temp;
-				}
-			else{
-				phone_input[phone_count]=ch;
-				phone_count++;
-			}
-		}
-    return 0;
-}
-	float phone_gain=0;
-
-void new_steering_adjust() {
-	// New method using 3 basic cases
-	short tolerance_factor = 0;
-	int current_leftmost = 0;
-	int current_rightmost = 127;
-	int tolerance_left = tolerance_factor + center_leftlimit;
-	int tolerance_right = center_rightlimit - tolerance_factor;
-	short dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
-	double error = 0; // Ideally error is 0 so straight
-	double correction = servo_state_center;
-	char* ch = get_gain();
-	if(ch!=0){
-		phone_gain = atof(ch);
-		put(ch);
-		
-	}
-	if(phone_gain){
-		gain = phone_gain;		
-		sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
-		put(str);
-	}
-	double kp = 0.0525/gain; // Proportional gain.
-	
-	for (i=0; i<127; i++) {
-		if (binline[i] == 0) {
-			current_leftmost = i;
-		} else {
-			break;
-		}
-	}
-	
-	for (i=127; i>0; i--) {
-		if (binline[i] == 0) {
-			current_rightmost = i;
-		} else {
-			break;
-		}
-	}
-	
-	// Case 1.
-	if ((current_leftmost < tolerance_left) && (current_rightmost) > tolerance_right) {
-		dir = 0; // Straight
-	} 
-	// Case 2.
-	else if (current_leftmost >= tolerance_left) {
-		dir = 1; // Turn Right
-	} 
-	// Case 3
-	else if (current_rightmost <= tolerance_right) {
-		dir = 2; // Turn Left
-	} 
-	// Error Case
-	else {
-		put("Error! Direction not found\r\n");
-		dir = 3;
-	}
-	
-	// Calculate error - e(t)
-	switch(dir) {
-		case(0): // Straight!
-			error = 0;
-			break;
-		case(1): // Turn Right
-			// Negative error
-			error = tolerance_left - current_leftmost;
-			break;
-		case(2): // Turn Left
-			// Positive error
-			error = tolerance_right - current_rightmost;
-			break;
-		case(3): // Error case. Straight?
-			error = 0;
-			 break;
-		default:
-			 put("dir out of range");
-			 error = 0;
-			 break;
-	}
-	
-	correction = servo_state_center + kp*error;
-	if (correction > servo_limit_left) {
-		correction = servo_limit_left;
-	} else if (correction < servo_limit_right) {
-		correction = servo_limit_right;
-	}
-	if (FALSE) {
-//		sprintf(str, "dir=%d", dir);
-//		put(str);
-	}
-	servo_move(correction);
-}
 
 
+//char* get_gain(){
+//	char temp[2];
+//    if ((EUSCI_A2->IFG &BIT0)) {
+//			char ch = uart2_getchar();
+//			if(ch=='\n'){
+
+//						for(int i=0;i<2;i++){
+//								temp[i]=phone_input[i];
+//								phone_input[i]=0;
+//						}
+//						phone_count=0;
+//						return temp;
+//				}
+//			else{
+//				phone_input[phone_count]=ch;
+//				phone_count++;
+//			}
+//		}
+//    return 0;
+//}
+//	float phone_gain=0;
 
 /////////////////////////////////////////////////////
 // main function
@@ -336,7 +239,7 @@ int main(void)
 		//old_steering_adjust();
 		new_steering_adjust();
 	}
-	sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
-	put(str);
+	//sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
+	//put(str);
 
 }
