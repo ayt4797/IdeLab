@@ -31,7 +31,7 @@ uint16_t scaled_binline[128];
 extern uint16_t smoothline[128];
 extern uint16_t binline[128];
 extern BOOLEAN g_sendData;
-//static char str[100];
+static char str[100];
 extern int parseMode;
 extern int i;
 extern int j;
@@ -44,8 +44,10 @@ extern int center_leftlimit;
 BOOLEAN printCameraOutput;
 #define TOLERANCE_LEFT 5
 #define TOLERANCE_RIGHT 122
-char phone_input[6];
+char phone_input[2];
 int phone_count =0;	
+float gain = 16.0f;
+
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED
 ////////////////////////////////////////////////////
@@ -128,22 +130,26 @@ void car_startup() {
 	
 }
 char* get_gain(){
-
+	char temp[2];
     if ((EUSCI_A2->IFG &BIT0)) {
-            char ch = uart2_getchar();
-            phone_input[phone_count]=ch;
-            phone_count++;
-            if(ch=='\n'){
-							put(phone_input);
-							
-                for(int i=0;i<6;i++){
-                    phone_input[i]=0;
-                }
-                phone_count=0;
-            }
-        }
-    return phone_input;
+			char ch = uart2_getchar();
+			if(ch=='\n'){
+
+						for(int i=0;i<2;i++){
+								temp[i]=phone_input[i];
+								phone_input[i]=0;
+						}
+						phone_count=0;
+						return temp;
+				}
+			else{
+				phone_input[phone_count]=ch;
+				phone_count++;
+			}
+		}
+    return 0;
 }
+	float phone_gain=0;
 
 void new_steering_adjust() {
 	// New method using 3 basic cases
@@ -155,15 +161,14 @@ void new_steering_adjust() {
 	short dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	double error = 0; // Ideally error is 0 so straight
 	double correction = servo_state_center;
-	float gain = 16.0f;
-//	char* g= get_gain();
-	//put(g);
-	//float phone_gain = atof(g);
-	//if(phone_gain){
-		//gain = phone_gain;
-	//}
-	//sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
-	//put(str);
+	char* ch = get_gain();
+	if(ch!=0){
+		phone_gain = atof(ch);
+		put(ch);
+	}
+	if(phone_gain){
+		gain = phone_gain;
+	}
 	double kp = 0.0525/gain; // Proportional gain.
 	
 	for (i=0; i<127; i++) {
@@ -278,7 +283,7 @@ int main(void)
 //	OLED_DisplayCameraData(line);
 	while(1)
 	{
-		get_gain();
+		//get_gain();
 		//continue;
 		if (g_sendData == TRUE) 
 		{
@@ -291,15 +296,16 @@ int main(void)
 						uart0_putchar('-');
 				}
 			}
-			uart0_put("\r\n");
+
 		}
-		} 
+		OLED_Camera_Debug(OLED_Output);
+
+	} 
 		
 		parsedata(); // Binary Edge Detection
 		//
 		LED1_Off();
 
-		OLED_Camera_Debug(OLED_Output);
 		if (Switch1_Pressed()) {
 			if (OLED_Output < 2) {
 				OLED_Output++;
@@ -327,4 +333,7 @@ int main(void)
 		//old_steering_adjust();
 		new_steering_adjust();
 	}
+	//sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
+	//put(str);
+
 }

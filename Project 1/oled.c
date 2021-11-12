@@ -74,10 +74,9 @@ void OLED_write_display(unsigned char *data)
     i2c_data[0] = SSD1306_DATA_REG;
     for(i=0;i<1024;i++)
     {
+        i2c_data[1] = data[i];
         i2c0_put(i2c_data,2);
     }
-			i2c_data[1] = data[1023];
-
 }
 
 void OLED_Init()

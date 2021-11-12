@@ -27,10 +27,17 @@ Project File Date:  11/11/2021
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling oled.c...
+compiling Project-Main.c...
+Project-Main.c(143): warning:  #1166-D: returning pointer to local variable
+  						return temp;
+Project-Main.c(172): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	double kp = 0.0525/gain; // Proportional gain.
+Project-Main.c(34): warning:  #177-D: variable "str"  was declared but never referenced
+  static char str[100];
+Project-Main.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=9372 RO-data=1876 RW-data=136 ZI-data=8648  
-".\Objects\Project-1.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=16120 RO-data=2340 RW-data=136 ZI-data=8648  
+".\Objects\Project-1.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -61,7 +68,7 @@ Package Vendor: TexasInstruments
       Source file:   Device\Source\startup_msp432p401r_uvision.s
       Source file:   Examples\EmptyMain\main.c
       Source file:   Examples\BlinkLED\blinkLED.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
