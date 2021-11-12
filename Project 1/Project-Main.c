@@ -46,7 +46,7 @@ BOOLEAN printCameraOutput;
 #define TOLERANCE_RIGHT 122
 char phone_input[2];
 int phone_count =0;	
-float gain = 16.0f;
+double gain = 16.0f;
 
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED
@@ -165,9 +165,12 @@ void new_steering_adjust() {
 	if(ch!=0){
 		phone_gain = atof(ch);
 		put(ch);
+		
 	}
 	if(phone_gain){
-		gain = phone_gain;
+		gain = phone_gain;		
+		sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
+		put(str);
 	}
 	double kp = 0.0525/gain; // Proportional gain.
 	
@@ -333,7 +336,7 @@ int main(void)
 		//old_steering_adjust();
 		new_steering_adjust();
 	}
-	//sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
-	//put(str);
+	sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
+	put(str);
 
 }
