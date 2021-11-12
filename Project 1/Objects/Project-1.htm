@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project-1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project-1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Nov 12 16:16:17 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Nov 12 16:34:04 2021
 <BR><P>
 <H3>Maximum Stack Usage =       1608 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -453,7 +453,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
 <P><STRONG><a name="[54]"></a>__printf</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, __printf.o(.text))
@@ -842,7 +842,7 @@ Global Symbols
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_right
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_move
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_move
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_left
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_center
 </UL>
@@ -984,16 +984,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parsedata
 </UL>
 
-<P><STRONG><a name="[a7]"></a>get_current_leftmost</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, pid.o(i.get_current_leftmost))
+<P><STRONG><a name="[a9]"></a>get_current_leftmost</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, pid.o(i.get_current_leftmost))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = get_current_leftmost
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
-<P><STRONG><a name="[a8]"></a>get_current_rightmost</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, pid.o(i.get_current_rightmost))
+<P><STRONG><a name="[aa]"></a>get_current_rightmost</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, pid.o(i.get_current_rightmost))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = get_current_rightmost
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
 <P><STRONG><a name="[6f]"></a>i2c0_Init</STRONG> (Thumb, 168 bytes, Stack size 0 bytes, i2c.o(i.i2c0_Init))
@@ -1019,8 +1019,8 @@ Global Symbols
 <LI>Call Chain = main &rArr; OLED_Print &rArr; OLED_draw_line &rArr; OLED_draw &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_putchar
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_display_off
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_display_clear
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Print
@@ -1048,24 +1048,6 @@ Global Symbols
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[a6]"></a>new_steering_adjust</STRONG> (Thumb, 216 bytes, Stack size 24 bytes, pid.o(i.new_steering_adjust))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144 + Unknown Stack Size
-<LI>Call Chain = new_steering_adjust &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
-</UL>
-<BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_move
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_correction
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_direction
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_rightmost
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_leftmost
-</UL>
-<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
 <P><STRONG><a name="[9f]"></a>parsedata</STRONG> (Thumb, 112 bytes, Stack size 24 bytes, camera.o(i.parsedata))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = parsedata &rArr; edge_detection &rArr; __aeabi_dmul
 </UL>
@@ -1085,13 +1067,13 @@ Global Symbols
 <P><STRONG><a name="[8e]"></a>put</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, uart.o(i.put))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = put &rArr; uart2_put
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_put
+<BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_put
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_put
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_direction
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_direction
 </UL>
 
 <P><STRONG><a name="[99]"></a>servo_center</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, motors.o(i.servo_center))
@@ -1110,12 +1092,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[ab]"></a>servo_move</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.servo_move))
+<P><STRONG><a name="[a8]"></a>servo_move</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.servo_move))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = servo_move &rArr; TIMER_A2_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A2_PWM_DutyCycle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
 <P><STRONG><a name="[96]"></a>servo_right</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, motors.o(i.servo_right))
@@ -1126,12 +1108,30 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[a9]"></a>steering_direction</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, pid.o(i.steering_direction))
+<P><STRONG><a name="[a6]"></a>steering_adjust</STRONG> (Thumb, 216 bytes, Stack size 24 bytes, pid.o(i.steering_adjust))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144 + Unknown Stack Size
+<LI>Call Chain = steering_adjust &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_move
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_correction
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_direction
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_rightmost
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_leftmost
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[ab]"></a>steering_direction</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, pid.o(i.steering_direction))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = steering_direction &rArr; put &rArr; uart2_put
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
 <P><STRONG><a name="[8c]"></a>uart0_init</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, uart.o(i.uart0_init))
@@ -1156,7 +1156,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[ac]"></a>uart2_put</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, uart.o(i.uart2_put))
+<P><STRONG><a name="[a7]"></a>uart2_put</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, uart.o(i.uart2_put))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = uart2_put
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_putchar
@@ -1165,22 +1165,22 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ad]"></a>uart2_putchar</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, uart.o(i.uart2_putchar))
-<BR><BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_put
+<BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_put
 </UL>
 
-<P><STRONG><a name="[aa]"></a>verify_correction</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, pid.o(i.verify_correction))
+<P><STRONG><a name="[ac]"></a>verify_correction</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, pid.o(i.verify_correction))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = verify_correction &rArr; __aeabi_cdcmple
 </UL>
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
 <P><STRONG><a name="[83]"></a>__aeabi_dadd</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, daddsub_clz.o(x$fpl$dadd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_dadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;edge_detection
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_floor
 </UL>
@@ -1233,7 +1233,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[9d]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt))
-<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;edge_detection
 </UL>
 
@@ -1257,7 +1257,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_correction
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_correction
 </UL>
 
 <P><STRONG><a name="[b5]"></a>_dcmple</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf), UNUSED)
@@ -1272,7 +1272,7 @@ Global Symbols
 <P><STRONG><a name="[60]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_steering_adjust
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A2_PWM_Init
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A2_PWM_DutyCycle
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A0_PWM_Init
@@ -1309,7 +1309,7 @@ Global Symbols
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;edge_detection
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_floor
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_correction
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_correction
 </UL>
 
 <P><STRONG><a name="[b8]"></a>_drcmple</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf), UNUSED)

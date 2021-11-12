@@ -44,9 +44,10 @@ short get_current_leftmost() {
 		if (binline[i] == 0) {
 			current_leftmost = i;
 		} else {
-			break;
+			return current_leftmost;
 		}
 	}
+	return 127;
 }
 
 short get_current_rightmost() {
@@ -54,9 +55,10 @@ short get_current_rightmost() {
 		if (binline[i] == 0) {
 			current_rightmost = i;
 		} else {
-			break;
+			return current_rightmost;
 		}
 	}
+	return 0;
 }
 
 short steering_direction(short tolerance_left, short tolerance_right) {
@@ -89,7 +91,7 @@ double verify_correction(double c) {
 	}
 }
 
-void new_steering_adjust() {
+void steering_adjust() {
 	// New method using 3 basic cases
 	current_leftmost = 0;
 	current_rightmost = 127;

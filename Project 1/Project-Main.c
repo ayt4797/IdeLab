@@ -237,7 +237,7 @@ int main(void)
 
 		// Steering adjustment. Based on how far out the wheels are. Adjust left or right
 		//old_steering_adjust();
-		new_steering_adjust();
+		steering_adjust();
 	}
 	//sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
 	//put(str);
