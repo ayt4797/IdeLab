@@ -183,6 +183,11 @@ while(*ptr_str != 0)
 uart2_putchar(*ptr_str++);
 }
 
+void put(char *temp){ //prints to both putty & phone
+    uart0_put(temp);
+    uart2_put(temp);
+}
+
 BOOLEAN uart0_dataAvailable(){
 	BOOLEAN go = FALSE;//if a character is available, set go = TRUE;
 	if((EUSCI_A0->IFG &BIT0)==0){

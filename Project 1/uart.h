@@ -18,7 +18,7 @@ void uart2_putchar(char ch);
 void uart2_init(void);
 
 void uart2_put(char *ptr_str);
-
+void put(char *temp);
 BYTE uart2_getchar(void);
 BOOLEAN uart0_dataAvailable(void);
 BOOLEAN uart2_dataAvailable(void);
