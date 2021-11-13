@@ -14,17 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L power:GND #PWR01
-U 1 1 5080AA99
-P 11450 2300
-F 0 "#PWR01" H 11450 2050 50  0001 C CNN
-F 1 "GND" H 11450 2150 50  0000 C CNN
-F 2 "" H 11450 2300 50  0000 C CNN
-F 3 "" H 11450 2300 50  0000 C CNN
-	1    11450 2300
-	0    1    1    0   
-$EndComp
-$Comp
 L pspice:R R1
 U 1 1 61854D18
 P 3400 2950
@@ -45,17 +34,6 @@ F 2 "Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder" H 3800 3000 50  0
 F 3 "~" H 3800 3000 50  0001 C CNN
 	1    3800 3000
 	1    0    0    -1  
-$EndComp
-$Comp
-L pspice:CAP C1
-U 1 1 618587C9
-P 4050 3250
-F 0 "C1" V 3735 3250 50  0000 C CNN
-F 1 "97.3uf" V 3826 3250 50  0000 C CNN
-F 2 "Capacitor_SMD:CP_Elec_3x5.4" H 4050 3250 50  0001 C CNN
-F 3 "~" H 4050 3250 50  0001 C CNN
-	1    4050 3250
-	0    1    1    0   
 $EndComp
 $Comp
 L pspice:R R3
@@ -176,17 +154,6 @@ F 3 "~" H 5000 3750 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Connection ~ 5350 3350
-$Comp
-L Amplifier_Operational:TLC277 U2
-U 1 1 6185AB20
-P 5050 3350
-F 0 "U2" H 5050 3717 50  0000 C CNN
-F 1 "TLC277" H 5050 3626 50  0000 C CNN
-F 2 "TLC277CP:DIP794W45P254L959H508Q8" H 5050 3350 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/tlc272.pdf" H 5050 3350 50  0001 C CNN
-	1    5050 3350
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4700 3850 4700 3750
 Wire Wire Line
@@ -208,32 +175,6 @@ Wire Wire Line
 	3400 3250 3400 3200
 Wire Wire Line
 	3400 3250 2800 3250
-Connection ~ 3800 3250
-$Comp
-L kicad-rescue:OPB745-OPB745 U1
-U 1 1 61872E79
-P 2800 3150
-F 0 "U1" H 4028 2496 50  0000 L CNN
-F 1 "OPB745" H 4028 2405 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 2800 3350 50  0001 L CNN
-F 3 "https://upverter.com/datasheet/4f8d3d5f99316b04551580b4d6f54087dceae820.pdf" H 2800 3450 50  0001 L CNN
-F 4 "IC" H 2800 3550 50  0001 L CNN "category"
-F 5 "SENSR OPTO TRANS 3.81MM REFL PCB" H 2800 3650 50  0001 L CNN "digikey description"
-F 6 "365-1015-ND" H 2800 3750 50  0001 L CNN "digikey part number"
-F 7 "yes" H 2800 3850 50  0001 L CNN "lead free"
-F 8 "632e0746e169612c" H 2800 3950 50  0001 L CNN "library id"
-F 9 "TT Electronics" H 2800 4050 50  0001 L CNN "manufacturer"
-F 10 "828-OPB745" H 2800 4150 50  0001 L CNN "mouser part number"
-F 11 "SENSOR_PTH_5MM08_17MM78" H 2800 4250 50  0001 L CNN "package"
-F 12 "yes" H 2800 4350 50  0001 L CNN "rohs"
-F 13 "+85°C" H 2800 4450 50  0001 L CNN "temperature range high"
-F 14 "-40°C" H 2800 4550 50  0001 L CNN "temperature range low"
-F 15 "15V" H 2800 4650 50  0001 L CNN "voltage"
-	1    2800 3150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3800 4450 2800 4450
 Connection ~ 7700 3450
 $Comp
 L pspice:DIODE D2
@@ -269,10 +210,7 @@ Wire Wire Line
 	6100 4450 6150 4450
 Connection ~ 6400 4450
 Wire Wire Line
-	3800 4450 4300 4450
-Wire Wire Line
 	4700 4450 4700 4350
-Connection ~ 3800 4450
 Connection ~ 4700 4350
 Connection ~ 5350 4350
 Wire Wire Line
@@ -345,4 +283,62 @@ F 3 "http://www.ti.com/lit/ds/symlink/tlc272.pdf" H 6750 3450 50  0001 C CNN
 	2    6750 3450
 	1    0    0    -1  
 $EndComp
+$Comp
+L pspice:CAP C1
+U 1 1 618587C9
+P 4050 3250
+F 0 "C1" V 3735 3250 50  0000 C CNN
+F 1 "97.3uf" V 3826 3250 50  0000 C CNN
+F 2 "Capacitor_SMD:CP_Elec_3x5.4" H 4050 3250 50  0001 C CNN
+F 3 "~" H 4050 3250 50  0001 C CNN
+	1    4050 3250
+	0    1    1    0   
+$EndComp
+$Comp
+L Amplifier_Operational:TLC277 U2
+U 1 1 6185AB20
+P 5050 3350
+F 0 "U2" H 5050 3717 50  0000 C CNN
+F 1 "TLC277" H 5050 3626 50  0000 C CNN
+F 2 "TLC277CP:DIP794W45P254L959H508Q8" H 5050 3350 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/tlc272.pdf" H 5050 3350 50  0001 C CNN
+	1    5050 3350
+	1    0    0    -1  
+$EndComp
+Connection ~ 3800 3250
+Wire Wire Line
+	3800 4450 2800 4450
+Wire Wire Line
+	3800 4450 4300 4450
+Connection ~ 3800 4450
+$Comp
+L kicad-rescue:OPB745-OPB745 U1
+U 1 1 61872E79
+P 2800 3150
+F 0 "U1" H 4028 2496 50  0000 L CNN
+F 1 "OPB745" H 4028 2405 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 2800 3350 50  0001 L CNN
+F 3 "https://upverter.com/datasheet/4f8d3d5f99316b04551580b4d6f54087dceae820.pdf" H 2800 3450 50  0001 L CNN
+F 4 "IC" H 2800 3550 50  0001 L CNN "category"
+F 5 "SENSR OPTO TRANS 3.81MM REFL PCB" H 2800 3650 50  0001 L CNN "digikey description"
+F 6 "365-1015-ND" H 2800 3750 50  0001 L CNN "digikey part number"
+F 7 "yes" H 2800 3850 50  0001 L CNN "lead free"
+F 8 "632e0746e169612c" H 2800 3950 50  0001 L CNN "library id"
+F 9 "TT Electronics" H 2800 4050 50  0001 L CNN "manufacturer"
+F 10 "828-OPB745" H 2800 4150 50  0001 L CNN "mouser part number"
+F 11 "SENSOR_PTH_5MM08_17MM78" H 2800 4250 50  0001 L CNN "package"
+F 12 "yes" H 2800 4350 50  0001 L CNN "rohs"
+F 13 "+85°C" H 2800 4450 50  0001 L CNN "temperature range high"
+F 14 "-40°C" H 2800 4550 50  0001 L CNN "temperature range low"
+F 15 "15V" H 2800 4650 50  0001 L CNN "voltage"
+F 16 "I" H 2800 3150 50  0001 C CNN "Spice_Primitive"
+F 17 "dc 1 ac 1" H 2800 3150 50  0001 C CNN "Spice_Model"
+F 18 "Y" H 2800 3150 50  0001 C CNN "Spice_Netlist_Enabled"
+	1    2800 3150
+	1    0    0    -1  
+$EndComp
+Text Notes 8100 7500 2    50   ~ 0
+Heart Rate Monitor\n
+Text Notes 7550 6800 2    50   ~ 0
+Aubrey Tarmu\n11-12-21\n
 $EndSCHEMATC

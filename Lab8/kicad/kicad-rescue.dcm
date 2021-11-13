@@ -1,3 +1,7 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP OPB745-OPB745
+F https://upverter.com/datasheet/4f8d3d5f99316b04551580b4d6f54087dceae820.pdf
+$ENDCMP
+#
 #End Doc Library
