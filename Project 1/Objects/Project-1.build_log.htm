@@ -3,34 +3,52 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.35.0.0
+IDE-Version: µVision V5.36.0.0
 Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: aubrey johndoegames82@gmail.com, rit, LIC=----
+License Information: Dante Sivo, RIT, LIC=----
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.35.0.2
+Toolchain:       MDK-Lite  Version: 5.36.0.0
 Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 7 (build 960)
 Assembler:       Armasm.exe V5.06 update 7 (build 960)
 Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
 Library Manager: ArmAr.exe V5.06 update 7 (build 960)
 Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
-CPU DLL:         SARMCM3.DLL V5.35.0.2
+CPU DLL:         SARMCM3.DLL V5.36.0.0
 Dialog DLL:      DCM.DLL V1.17.3.0
 Target DLL:      CMSIS_AGDI.dll V1.33.0.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-C:\Users\johnd\Desktop\IDE\IdeLab\Project 1\Project-1.uvprojx
+C:\Users\theda\Documents\IDE\IdeLab\Project 1\Project-1.uvprojx
 Project File Date:  11/15/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'Target 1'
+Rebuild target 'Target 1'
+compiling CortexM.c...
+compiling Lab1.c...
+compiling Motors.c...
+compiling i2c.c...
+compiling ADC14.c...
+compiling ControlPins.c...
+compiling Camera.c...
+compiling Project-Main.c...
+Project-Main.c(35): warning:  #177-D: variable "str"  was declared but never referenced
+  static char str[100];
+Project-Main.c: 1 warning, 0 errors
+assembling startup_msp432p401r_uvision.s...
+compiling uart.c...
+compiling TimerA.c...
+compiling Timer32.c...
+compiling SysTickTimer.c...
+compiling system_msp432p401r.c...
 compiling PID.c...
+compiling oled.c...
 linking...
 Program Size: Code=14656 RO-data=2052 RW-data=180 ZI-data=8772  
-".\Objects\Project-1.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\Project-1.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -48,8 +66,8 @@ Package Vendor: TexasInstruments
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_Target_1
-  C:\Users\johnd\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
-  C:\Users\johnd\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include
+  C:\Users\theda\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Users\theda\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
@@ -57,11 +75,11 @@ Package Vendor: TexasInstruments
 
    * Component: TexasInstruments::Device:Startup:3.2.2
       Source file:   Device\Source\startup_msp432p401r_uvision.s
+      Source file:   Device\Source\system_msp432p401r.c
       Include file:  Device\Include\msp_compatibility.h
       Source file:   Examples\EmptyMain\main.c
       Source file:   Examples\BlinkLED\blinkLED.c
-      Source file:   Device\Source\system_msp432p401r.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

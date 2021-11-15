@@ -1584,25 +1584,25 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       128         24          0          0          0       7869   adc14.o
-       694         80          0         34        612       8045   camera.o
-       312         52          0          8        256       3004   controlpins.o
+       128         24          0          0          0       7873   adc14.o
+       694         80          0         34        612       8077   camera.o
+       312         52          0          8        256       3016   controlpins.o
         32          0          0          0          0        568   cortexm.o
-       268         26          0          4          0       1743   i2c.o
-       416         44          0          0          0       4429   lab1.o
-       614         86          0         32          0       5127   motors.o
-       730         50       1520          8       3132       7696   oled.o
-      1024        210          0         56         24       5799   pid.o
-      1036        414          0          1          0       3513   project-main.o
+       268         26          0          4          0       1751   i2c.o
+       416         44          0          0          0       4461   lab1.o
+       614         86          0         32          0       5143   motors.o
+       730         50       1520          8       3132       7716   oled.o
+      1024        210          0         56         24       5807   pid.o
+      1036        414          0          1          0       3521   project-main.o
         64         26        324          0       4608        924   startup_msp432p401r_uvision.o
-       148         30          0          4          0        803   system_msp432p401r.o
-       132         12          0          8          0       2709   systicktimer.o
-       236         52          0         20          0       3143   timer32.o
-       464         38          0          0         40       3646   timera.o
-       334         36          0          0          0       3750   uart.o
+       148         30          0          4          0        811   system_msp432p401r.o
+       132         12          0          8          0       2721   systicktimer.o
+       236         52          0         20          0       3151   timer32.o
+       464         38          0          0         40       3654   timera.o
+       334         36          0          0          0       3774   uart.o
 
     ----------------------------------------------------------------------
-      6640       1180       1876        180       8676      62768   Object Totals
+      6640       1180       1876        180       8676      62968   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          8          0          0          5          4          0   (incl. Padding)
 
@@ -1695,8 +1695,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     14656       1610       2052        180       8772      58004   Grand Totals
-     14656       1610       2052        180       8772      58004   ELF Image Totals
+     14656       1610       2052        180       8772      58204   Grand Totals
+     14656       1610       2052        180       8772      58204   ELF Image Totals
      14656       1610       2052        180          0          0   ROM Totals
 
 ==============================================================================

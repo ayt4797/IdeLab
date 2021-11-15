@@ -43,6 +43,7 @@ BOOLEAN PID_differential = FALSE;
 double kp = 0.0525/90;
 double ki = 0.0525/360;
 double kd = 0.0525/1440;
+
 BOOLEAN straight_machine[4]; // Straight state machine
 BOOLEAN newly_straight;
 
@@ -107,7 +108,13 @@ double verify_limit(double c) {
 	}
 }
 float get_PID(float prev_pos){
-    float new_pos= prev_pos+(kp*(error[0]-error[1])) +ki*(error[0]-error[1])/2+kd*(error[0]-2*error[1]+error[2]);
+    float new_pos 
+			 = prev_pos
+			+(kp*(error[0]-error[1])) 
+		  + ki*((error[0]-error[1])/2)
+		  + kd*(error[0]-2*error[1]+error[2]);
+		
+		// Shift errors to load newest error into error[0]
     error[2] = error[1];
     error[1] = error[0];
 
@@ -189,8 +196,10 @@ void steering_adjust() {
 			 break;
 	}
 	
-correction = get_PID(correction);
+ correction = get_PID(correction); // Cacluate correction using PID
 
+	// Verify the correction does not exceed the servo limits
+	// If it does, the correction will be clipped
  correction = verify_limit(correction);
 	
 	if (print_direction) { // Verbose direction
