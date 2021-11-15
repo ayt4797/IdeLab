@@ -24,8 +24,10 @@ extern char str[100];
 #define TOLERANCE_LEFT 5
 #define TOLERANCE_RIGHT 122
 #define TOLERANCE_FACTOR 0
-#define STRAIGHT_SPEED 23
-#define MOTOR_FACTOR 2
+#define STANDARD_STRAIGHT_SPEED 30
+#define ROCKET_STRAIGHT_SPEED 50
+#define TURN_SPEED 25
+#define MOTOR_FACTOR 3
 
 short current_leftmost;
 short current_rightmost;
@@ -35,12 +37,14 @@ short dir;
 double error[3]; // [0] - Current error // [1] - Last Error // [2] - 2nd latest error ... and so on
 double correction;
 
-BOOLEAN print_direction = TRUE;
-BOOLEAN PID_differential = TRUE;
+BOOLEAN print_direction = FALSE;
+BOOLEAN PID_differential = FALSE;
 
-double kp = 0.0525/40;
+double kp = 0.0525/90;
 double ki = 0;
 double kd = 0;
+BOOLEAN straight_machine[4]; // Straight state machine
+BOOLEAN newly_straight;
 
 short get_current_leftmost() {
 	for (i=0; i<127; i++) {
@@ -67,22 +71,22 @@ short get_current_rightmost() {
 short steering_direction(short tolerance_left, short tolerance_right) {
 	// Case 1.
 	if ((current_leftmost < tolerance_left) && (current_rightmost) > tolerance_right) {
-		driveMotors_setSpeed(STRAIGHT_SPEED);
+		// Motor assignment later
 		return 0; // Straight
 	} 
 	// Case 2
 	else if (current_leftmost >= tolerance_left) {
 		if (PID_differential == FALSE) {
-			driveMotors_forwardLeft(STRAIGHT_SPEED + MOTOR_FACTOR);
-			driveMotors_forwardRight(STRAIGHT_SPEED - MOTOR_FACTOR);
+			driveMotors_forwardLeft(TURN_SPEED + MOTOR_FACTOR);
+			driveMotors_forwardRight(TURN_SPEED - MOTOR_FACTOR);
 		}
 		return 1; // Turn Right
 	} 
 	// Case 3
 	else if (current_rightmost <= tolerance_right) {
 		if (PID_differential == FALSE) {
-			driveMotors_forwardLeft(STRAIGHT_SPEED - MOTOR_FACTOR);
-			driveMotors_forwardRight(STRAIGHT_SPEED + MOTOR_FACTOR);
+			driveMotors_forwardLeft(TURN_SPEED - MOTOR_FACTOR);
+			driveMotors_forwardRight(TURN_SPEED + MOTOR_FACTOR);
 		}
 		return 2; // Turn Left
 	} 
@@ -131,17 +135,43 @@ void steering_adjust() {
 
 	dir = steering_direction(tolerance_left, tolerance_right);
 	
+	// Advance all values in the counter
+		for (i=0; i<3; i++) { 
+			straight_machine[i+1] = straight_machine[i];
+		}
+	
 	// Calculate error - e(t)
 	switch(dir) {
 		case(0): // Straight!
+			straight_machine[0] = TRUE;
 			error[0] = 0;
+			
+		 newly_straight = TRUE; 
+			for (i=0; i<4; i++) {
+				// If the car hasn't been straight for 4 checks
+				if (straight_machine[i] == FALSE) {
+					newly_straight = FALSE;
+				}
+			}
+			
+			if (newly_straight) {
+				// If newly straight, don't go full bore
+				driveMotors_setSpeed(STANDARD_STRAIGHT_SPEED);
+			} else {
+				// If we've been straight for a bit. SEND IT!
+				driveMotors_setSpeed(ROCKET_STRAIGHT_SPEED);
+				
+			}
+			
 			break;
 		case(1): // Turn Right
 			// Negative error
+		straight_machine[0] = FALSE;
 			error[0] = tolerance_left - current_leftmost;
 			break;
 		case(2): // Turn Left
 			// Positive error
+		 straight_machine[0] = FALSE;
 			error[0] = tolerance_right - current_rightmost;
 			break;
 		case(3): // Error case. Straight?
