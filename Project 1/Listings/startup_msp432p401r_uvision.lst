@@ -562,10 +562,10 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
 interwork --depend=.\objects\startup_msp432p401r_uvision.d -o.\objects\startup_
-msp432p401r_uvision.o -I.\RTE\_Target_1 -IC:\Users\theda\AppData\Local\Arm\Pack
-s\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Users\theda\AppData\Local\Arm\Packs\T
+msp432p401r_uvision.o -I.\RTE\_Target_1 -IC:\Users\johnd\AppData\Local\Arm\Pack
+s\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Users\johnd\AppData\Local\Arm\Packs\T
 exasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include --predefine="__EVAL SETA 1"
- --predefine="__UVISION_VERSION SETA 536" --predefine="_RTE_ SETA 1" --predefin
+ --predefine="__UVISION_VERSION SETA 535" --predefine="_RTE_ SETA 1" --predefin
 e="_RTE_ SETA 1" --predefine="__MSP432P401R__ SETA 1" --predefine="__MSP432P401
 R__ SETA 1" --list=.\listings\startup_msp432p401r_uvision.lst RTE\Device\MSP432
 P401R\startup_msp432p401r_uvision.s

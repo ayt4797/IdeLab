@@ -26,21 +26,22 @@ extern char str[100];
 #define TOLERANCE_FACTOR 0
 #define STRAIGHT_SPEED 23
 #define MOTOR_FACTOR 2
-
+#define KP 0
+#define KI .08
+#define KD 0
 short current_leftmost;
 short current_rightmost;
 short tolerance_right;
 short tolerance_left;
 short dir;
 double error[3]; // [0] - Current error // [1] - Last Error // [2] - 2nd latest error ... and so on
-double correction;
-
+double correction=0.0725;
 BOOLEAN print_direction = TRUE;
 BOOLEAN PID_differential = TRUE;
 
-double kp = 0.0525/40;
-double ki = 0;
-double kd = 0;
+double kp = 0.0525/90;
+double ki = 0.0525/360;
+double kd = 0.0525/1440;
 
 short get_current_leftmost() {
 	for (i=0; i<127; i++) {
@@ -93,7 +94,7 @@ short steering_direction(short tolerance_left, short tolerance_right) {
 	}
 }
 
-double verify_correction(double c) {
+double verify_limit(double c) {
 	if (c > servo_limit_left) {
 		return servo_limit_left;
 	} else if (c < servo_limit_right) {
@@ -103,16 +104,23 @@ double verify_correction(double c) {
 	}
 }
 
+float get_PID(float prev_pos){
+	float new_pos= prev_pos+(kp*(error[0]-error[1])) +ki*(error[0]-error[1])/2+KD*(error[0]-2*error[1]+error[2]);
+	error[2] = error[1];
+	error[1] = error[0];
+
+	return new_pos;
+}
+
 void steering_adjust() {
 	// New method using 3 basic cases
 	current_leftmost = 0;
 	current_rightmost = 127;
 	dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	error[0] = 0; // Ideally error is 0 so straight
-	correction = servo_state_center;
 	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
 	tolerance_right = center_rightlimit - TOLERANCE_FACTOR;
-	
+
 //	char* ch = get_gain();
 //	if(ch!=0){
 //		phone_gain = atof(ch);
@@ -152,10 +160,11 @@ void steering_adjust() {
 			 error[0] = 0;
 			 break;
 	}
-	
- correction = servo_state_center + kp*error[0];
+//	 correction = servo_state_center + kp*error[0];
 
- correction = verify_correction(correction);
+ correction = get_PID(correction);
+
+ correction = verify_limit(correction);
 	
 	if (print_direction) { // Verbose direction
 		sprintf(str, "dir=%d", dir);
