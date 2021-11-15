@@ -24,6 +24,8 @@ extern char str[100];
 #define TOLERANCE_LEFT 5
 #define TOLERANCE_RIGHT 122
 #define TOLERANCE_FACTOR 0
+#define STRAIGHT_SPEED 23
+#define MOTOR_FACTOR 5
 
 short current_leftmost;
 short current_rightmost;
@@ -31,11 +33,12 @@ short tolerance_right;
 short tolerance_left;
 short dir;
 double error[3]; // [0] - Current error // [1] - Last Error // [2] - 2nd latest error ... and so on
-double correction;
+double correction_servo;
 
-BOOLEAN print_direction = FALSE;
+BOOLEAN print_direction = TRUE;
+BOOLEAN PID_differential = TRUE;
 
-double kp = 0.0525/16;
+double kp = 0.0525/40;
 double ki = 0;
 double kd = 0;
 
@@ -64,14 +67,23 @@ short get_current_rightmost() {
 short steering_direction(short tolerance_left, short tolerance_right) {
 	// Case 1.
 	if ((current_leftmost < tolerance_left) && (current_rightmost) > tolerance_right) {
+		driveMotors_setSpeed(STRAIGHT_SPEED);
 		return 0; // Straight
 	} 
-	// Case 2.
+	// Case 2
 	else if (current_leftmost >= tolerance_left) {
+		if (PID_differential == FALSE) {
+			driveMotors_forwardLeft(STRAIGHT_SPEED + MOTOR_FACTOR);
+			driveMotors_forwardRight(STRAIGHT_SPEED - MOTOR_FACTOR);
+		}
 		return 1; // Turn Right
 	} 
 	// Case 3
 	else if (current_rightmost <= tolerance_right) {
+		if (PID_differential == FALSE) {
+			driveMotors_forwardLeft(STRAIGHT_SPEED - MOTOR_FACTOR);
+			driveMotors_forwardRight(STRAIGHT_SPEED + MOTOR_FACTOR);
+		}
 		return 2; // Turn Left
 	} 
 	// Error Case
@@ -141,12 +153,16 @@ void steering_adjust() {
 			 break;
 	}
 	
- correction = servo_state_center + kp*error[0];
+ correction_servo = servo_state_center + kp*error[0];
 
- correction = verify_correction(correction);
+ correction_servo = verify_correction(correction_servo);
 	
 	if (print_direction) { // Verbose direction
 		sprintf(str, "dir=%d", dir);
+		put(str);
+		sprintf(str, " e[0]=%f", error[0]);
+		put(str);
+		sprintf(str, " c=%f\r\n", correction);
 		put(str);
 	}
 	servo_move(correction);

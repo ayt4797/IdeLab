@@ -182,7 +182,7 @@ int main(void)
 	
 	while (Switch2_Pressed() != 0) {}; // Use a button to wait to drive the car
 	ms_delay(1000);
-	driveMotors_setSpeed(21); // 5% forward
+	driveMotors_setSpeed(20); // 5% forward
 	put("Oh boy! Time to drive!\r\n");
 	OLED_Print(1, 1, "press left button for green");
 	OLED_Print(2, 2, "press right button for red");
@@ -202,10 +202,8 @@ int main(void)
 						uart0_putchar('-');
 				}
 			}
-
 		}
 		OLED_Camera_Debug(OLED_Output);
-
 	} 
 		
 		parsedata(); // Binary Edge Detection
