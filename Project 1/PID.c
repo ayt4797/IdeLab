@@ -24,10 +24,10 @@ extern char str[100];
 #define TOLERANCE_LEFT 5
 #define TOLERANCE_RIGHT 122
 #define TOLERANCE_FACTOR 0
-#define STANDARD_STRAIGHT_SPEED 30
-#define ROCKET_STRAIGHT_SPEED 50
+#define STANDARD_STRAIGHT_SPEED 20
+#define ROCKET_STRAIGHT_SPEED 30
 #define TURN_SPEED 25
-#define MOTOR_FACTOR 3
+#define MOTOR_FACTOR 10
 
 short current_leftmost;
 short current_rightmost;
@@ -39,13 +39,15 @@ double correction=.0725;
 
 BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
+BOOLEAN print_straight_machine = FALSE;
 
-double kp = 0.0525/90;
-double ki = 0.0525/360;
-double kd = 0.0525/1440;
+double kp = 0.0525/80;
+double ki = 0;//0.0525/360;
+double kd = 0;//0.0525/1440;
 
-BOOLEAN straight_machine[4]; // Straight state machine
-BOOLEAN newly_straight;
+short straight_acc_thresehold = 500;
+unsigned long	straight_count; // Straight state machine
+BOOLEAN been_straight;
 
 short get_current_leftmost() {
 	for (i=0; i<127; i++) {
@@ -69,14 +71,22 @@ short get_current_rightmost() {
 	return 0;
 }
 
+void brake(int length) {
+	driveMotors_setSpeed(-50); // Stall speed!
+	ms_delay(length);
+}
+
 short steering_direction(short tolerance_left, short tolerance_right) {
 	// Case 1.
 	if ((current_leftmost < tolerance_left) && (current_rightmost) > tolerance_right) {
-		// Motor assignment later
 		return 0; // Straight
-	} 
+	}
 	// Case 2
 	else if (current_leftmost >= tolerance_left) {
+		if (been_straight) {
+			brake(10);
+		}
+		been_straight = FALSE;
 		if (PID_differential == FALSE) {
 			driveMotors_forwardLeft(TURN_SPEED + MOTOR_FACTOR);
 			driveMotors_forwardRight(TURN_SPEED - MOTOR_FACTOR);
@@ -85,6 +95,10 @@ short steering_direction(short tolerance_left, short tolerance_right) {
 	} 
 	// Case 3
 	else if (current_rightmost <= tolerance_right) {
+		if (been_straight) {
+			brake(10);
+		}
+		been_straight = FALSE;
 		if (PID_differential == FALSE) {
 			driveMotors_forwardLeft(TURN_SPEED - MOTOR_FACTOR);
 			driveMotors_forwardRight(TURN_SPEED + MOTOR_FACTOR);
@@ -92,10 +106,8 @@ short steering_direction(short tolerance_left, short tolerance_right) {
 		return 2; // Turn Left
 	} 
 	// Error Case
-	else {
 		put("Error! Direction not found\r\n");
 		return 3;
-	}
 }
 
 double verify_limit(double c) {
@@ -129,65 +141,40 @@ void steering_adjust() {
 	error[0] = 0; // Ideally error is 0 so straight
 	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
 	tolerance_right = center_rightlimit - TOLERANCE_FACTOR;
-	
-//	char* ch = get_gain();
-//	if(ch!=0){
-//		phone_gain = atof(ch);
-//		put(ch);
-//		
-//	}
-//	if(phone_gain){
-//		gain = phone_gain;		
-//		sprintf(str,"gain: %f, phone_gain : %f\n",gain,phone_gain);
-//		put(str);
-//	}
-//	double kp = 0.0525/gain; // Proportional gain.
 
 	current_leftmost = get_current_leftmost();
 	current_rightmost = get_current_rightmost();
 
 	dir = steering_direction(tolerance_left, tolerance_right);
 	
-	// Advance all values in the counter
-		for (i=0; i<3; i++) { 
-			straight_machine[i+1] = straight_machine[i];
-		}
-	
 	// Calculate error - e(t)
 	switch(dir) {
 		case(0): // Straight!
-			straight_machine[0] = TRUE;
-			error[0] = 0;
-			
-		 newly_straight = TRUE; 
-			for (i=0; i<4; i++) {
-				// If the car hasn't been straight for 4 checks
-				if (straight_machine[i] == FALSE) {
-					newly_straight = FALSE;
-				}
-			}
-			
-			if (newly_straight) {
-				// If newly straight, don't go full bore
-				driveMotors_setSpeed(STANDARD_STRAIGHT_SPEED);
-			} else {
-				// If we've been straight for a bit. SEND IT!
+			straight_count++; // Increment # of cycles its been straight
+ 			
+			// If we've been straight longer than the thresehold, full speed!
+			if (straight_count > straight_acc_thresehold) {
+				been_straight = TRUE; // Used to figure out if braking is required.
 				driveMotors_setSpeed(ROCKET_STRAIGHT_SPEED);
-				
+			} else {
+				been_straight = FALSE;
+				driveMotors_setSpeed(STANDARD_STRAIGHT_SPEED);
 			}
 			
+			error[0] = 0;
 			break;
 		case(1): // Turn Right
 			// Negative error
-		straight_machine[0] = FALSE;
+			straight_count = 0;
 			error[0] = tolerance_left - current_leftmost;
 			break;
 		case(2): // Turn Left
 			// Positive error
-		 straight_machine[0] = FALSE;
+		 straight_count = 0;
 			error[0] = tolerance_right - current_rightmost;
 			break;
-		case(3): // Error case. Straight?
+		case(3): // Error case. Something werid is going on.
+			straight_count = 0;
 			error[0] = 0;
 			 break;
 		default:
@@ -211,4 +198,9 @@ void steering_adjust() {
 		put(str);
 	}
 	servo_move(correction);
+	
+	if (print_straight_machine) {  // Print the number of cycles we've been straight
+		sprintf(str, "%lu\r\n",straight_count);
+		put(str);
+	}
 }

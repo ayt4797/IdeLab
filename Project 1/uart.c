@@ -9,7 +9,7 @@
 #include "msp.h"
 #include "uart.h"  // you need to create this file with the function prototypes
 
-#define BAUD_RATE 9600      //default baud rate
+#define BAUD_RATE 115200      //default baud rate
 extern uint32_t SystemCoreClock;  // clock rate of MCU
 
 typedef unsigned char BOOLEAN;

@@ -43,6 +43,7 @@ extern double servo_limit_left;
 extern int center_rightlimit;
 extern int center_leftlimit;
 BOOLEAN printCameraOutput;
+BOOLEAN oled_enable;
 char phone_input[2];
 int phone_count =0;	
 double gain = 16.0f;
@@ -80,11 +81,12 @@ void car_startup() {
 	put("\r\nINIT LEDs");
 	LED1_Init();
 	LED2_Init();
-  put("- ENABLED\r\n");
-  put("OLED DISPLAY");
-	OLED_Init();
-  put("- ENABLED\r\n");
-	
+	if (oled_enable) {
+		put("- ENABLED\r\n");
+		put("OLED DISPLAY");
+		OLED_Init();
+		put("- ENABLED\r\n");
+	}
 	put("INIT Switches");
 	Switches_Init();
 	put("- ENABLED\r\n");
@@ -162,6 +164,7 @@ int main(void)
 	// 1 - Smooth filtered data
 	// 2 - Binarized Data (1/0)
 	OLED_Output = 2;
+	oled_enable = FALSE;
 //	sprintf(str,"OLED Mode=%d\n\r",OLED_Output);
 	//put(str);
 	
@@ -184,8 +187,6 @@ int main(void)
 	ms_delay(1000);
 	driveMotors_setSpeed(20); // 5% forward
 	put("Oh boy! Time to drive!\r\n");
-	OLED_Print(1, 1, "press left button for green");
-	OLED_Print(2, 2, "press right button for red");
 //	OLED_DisplayCameraData(line);
 	while(1)
 	{
@@ -203,7 +204,9 @@ int main(void)
 				}
 			}
 		}
-		OLED_Camera_Debug(OLED_Output);
+		if (oled_enable) {
+			OLED_Camera_Debug(OLED_Output);
+		}
 	} 
 		
 		parsedata(); // Binary Edge Detection
@@ -227,8 +230,10 @@ int main(void)
 		//
 		
 		if (Switch2_Pressed() || isOffTrack()) {
-			OLED_display_clear();
-			OLED_display_off();
+			if (oled_enable) {
+				OLED_display_clear();
+				OLED_display_off();
+			}
 			driveMotors_stop();
 			break;
 		}
