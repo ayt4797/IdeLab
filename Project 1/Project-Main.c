@@ -184,7 +184,10 @@ int main(void)
 	ms_delay(1000);
 	
 	while (Switch2_Pressed() != 0) {}; // Use a button to wait to drive the car
-	ms_delay(1000);
+	ms_delay(1000);		
+	P2->OUT &= ~BIT0; // No Light
+	P2->OUT &= ~BIT1;
+	P2->OUT &= ~BIT2;
 	driveMotors_setSpeed(20); // 5% forward
 	put("Oh boy! Time to drive!\r\n");
 //	OLED_DisplayCameraData(line);
@@ -192,9 +195,7 @@ int main(void)
 	{
 		//get_gain();
 		//continue;
-		if (g_sendData == TRUE) 
-		{
-			LED1_On(); // LED ON = DATA TRANSFER
+		if (g_sendData == TRUE) {
 			if (printCameraOutput) {
 			for (i=0; i<127; i++) {
 					if (binline[i] == 1) {
@@ -211,22 +212,18 @@ int main(void)
 		
 		parsedata(); // Binary Edge Detection
 		//
-		LED1_Off();
 
-		if (Switch1_Pressed()) {
-			if (OLED_Output < 2) {
-				OLED_Output++;
-			} else {
-				OLED_Output = 0;
+		if (oled_enable) {
+			if (Switch1_Pressed()) {
+				if (OLED_Output < 2) {
+					OLED_Output++;
+				} else {
+					OLED_Output = 0;
+				}
+				ms_delay(1000);
 			}
-			ms_delay(1000);
 		}
-
-		P2->OUT &= ~BIT0; // No Light
-		P2->OUT &= ~BIT1;
-		P2->OUT &= ~BIT2;
 		g_sendData = FALSE; // Ready for next signal.
-		LED1_Off();
 		//
 		
 		if (Switch2_Pressed() || isOffTrack()) {

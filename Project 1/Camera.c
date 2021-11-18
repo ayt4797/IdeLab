@@ -99,7 +99,7 @@ void bin_plotline(uint16_t in_line[128]) {
 void edge_detection(void) {
 	int maxval = absolute_white;
 	int minval = absolute_dark;
-	double thresehold = 3; // Thereshold for binary high value (percentage of maxval)
+	double thresehold = 1.5; // Thereshold for binary high value (percentage of maxval) // was 3
 	// Generate binary result.
 	for (i=0; i<128; i++) {
 		if (smoothline[i] > ((maxval-minval)/2)+(minval*thresehold)) {
