@@ -43,10 +43,16 @@ extern double servo_limit_left;
 extern int center_rightlimit;
 extern int center_leftlimit;
 BOOLEAN printCameraOutput;
-BOOLEAN oled_enable;
+BOOLEAN oled_wave;
 char phone_input[2];
 int phone_count =0;	
 double gain = 16.0f;
+
+short speed_profile = 0;
+// 0 - Super Wicked Fast
+// 1 - Moderate
+// 2 - Slow and Steady
+short speed_profile_length = 3;
 
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED
@@ -81,12 +87,13 @@ void car_startup() {
 	put("\r\nINIT LEDs");
 	LED1_Init();
 	LED2_Init();
-	if (oled_enable) {
-		put("- ENABLED\r\n");
-		put("OLED DISPLAY");
-		OLED_Init();
-		put("- ENABLED\r\n");
-	}
+	put("- ENABLED\r\n");
+	
+	put("OLED DISPLAY");
+	OLED_Init();
+	put("- ENABLED\r\n");
+	OLED_Print(1, 1, "Initalizing...");
+	
 	put("INIT Switches");
 	Switches_Init();
 	put("- ENABLED\r\n");
@@ -119,36 +126,40 @@ void car_startup() {
 	TIMER_A2_PWM_Init(SystemCoreClock/(50*8*2), 0.1, 1);
 	uart0_put("- ENABLED\r\n");
 	
+	OLED_Print(1,1,"Right         ");
 	servo_right();
-	ms_delay(1000);
+	ms_delay(400);
+	
+	OLED_Print(1,1,"Left          ");
 	servo_left();
-	ms_delay(1000);
+	ms_delay(400);
+	
+	OLED_Print(1,1,"Straight");
 	servo_center();
 	
 }
 
-
-//char* get_gain(){
-//	char temp[2];
-//    if ((EUSCI_A2->IFG &BIT0)) {
-//			char ch = uart2_getchar();
-//			if(ch=='\n'){
-
-//						for(int i=0;i<2;i++){
-//								temp[i]=phone_input[i];
-//								phone_input[i]=0;
-//						}
-//						phone_count=0;
-//						return temp;
-//				}
-//			else{
-//				phone_input[phone_count]=ch;
-//				phone_count++;
-//			}
-//		}
-//    return 0;
-//}
-//	float phone_gain=0;
+void mode_select() {
+	OLED_display_on();
+	OLED_Print(1, 1, "Select Mode!");
+	sprintf(str,"Config:%i\r\n",speed_profile);
+	put(str);
+	OLED_Print(2, 2, str);
+	while (Switch2_Pressed() == FALSE) {
+		if (Switch1_Pressed()) {
+			ms_delay(700);
+			if (speed_profile == speed_profile_length) {
+				speed_profile = 0;
+			} else {
+				speed_profile++;
+			}
+			sprintf(str,"Config:%i\r\n",speed_profile);
+			put(str);
+			OLED_Print(2, 2, str);
+		}
+	}
+	OLED_Print(1, 1, "Mode Selected!");
+}
 
 /////////////////////////////////////////////////////
 // main function
@@ -163,17 +174,22 @@ int main(void)
 	// 0 - Analog unfilter data
 	// 1 - Smooth filtered data
 	// 2 - Binarized Data (1/0)
-	OLED_Output = 2;
-	oled_enable = FALSE;
-//	sprintf(str,"OLED Mode=%d\n\r",OLED_Output);
-	//put(str);
+	OLED_Output = 0;
+	oled_wave = TRUE;
 	
 	// Preform generic initalizations
 	car_startup();
 	camera_calibration();
 	
+	// Select Race Mode. Profiles need to be filled out.
+	put("Select Mode\r\n");
+	mode_select();
+	
 	put("Press Switch1 to calibrate center\r\n");
+	OLED_Print(1, 1, "Press SW1       ");
+	OLED_Print(3,3, "Allign Center");
 	while (Switch1_Pressed() == 0) {}; // Determine the center point of the track on a straight portion.
+	OLED_Print(3,3, "                 ");
 	while (g_sendData == FALSE) {}; // wait until data is able to be parsed.
 	parsedata();
 	calibrate_center();
@@ -181,7 +197,8 @@ int main(void)
 		
 	put("Use Switch 1 to index through the OLED modes\r\n");
 	put("Use Switch 2 for Start/E-Stop!\r\n");
-	ms_delay(1000);
+	OLED_Print(1,1, "Calibrating...    ");
+		ms_delay(1000);
 	
 	while (Switch2_Pressed() != 0) {}; // Use a button to wait to drive the car
 	ms_delay(1000);		
@@ -191,6 +208,7 @@ int main(void)
 	driveMotors_setSpeed(20); // 5% forward
 	put("Oh boy! Time to drive!\r\n");
 //	OLED_DisplayCameraData(line);
+	OLED_Print(1,1,"Starting Drive!");
 	while(1)
 	{
 		//get_gain();
@@ -205,7 +223,7 @@ int main(void)
 				}
 			}
 		}
-		if (oled_enable) {
+		if (oled_wave) {
 			OLED_Camera_Debug(OLED_Output);
 		}
 	} 
@@ -213,7 +231,7 @@ int main(void)
 		parsedata(); // Binary Edge Detection
 		//
 
-		if (oled_enable) {
+		if (oled_wave) {
 			if (Switch1_Pressed()) {
 				if (OLED_Output < 2) {
 					OLED_Output++;
@@ -227,7 +245,7 @@ int main(void)
 		//
 		
 		if (Switch2_Pressed() || isOffTrack()) {
-			if (oled_enable) {
+			if (oled_wave) {
 				OLED_display_clear();
 				OLED_display_off();
 			}

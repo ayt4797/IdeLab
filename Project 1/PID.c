@@ -24,10 +24,10 @@ extern char str[100];
 #define TOLERANCE_LEFT 5
 #define TOLERANCE_RIGHT 122
 #define TOLERANCE_FACTOR 0
-#define STANDARD_STRAIGHT_SPEED 20
+#define STANDARD_STRAIGHT_SPEED 25
 #define ROCKET_STRAIGHT_SPEED 40
-#define TURN_SPEED 25
-#define MOTOR_FACTOR 10
+#define TURN_SPEED 20
+#define MOTOR_FACTOR 15
 
 short current_leftmost;
 short current_rightmost;
@@ -45,10 +45,11 @@ double kp = 0.0525/80;
 double ki = 0.0525/128;
 double kd = 0.0525/1440;
 
-short straight_acc_thresehold = 1100;
+double straight_acc_thresehold = 999999999999
+	;
 unsigned long	straight_count = 0; // Straight state machine
 BOOLEAN been_straight;
-int brake_time=500;
+int brake_time=100;
 
 short get_current_leftmost() {
 	for (i=0; i<127; i++) {
