@@ -24,10 +24,10 @@ extern char str[100];
 #define TOLERANCE_LEFT 5
 #define TOLERANCE_RIGHT 122
 #define TOLERANCE_FACTOR 0
-#define STANDARD_STRAIGHT_SPEED 25
+#define STANDARD_STRAIGHT_SPEED 20
 #define ROCKET_STRAIGHT_SPEED 40
-#define TURN_SPEED 20
-#define MOTOR_FACTOR 15
+#define TURN_SPEED 10
+#define MOTOR_FACTOR 10
 
 short current_leftmost;
 short current_rightmost;
