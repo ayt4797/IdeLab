@@ -21,12 +21,12 @@ extern int i;
 extern int center_leftlimit;
 extern uint16_t binline[128];
 extern char str[100];
-#define TOLERANCE_LEFT 5
-#define TOLERANCE_RIGHT 122
+//#define TOLERANCE_LEFT 5
+//#define TOLERANCE_RIGHT 122
 #define TOLERANCE_FACTOR 0
-#define STANDARD_STRAIGHT_SPEED 20
+#define STANDARD_STRAIGHT_SPEED 30
 #define ROCKET_STRAIGHT_SPEED 40
-#define TURN_SPEED 10
+#define TURN_SPEED 25
 #define MOTOR_FACTOR 10
 
 short current_leftmost;
@@ -41,12 +41,13 @@ BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
 
-double kp = 0.0525/80;
-double ki = 0.0525/128;
-double kd = 0.0525/1440;
+double kp_left= 0.0525/60;
+double kp_right= 0.0525/30;
 
-double straight_acc_thresehold = 999999999999
-	;
+double ki = 0;
+double kd = 0;
+
+double straight_acc_thresehold = 999999999999	;
 unsigned long	straight_count = 0; // Straight state machine
 BOOLEAN been_straight;
 int brake_time=100;
@@ -105,17 +106,30 @@ double verify_limit(double c) {
 		return c;
 	}
 }
-float get_PID(float prev_pos){
-    float new_pos 
+float get_PID(float prev_pos, BOOLEAN left){
+	float new_pos;
+	if(left){
+    new_pos 
 			 = prev_pos
-			+(kp*(error[0]-error[1])) 
+			+(kp_left*(error[0]-error[1])) 
 		  + ki*((error[0]-error[1])/2)
 		  + kd*(error[0]-2*error[1]+error[2]);
 		
 		// Shift errors to load newest error into error[0]
     error[2] = error[1];
     error[1] = error[0];
-
+	}
+	else{
+		new_pos 
+			 = prev_pos
+			+(kp_right*(error[0]-error[1])) 
+		  + ki*((error[0]-error[1])/2)
+		  + kd*(error[0]-2*error[1]+error[2]);
+		
+		// Shift errors to load newest error into error[0]
+    error[2] = error[1];
+    error[1] = error[0];
+	}
     return new_pos;
 }
 
@@ -127,7 +141,7 @@ void steering_adjust() {
 	error[0] = 0; // Ideally error is 0 so straight
 	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
 	tolerance_right = center_rightlimit - TOLERANCE_FACTOR;
-
+	//tolerance_right = center_rightlimit+3;
 	current_leftmost = get_current_leftmost();
 	current_rightmost = get_current_rightmost();
 
@@ -143,13 +157,18 @@ void steering_adjust() {
 			// Negative error
 			straight_count = 0;
 			error[0] = tolerance_left - current_leftmost;
+			 correction = get_PID(correction,0); // Cacluate correction using PID
+
 			break;
 		case(2): // Turn Left
 			// Positive error
 		 straight_count = 0;
 			error[0] = tolerance_right - current_rightmost;
+		 correction = get_PID(correction,1); // Cacluate correction using PID
+
 			break;
 		case(3): // Error case. Something werid is going on.
+			correction = get_PID(correction,0); // Cacluate correction using PID
 			straight_count = 0;
 			error[0] = 0;
 			 break;
@@ -159,7 +178,6 @@ void steering_adjust() {
 			 break;
 	}
 	
- correction = get_PID(correction); // Cacluate correction using PID
 
 	// Verify the correction does not exceed the servo limits
 	// If it does, the correction will be clipped
