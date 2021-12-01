@@ -35,7 +35,7 @@ short dir;
 double error[3]; // [0] - Current error // [1] - Last Error // [2] - 2nd latest error ... and so on
 double correction=.0725;
 
-BOOLEAN print_direction = FALSE;
+BOOLEAN print_direction = 1;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
 
@@ -146,8 +146,6 @@ float get_PID(float prev_pos, BOOLEAN left){
 
 void steering_adjust() {
 	// New method using 3 basic cases
-	current_leftmost = 0;
-	current_rightmost = 127;
 	dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	error[0] = 0; // Ideally error is 0 so straight
 	
@@ -155,33 +153,27 @@ void steering_adjust() {
 	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
 	tolerance_right = center_rightlimit - TOLERANCE_FACTOR;
 	dir = steering_direction(tolerance_left, tolerance_right);
-	
+
 	// Calculate error - e(t)
 	switch(dir) {
 		case(0): // Straight!
 			straight_count++; // Increment # of cycles its been straight 
-			error[0] = 0;
 			put("S");
-			servo_move(0.0725);
 			break;
 		case(1): // Turn Right
 			// Negative error
 			straight_count = 0;
 			put("R");
 			error[0] = tolerance_left - current_leftmost;
-			 correction = get_PID(correction,0); // Cacluate correction using PID
-
 			break;
 		case(2): // Turn Left
 			// Positive error
 		 straight_count = 0;
 		put("L");
 			error[0] = tolerance_right - current_rightmost;
-		 correction = get_PID(correction,1); // Cacluate correction using PID
 
 			break;
 		case(3): // Error case. Something werid is going on.
-			correction = get_PID(correction,0); // Cacluate correction using PID
 			straight_count = 0;
 			error[0] = 0;
 			 break;
@@ -191,6 +183,10 @@ void steering_adjust() {
 			 break;
 	}
 	
+	if(dir!=0)
+		correction = get_PID(correction,0); // Cacluate correction using PID
+	else
+		correction = .0725;
 
 	// Verify the correction does not exceed the servo limits
 	// If it does, the correction will be clipped
