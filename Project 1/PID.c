@@ -21,13 +21,11 @@ extern int i;
 extern int center_leftlimit;
 extern uint16_t binline[128];
 extern char str[100];
-//#define TOLERANCE_LEFT 5
-//#define TOLERANCE_RIGHT 122
-#define TOLERANCE_FACTOR 0
-#define STANDARD_STRAIGHT_SPEED 30
-#define ROCKET_STRAIGHT_SPEED 40
-#define TURN_SPEED 25
-#define MOTOR_FACTOR 10
+#define TOLERANCE_FACTOR 2
+#define STANDARD_STRAIGHT_SPEED 0
+#define ROCKET_STRAIGHT_SPEED 0
+#define TURN_SPEED 0
+#define MOTOR_FACTOR 0
 
 short current_leftmost;
 short current_rightmost;
@@ -41,7 +39,7 @@ BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
 
-double kp_left= 0.0525/60;
+double kp_left= 0.0525/30;
 double kp_right= 0.0525/30;
 
 double ki = 0;
@@ -80,7 +78,19 @@ void brake(int length) {
 }
 
 short steering_direction(short tolerance_left, short tolerance_right) {
+	current_leftmost = get_current_leftmost();
+	current_rightmost = get_current_rightmost();
+	
 	// Case 1.
+	sprintf(str, "cr=%d", current_rightmost);
+	put(str);
+	sprintf(str, "tr=%d", tolerance_right);
+	put(str);
+	
+	sprintf(str, "cl=%d", current_leftmost);
+	put(str);
+	sprintf(str, "tl=%d\r\n", tolerance_left);
+	put(str);
 	if ((current_leftmost < tolerance_left) && (current_rightmost) > tolerance_right) {
 		return 0; // Straight
 	}
@@ -89,6 +99,7 @@ short steering_direction(short tolerance_left, short tolerance_right) {
 		return 1; // Turn Right
 	} 
 	// Case 3
+	
 	else if (current_rightmost <= tolerance_right) {
 		return 2; // Turn Left
 	} 
@@ -139,12 +150,10 @@ void steering_adjust() {
 	current_rightmost = 127;
 	dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	error[0] = 0; // Ideally error is 0 so straight
+	
+	//tolerance_right = center_rightlimit+3;
 	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
 	tolerance_right = center_rightlimit - TOLERANCE_FACTOR;
-	//tolerance_right = center_rightlimit+3;
-	current_leftmost = get_current_leftmost();
-	current_rightmost = get_current_rightmost();
-
 	dir = steering_direction(tolerance_left, tolerance_right);
 	
 	// Calculate error - e(t)
@@ -152,10 +161,13 @@ void steering_adjust() {
 		case(0): // Straight!
 			straight_count++; // Increment # of cycles its been straight 
 			error[0] = 0;
+			put("S");
+			servo_move(0.0725);
 			break;
 		case(1): // Turn Right
 			// Negative error
 			straight_count = 0;
+			put("R");
 			error[0] = tolerance_left - current_leftmost;
 			 correction = get_PID(correction,0); // Cacluate correction using PID
 
@@ -163,6 +175,7 @@ void steering_adjust() {
 		case(2): // Turn Left
 			// Positive error
 		 straight_count = 0;
+		put("L");
 			error[0] = tolerance_right - current_rightmost;
 		 correction = get_PID(correction,1); // Cacluate correction using PID
 
