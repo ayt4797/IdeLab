@@ -27,22 +27,20 @@ extern char str[100];
 #define TURN_SPEED 25
 #define MOTOR_FACTOR 15
 
-short current_leftmost;
-short current_rightmost;
 short tolerance_right;
 short tolerance_left;
 short dir;
 double error[3]; // [0] - Current error // [1] - Last Error // [2] - 2nd latest error ... and so on
 double correction=.0725;
 
-BOOLEAN print_direction = FALSE;
-BOOLEAN PID_differential = FALSE;
-BOOLEAN print_straight_machine = FALSE;
+//BOOLEAN print_direction = FALSE;
+//BOOLEAN PID_differential = FALSE;
+//BOOLEAN print_straight_machine = FALSE;
 
-double kp_left= 0.0525/22;
-double kp_right= 0.0525/22;
+double kp_left= 0.0525/50;
 // double kp = ;
-double ki = 0; //0.0525/(26*0.25);
+double ki = 0//.0525/(60*10);
+	;
 double kd = 0;
 
 double straight_acc_thresehold = 100;
@@ -52,6 +50,7 @@ int brake_time= 4; //200;
 int brake_required = 0; // Length of how many cycles to break for.
 
 short get_current_leftmost() {
+	short current_leftmost=0;
 	for (i=0; i<127; i++) {
 		if (binline[i] == 0) {
 			current_leftmost = i;
@@ -63,6 +62,7 @@ short get_current_leftmost() {
 }
 
 short get_current_rightmost() {
+	short current_rightmost=0;
 	for (i=127; i>0; i--) {
 		if (binline[i] == 0) {
 			current_rightmost = i;
@@ -73,9 +73,7 @@ short get_current_rightmost() {
 	return 0;
 }
 
-short steering_direction(short tolerance_left, short tolerance_right) {
-	current_leftmost = get_current_leftmost();
-	current_rightmost = get_current_rightmost();
+short steering_direction(short tolerance_left, short tolerance_right,short current_leftmost, short current_rightmost) {
 	
 	// Case 1.
 	if ((current_leftmost < tolerance_left) && (current_rightmost) > tolerance_right) {
@@ -121,11 +119,8 @@ double verify_limit(double c, int dir) {
 	}
 }
 
-float get_PID(float prev_pos, BOOLEAN left){
-	float new_pos;
-	if(left){
-    new_pos 
-			 = prev_pos
+float get_PID(float prev_pos){
+	float new_pos = prev_pos
 			+(kp_left*(error[0]-error[1])) 
 		  + ki*((error[0]-error[1])/2)
 		  + kd*(error[0]-2*error[1]+error[2]);
@@ -133,18 +128,8 @@ float get_PID(float prev_pos, BOOLEAN left){
 		// Shift errors to load newest error into error[0]
     error[2] = error[1];
     error[1] = error[0];
-	}
-	else{
-		new_pos 
-			 = prev_pos
-			+(kp_right*(error[0]-error[1])) 
-		  + ki*((error[0]-error[1])/2)
-		  + kd*(error[0]-2*error[1]+error[2]);
-		
-		// Shift errors to load newest error into error[0]
-    error[2] = error[1];
-    error[1] = error[0];
-	}
+	
+
     return new_pos;
 }
 
@@ -152,11 +137,13 @@ void steering_adjust() {
 	// New method using 3 basic cases
 	dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	error[0] = 0; // Ideally error is 0 so straight
-	
 	//tolerance_right = center_rightlimit+3;
 	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
 	tolerance_right = center_rightlimit - TOLERANCE_FACTOR;
-	dir = steering_direction(tolerance_left, tolerance_right);
+	short current_leftmost = get_current_leftmost();
+	short current_rightmost = get_current_rightmost();
+
+	dir = steering_direction(tolerance_left, tolerance_right,current_leftmost,current_rightmost);
 
 	// Calculate error - e(t)
 	switch(dir) {
@@ -187,14 +174,14 @@ void steering_adjust() {
 	}
 	
 	if(dir!=0)
-		correction = get_PID(correction,0); // Cacluate correction using PID
+		correction = get_PID(correction) ; // Cacluate correction using PID
 	else
 		correction = .0725;
 
 	// Verify the correction does not exceed the servo limits
 	// If it does, the correction will be clipped
  correction = verify_limit(correction, dir);
-	
+	/*
 	if (print_direction) { // Verbose direction
 		sprintf(str, "dir=%d", dir);
 		put(str);
@@ -202,7 +189,7 @@ void steering_adjust() {
 		put(str);
 		sprintf(str, " c=%f\r\n", correction);
 		put(str);
-	}
+	}*/
 	servo_move(correction);
 	
 	if (brake_required == 0) {
@@ -232,10 +219,10 @@ void steering_adjust() {
 					brake_required = brake_time;
 				}
 				been_straight = FALSE;
-				if (PID_differential == FALSE) {
-					driveMotors_forwardLeft(TURN_SPEED + MOTOR_FACTOR);
-					driveMotors_forwardRight(TURN_SPEED - MOTOR_FACTOR);
-				}
+				
+				driveMotors_forwardLeft(TURN_SPEED + MOTOR_FACTOR);
+				driveMotors_forwardRight(TURN_SPEED - MOTOR_FACTOR);
+				
 				break;
 			case(2): // Turn Left
 				if (been_straight) {
@@ -243,10 +230,11 @@ void steering_adjust() {
 					brake_required = brake_time;
 				}
 				been_straight = FALSE;
-				if (PID_differential == FALSE) {
+				
+				//if (PID_differential == FALSE) {
 					driveMotors_forwardLeft(TURN_SPEED - MOTOR_FACTOR);
 					driveMotors_forwardRight(TURN_SPEED + MOTOR_FACTOR);
-				}
+			//	}
 				break;
 			case(3): // Error case. Something werid is going on.
 				 break;
@@ -254,8 +242,10 @@ void steering_adjust() {
 				 break;
 		}
 	}
+	/*
 	if (print_straight_machine) {  // Print the number of cycles we've been straight
 		sprintf(str, "%lu\r\n",straight_count);
 		put(str);
 	}
+	*/
 }
