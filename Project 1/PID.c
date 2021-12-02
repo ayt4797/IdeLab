@@ -22,10 +22,10 @@ extern int center_leftlimit;
 extern uint16_t binline[128];
 extern char str[100];
 #define TOLERANCE_FACTOR 2
-#define STANDARD_STRAIGHT_SPEED 0
-#define ROCKET_STRAIGHT_SPEED 0
-#define TURN_SPEED 0
-#define MOTOR_FACTOR 0
+#define STANDARD_STRAIGHT_SPEED 33
+#define ROCKET_STRAIGHT_SPEED 45
+#define TURN_SPEED 20
+#define MOTOR_FACTOR 2
 
 short current_leftmost;
 short current_rightmost;
@@ -35,20 +35,20 @@ short dir;
 double error[3]; // [0] - Current error // [1] - Last Error // [2] - 2nd latest error ... and so on
 double correction=.0725;
 
-BOOLEAN print_direction = 1;
+BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
 
-double kp_left= 0.0525/30;
-double kp_right= 0.0525/30;
-
-double ki = 0;
+double kp_left= 0.0525/26;
+double kp_right= 0.0525/26;
+// double kp = ;
+double ki = 0.0525/(26*1.5);
 double kd = 0;
 
-double straight_acc_thresehold = 999999999999	;
+double straight_acc_thresehold = 500;
 unsigned long	straight_count = 0; // Straight state machine
 BOOLEAN been_straight;
-int brake_time=100;
+int brake_time=200;
 
 short get_current_leftmost() {
 	for (i=0; i<127; i++) {
@@ -72,9 +72,24 @@ short get_current_rightmost() {
 	return 0;
 }
 
-void brake(int length) {
+void brake(int length, int dir) {
+	put("brake start!\r\n");
+	switch(dir) {
+		case 0:
+			servo_center();
+			break;
+		case 1:
+			servo_right();
+			break;
+		case 2:
+			servo_left();
+			break;
+		default:
+			servo_center();
+	}
 	driveMotors_setSpeed(-100); // Stall speed!
 	ms_delay(length);
+	put("brake end!\r\n");
 }
 
 short steering_direction(short tolerance_left, short tolerance_right) {
@@ -82,15 +97,6 @@ short steering_direction(short tolerance_left, short tolerance_right) {
 	current_rightmost = get_current_rightmost();
 	
 	// Case 1.
-	sprintf(str, "cr=%d", current_rightmost);
-	put(str);
-	sprintf(str, "tr=%d", tolerance_right);
-	put(str);
-	
-	sprintf(str, "cl=%d", current_leftmost);
-	put(str);
-	sprintf(str, "tl=%d\r\n", tolerance_left);
-	put(str);
 	if ((current_leftmost < tolerance_left) && (current_rightmost) > tolerance_right) {
 		return 0; // Straight
 	}
@@ -108,15 +114,32 @@ short steering_direction(short tolerance_left, short tolerance_right) {
 		return 3;
 }
 
-double verify_limit(double c) {
-	if (c > servo_limit_left) {
-		return servo_limit_left;
-	} else if (c < servo_limit_right) {
-		return servo_limit_right;
-	} else {
-		return c;
+double verify_limit(double c, int dir) {
+	
+		if (c > servo_limit_left) {
+			c = servo_limit_left;
+		} else if (c < servo_limit_right) {
+			c = servo_limit_right;
+		}
+	
+	switch(dir) {
+		case 0: // Straight
+			return c;
+		case 1: // Right
+			if (c <= 0.0725)
+				return c;
+			else
+				return 0.0725;
+		case 2: // Left
+			if (c >= 0.0725)
+				return c;
+			else
+				return 0.0725;
+		default:
+			return c;
 	}
 }
+
 float get_PID(float prev_pos, BOOLEAN left){
 	float new_pos;
 	if(left){
@@ -190,7 +213,7 @@ void steering_adjust() {
 
 	// Verify the correction does not exceed the servo limits
 	// If it does, the correction will be clipped
- correction = verify_limit(correction);
+ correction = verify_limit(correction, dir);
 	
 	if (print_direction) { // Verbose direction
 		sprintf(str, "dir=%d", dir);
@@ -215,7 +238,7 @@ void steering_adjust() {
 			break;
 		case(1): // Turn Right
 			if (been_straight) {
-				brake(brake_time);
+				brake(brake_time,dir);
 			}
 			been_straight = FALSE;
 			if (PID_differential == FALSE) {
@@ -225,7 +248,7 @@ void steering_adjust() {
 			break;
 		case(2): // Turn Left
 			if (been_straight) {
-				brake(brake_time);
+				brake(brake_time, dir);
 			}
 			been_straight = FALSE;
 			if (PID_differential == FALSE) {
