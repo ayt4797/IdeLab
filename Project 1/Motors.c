@@ -60,6 +60,13 @@ void driveMotors_setSpeed(double percentage) {
 	}
 }
 
+void driveMotors_brake(double brake_per) {
+		TIMER_A0_PWM_DutyCycle(brake_per/100,DC_left_reverse);
+		TIMER_A0_PWM_DutyCycle(brake_per/100,DC_right_reverse);
+		TIMER_A0_PWM_DutyCycle(0,DC_left_forward);
+		TIMER_A0_PWM_DutyCycle(0,DC_right_forward);
+}
+
 void driveMotors_forwardRight(double percentage) {
 	TIMER_A0_PWM_DutyCycle(percentage/100,DC_right_forward);
 }

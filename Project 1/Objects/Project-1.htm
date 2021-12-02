@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project-1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project-1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Dec 01 20:20:16 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Dec 02 16:52:04 2021
 <BR><P>
 <H3>Maximum Stack Usage =       1624 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -269,12 +269,12 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[aa]"></a>DisableInterrupts</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cortexm.o(.emb_text))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<P><STRONG><a name="[a3]"></a>DisableInterrupts</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cortexm.o(.emb_text))
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[b0]"></a>EnableInterrupts</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cortexm.o(.emb_text))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<P><STRONG><a name="[aa]"></a>EnableInterrupts</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cortexm.o(.emb_text))
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
 <P><STRONG><a name="[94]"></a>StartCritical</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, cortexm.o(.emb_text))
@@ -772,25 +772,25 @@ Global Symbols
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ControlPin_CLK_Init
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0_InitSWTriggerCh6
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[ad]"></a>LED1_Init</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, lab1.o(i.LED1_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<P><STRONG><a name="[a7]"></a>LED1_Init</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, lab1.o(i.LED1_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[ae]"></a>LED2_Init</STRONG> (Thumb, 116 bytes, Stack size 8 bytes, lab1.o(i.LED2_Init))
+<P><STRONG><a name="[a8]"></a>LED2_Init</STRONG> (Thumb, 116 bytes, Stack size 8 bytes, lab1.o(i.LED2_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = LED2_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[a8]"></a>LED2_Off</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, lab1.o(i.LED2_Off))
-<BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
+<P><STRONG><a name="[a1]"></a>LED2_Off</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, lab1.o(i.LED2_Off))
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
 </UL>
 
-<P><STRONG><a name="[a6]"></a>LED2_White</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, lab1.o(i.LED2_White))
-<BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
+<P><STRONG><a name="[9f]"></a>LED2_White</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, lab1.o(i.LED2_White))
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
 </UL>
 
 <P><STRONG><a name="[7f]"></a>OLED_Camera_Debug</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, project-main.o(i.OLED_Camera_Debug))
@@ -820,7 +820,7 @@ Global Symbols
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c0_Init
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
 <P><STRONG><a name="[8a]"></a>OLED_Print</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, oled.o(i.OLED_Print))
@@ -831,7 +831,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mode_select
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
 <P><STRONG><a name="[89]"></a>OLED_display_clear</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, oled.o(i.OLED_display_clear))
@@ -919,10 +919,10 @@ Global Symbols
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[af]"></a>Switches_Init</STRONG> (Thumb, 94 bytes, Stack size 12 bytes, lab1.o(i.Switches_Init))
+<P><STRONG><a name="[a9]"></a>Switches_Init</STRONG> (Thumb, 94 bytes, Stack size 12 bytes, lab1.o(i.Switches_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Switches_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
 <P><STRONG><a name="[7a]"></a>SysTickTimer_Init</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, systicktimer.o(i.SysTickTimer_Init))
@@ -958,10 +958,11 @@ Global Symbols
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardRight
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardLeft
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardRight
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardLeft
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_brake
 </UL>
 
 <P><STRONG><a name="[97]"></a>TIMER_A0_PWM_Init</STRONG> (Thumb, 202 bytes, Stack size 24 bytes, timera.o(i.TIMER_A0_PWM_Init))
@@ -971,7 +972,7 @@ Global Symbols
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_init
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_init
 </UL>
 
 <P><STRONG><a name="[98]"></a>TIMER_A2_PWM_DutyCycle</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, timera.o(i.TIMER_A2_PWM_DutyCycle))
@@ -981,10 +982,10 @@ Global Symbols
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_right
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_right
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_move
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_left
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_center
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_left
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_center
 </UL>
 
 <P><STRONG><a name="[99]"></a>TIMER_A2_PWM_Init</STRONG> (Thumb, 118 bytes, Stack size 16 bytes, timera.o(i.TIMER_A2_PWM_Init))
@@ -994,7 +995,7 @@ Global Symbols
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
 <P><STRONG><a name="[7c]"></a>Timer32_1_Init</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, timer32.o(i.Timer32_1_Init))
@@ -1030,58 +1031,45 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Camera_Debug
 </UL>
 
-<P><STRONG><a name="[9e]"></a>brake</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, pid.o(i.brake))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = brake &rArr; driveMotors_setSpeed &rArr; driveMotors_stop &rArr; TIMER_A0_PWM_DutyCycle &rArr; __aeabi_dmul
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_right
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_left
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_center
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay
-</UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
-</UL>
-
 <P><STRONG><a name="[c0]"></a>calibrate_center</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, camera.o(i.calibrate_center))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = calibrate_center
 </UL>
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a5]"></a>camera_calibration</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, camera.o(i.camera_calibration))
+<P><STRONG><a name="[9e]"></a>camera_calibration</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, camera.o(i.camera_calibration))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = camera_calibration &rArr; __aeabi_cdcmple
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED2_White
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED2_Off
+<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED2_White
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED2_Off
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 </UL>
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a9]"></a>car_startup</STRONG> (Thumb, 324 bytes, Stack size 8 bytes, project-main.o(i.car_startup))
+<P><STRONG><a name="[a2]"></a>car_startup</STRONG> (Thumb, 324 bytes, Stack size 8 bytes, project-main.o(i.car_startup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 1584<LI>Call Chain = car_startup &rArr; OLED_Print &rArr; OLED_draw_line &rArr; OLED_draw &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_init
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_init
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A2_PWM_Init
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Print
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switches_Init
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED2_Init
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1_Init
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_right
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_left
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_center
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_init
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_put
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switches_Init
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED2_Init
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1_Init
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_right
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_left
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_center
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_init
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_put
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;INIT_Camera
 </UL>
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1092,14 +1080,23 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_floor
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DisplayCameraData
 </UL>
 
-<P><STRONG><a name="[b5]"></a>driveMotors_forwardLeft</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, motors.o(i.driveMotors_forwardLeft))
+<P><STRONG><a name="[b3]"></a>driveMotors_brake</STRONG> (Thumb, 96 bytes, Stack size 24 bytes, motors.o(i.driveMotors_brake))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = driveMotors_brake &rArr; TIMER_A0_PWM_DutyCycle &rArr; __aeabi_dmul
+</UL>
+<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A0_PWM_DutyCycle
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
+</UL>
+
+<P><STRONG><a name="[b4]"></a>driveMotors_forwardLeft</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, motors.o(i.driveMotors_forwardLeft))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = driveMotors_forwardLeft &rArr; TIMER_A0_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A0_PWM_DutyCycle
@@ -1108,7 +1105,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
-<P><STRONG><a name="[b6]"></a>driveMotors_forwardRight</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, motors.o(i.driveMotors_forwardRight))
+<P><STRONG><a name="[b5]"></a>driveMotors_forwardRight</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, motors.o(i.driveMotors_forwardRight))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = driveMotors_forwardRight &rArr; TIMER_A0_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A0_PWM_DutyCycle
@@ -1117,38 +1114,38 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
-<P><STRONG><a name="[b1]"></a>driveMotors_init</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, motors.o(i.driveMotors_init))
+<P><STRONG><a name="[ab]"></a>driveMotors_init</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, motors.o(i.driveMotors_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = driveMotors_init &rArr; driveMotors_stop &rArr; TIMER_A0_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A0_PWM_Init
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[a3]"></a>driveMotors_setSpeed</STRONG> (Thumb, 204 bytes, Stack size 40 bytes, motors.o(i.driveMotors_setSpeed))
+<P><STRONG><a name="[b6]"></a>driveMotors_setSpeed</STRONG> (Thumb, 204 bytes, Stack size 40 bytes, motors.o(i.driveMotors_setSpeed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = driveMotors_setSpeed &rArr; driveMotors_stop &rArr; TIMER_A0_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A0_PWM_DutyCycle
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;brake
 </UL>
 
-<P><STRONG><a name="[b3]"></a>driveMotors_stop</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, motors.o(i.driveMotors_stop))
+<P><STRONG><a name="[ad]"></a>driveMotors_stop</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, motors.o(i.driveMotors_stop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = driveMotors_stop &rArr; TIMER_A0_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A0_PWM_DutyCycle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_init
+<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_init
 </UL>
 
 <P><STRONG><a name="[b7]"></a>edge_detection</STRONG> (Thumb, 172 bytes, Stack size 56 bytes, camera.o(i.edge_detection))
@@ -1158,7 +1155,7 @@ Global Symbols
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parsedata
@@ -1213,21 +1210,21 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_putchar
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_display_off
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_display_clear
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Print
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mode_select
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Camera_Debug
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch2_Pressed
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch1_Pressed
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parsedata
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isOffTrack
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calibrate_center
 </UL>
 <BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
@@ -1237,24 +1234,23 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 1592 + Unknown Stack Size
 <LI>Call Chain = mode_select &rArr; OLED_Print &rArr; OLED_draw_line &rArr; OLED_draw &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_display_on
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Print
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch2_Pressed
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch1_Pressed
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a4]"></a>ms_delay</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, camera.o(i.ms_delay))
+<P><STRONG><a name="[af]"></a>ms_delay</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, camera.o(i.ms_delay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ms_delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mode_select
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;brake
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
 <P><STRONG><a name="[bf]"></a>parsedata</STRONG> (Thumb, 112 bytes, Stack size 24 bytes, camera.o(i.parsedata))
@@ -1273,36 +1269,33 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Camera_Debug
 </UL>
 
-<P><STRONG><a name="[9f]"></a>put</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, uart.o(i.put))
+<P><STRONG><a name="[a6]"></a>put</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, uart.o(i.put))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = put &rArr; uart2_put
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_put
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_put
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_put
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mode_select
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_direction
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;brake
 </UL>
 
-<P><STRONG><a name="[a0]"></a>servo_center</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, motors.o(i.servo_center))
+<P><STRONG><a name="[b1]"></a>servo_center</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, motors.o(i.servo_center))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = servo_center &rArr; TIMER_A2_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A2_PWM_DutyCycle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;brake
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[a2]"></a>servo_left</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, motors.o(i.servo_left))
+<P><STRONG><a name="[b0]"></a>servo_left</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, motors.o(i.servo_left))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = servo_left &rArr; TIMER_A2_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A2_PWM_DutyCycle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;brake
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
 <P><STRONG><a name="[c6]"></a>servo_move</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.servo_move))
@@ -1313,24 +1306,25 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
-<P><STRONG><a name="[a1]"></a>servo_right</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, motors.o(i.servo_right))
+<P><STRONG><a name="[ae]"></a>servo_right</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, motors.o(i.servo_right))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = servo_right &rArr; TIMER_A2_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A2_PWM_DutyCycle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;brake
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[c4]"></a>steering_adjust</STRONG> (Thumb, 456 bytes, Stack size 32 bytes, pid.o(i.steering_adjust))
+<P><STRONG><a name="[c4]"></a>steering_adjust</STRONG> (Thumb, 494 bytes, Stack size 32 bytes, pid.o(i.steering_adjust))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
 <LI>Call Chain = steering_adjust &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_move
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardRight
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardLeft
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_stop
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardRight
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardLeft
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_brake
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
@@ -1340,7 +1334,6 @@ Global Symbols
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_limit
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_direction
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_PID
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;brake
 </UL>
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1348,33 +1341,33 @@ Global Symbols
 <P><STRONG><a name="[c7]"></a>steering_direction</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, pid.o(i.steering_direction))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = steering_direction &rArr; put &rArr; uart2_put
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_rightmost
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_leftmost
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
 
-<P><STRONG><a name="[ab]"></a>uart0_init</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, uart.o(i.uart0_init))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<P><STRONG><a name="[a4]"></a>uart0_init</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, uart.o(i.uart0_init))
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[b2]"></a>uart0_put</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, uart.o(i.uart0_put))
+<P><STRONG><a name="[ac]"></a>uart0_put</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, uart.o(i.uart0_put))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = uart0_put
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_putchar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
 <P><STRONG><a name="[c2]"></a>uart0_putchar</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uart.o(i.uart0_putchar))
 <BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_put
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart0_put
 </UL>
 
-<P><STRONG><a name="[ac]"></a>uart2_init</STRONG> (Thumb, 110 bytes, Stack size 0 bytes, uart.o(i.uart2_init))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
+<P><STRONG><a name="[a5]"></a>uart2_init</STRONG> (Thumb, 110 bytes, Stack size 0 bytes, uart.o(i.uart2_init))
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
 <P><STRONG><a name="[c5]"></a>uart2_put</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, uart.o(i.uart2_put))
@@ -1382,7 +1375,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_putchar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
 </UL>
 
 <P><STRONG><a name="[cb]"></a>uart2_putchar</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, uart.o(i.uart2_putchar))
@@ -1393,7 +1386,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = verify_limit &rArr; __aeabi_cdcmple
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 </UL>
@@ -1439,9 +1432,10 @@ Global Symbols
 <P><STRONG><a name="[76]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_ddiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardRight
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardLeft
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardRight
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardLeft
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_brake
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcPeriodFromFrequency
 </UL>
 
@@ -1450,7 +1444,7 @@ Global Symbols
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
-<P><STRONG><a name="[b4]"></a>__aeabi_d2iz</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dfix.o(x$fpl$dfix))
+<P><STRONG><a name="[b2]"></a>__aeabi_d2iz</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dfix.o(x$fpl$dfix))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_d2iz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_1d_data
@@ -1491,16 +1485,16 @@ Global Symbols
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A0_PWM_DutyCycle
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcPeriodFromFrequency
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;edge_detection
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
 </UL>
 
 <P><STRONG><a name="[116]"></a>_dfltu</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu), UNUSED)
 
-<P><STRONG><a name="[a7]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf))
+<P><STRONG><a name="[a0]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_cdcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_limit
 </UL>
 
@@ -1552,9 +1546,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_cdrcmple
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;edge_detection
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_floor
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_limit
 </UL>

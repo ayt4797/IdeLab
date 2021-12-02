@@ -7,3 +7,4 @@ void servo_move(double posisition);
 void driveMotors_setSpeed(double speed);
 void driveMotors_forwardRight(double percentage);
 void driveMotors_forwardLeft(double percentage);
+void driveMotors_brake(double brake_per);
