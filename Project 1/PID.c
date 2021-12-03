@@ -23,7 +23,8 @@ extern uint16_t binline[128];
 extern char str[100];
 #define TOLERANCE_FACTOR 0
 #define STANDARD_STRAIGHT_SPEED 20
-#define ROCKET_STRAIGHT_SPEED 30
+#define MAX_SPEED 30
+#define SPEED_GAIN .001
 #define TURN_SPEED 15
 #define MOTOR_FACTOR 35
 
@@ -34,13 +35,13 @@ short tolerance_left;
 short dir;
 double error[3]; // [0] - Current error // [1] - Last Error // [2] - 2nd latest error ... and so on
 double correction=.0725;
-
+short speed=STANDARD_STRAIGHT_SPEED;
 BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
  
-double kp_left= 0.0525/44;
-double kp_right= 0.0525/44;
+double kp_left= 0.0525/22;
+double kp_right= 0.0525/22;
 // double kp = ;
 double ki = 0; //0.0525/(26*0.25);
 double kd = 0;
@@ -147,7 +148,9 @@ float get_PID(float prev_pos, BOOLEAN left){
 	}
     return new_pos;
 }
-
+short update_speed(short prev_speed){
+	return (MAX_SPEED-prev_speed)*SPEED_GAIN+prev_speed;;
+}
 void steering_adjust() {
 	// New method using 3 basic cases
 	dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
@@ -157,7 +160,7 @@ void steering_adjust() {
 	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
 	tolerance_right = center_rightlimit - TOLERANCE_FACTOR;
 	dir = steering_direction(tolerance_left, tolerance_right);
-
+	speed = update_speed(speed);
 	// Calculate error - e(t)
 	switch(dir) {
 		case(0): // Straight!
@@ -220,11 +223,11 @@ void steering_adjust() {
 				// If we've been straight longer than the thresehold, full speed!
 				if (straight_count > straight_acc_thresehold) {
 					been_straight = TRUE; // Used to figure out if braking is required.
-					driveMotors_setSpeed(ROCKET_STRAIGHT_SPEED);
 				} else {
 					been_straight = FALSE;
-					driveMotors_setSpeed(STANDARD_STRAIGHT_SPEED);
 				}
+				driveMotors_setSpeed(speed);
+
 				break;
 			case(1): // Turn Right
 				if (been_straight) {
@@ -233,6 +236,7 @@ void steering_adjust() {
 				}
 				been_straight = FALSE;
 				if (PID_differential == FALSE) {
+					speed= STANDARD_STRAIGHT_SPEED;
 					driveMotors_forwardLeft(TURN_SPEED + MOTOR_FACTOR);
 					driveMotors_forwardRight(TURN_SPEED - MOTOR_FACTOR);
 				}
@@ -244,6 +248,8 @@ void steering_adjust() {
 				}
 				been_straight = FALSE;
 				if (PID_differential == FALSE) {
+						speed= STANDARD_STRAIGHT_SPEED;
+
 					driveMotors_forwardLeft(TURN_SPEED - MOTOR_FACTOR);
 					driveMotors_forwardRight(TURN_SPEED + MOTOR_FACTOR);
 				}
