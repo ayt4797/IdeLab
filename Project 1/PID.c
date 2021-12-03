@@ -22,10 +22,10 @@ extern int center_leftlimit;
 extern uint16_t binline[128];
 extern char str[100];
 #define TOLERANCE_FACTOR 0
-#define STANDARD_STRAIGHT_SPEED 25
-#define ROCKET_STRAIGHT_SPEED 35
-#define TURN_SPEED 25
-#define MOTOR_FACTOR 15
+#define STANDARD_STRAIGHT_SPEED 20
+#define ROCKET_STRAIGHT_SPEED 30
+#define TURN_SPEED 15
+#define MOTOR_FACTOR 35
 
 short current_leftmost;
 short current_rightmost;
@@ -38,7 +38,7 @@ double correction=.0725;
 BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
-
+ 
 double kp_left= 0.0525/22;
 double kp_right= 0.0525/22;
 // double kp = ;
@@ -48,7 +48,7 @@ double kd = 0;
 double straight_acc_thresehold = 100;
 unsigned long	straight_count = 0; // Straight state machine
 BOOLEAN been_straight;
-int brake_time= 4; //200;
+int brake_time= 6; //200;
 int brake_required = 0; // Length of how many cycles to break for.
 
 short get_current_leftmost() {

@@ -26,7 +26,7 @@ short OLED_Output=0;
 BOOLEAN debugReporting = FALSE;
 double absolute_white = 0;
 double absolute_dark = 0;
-
+#define WHITE_THRESHOLD 3
 ///////////////////////////////////////////////////////
 //
 // NOTE: For the camera, you may want to change the default
@@ -99,10 +99,10 @@ void bin_plotline(uint16_t in_line[128]) {
 void edge_detection(void) {
 	int maxval = absolute_white;
 	int minval = absolute_dark;
-	double thresehold = 1.5; // Thereshold for binary high value (percentage of maxval) // was 3
+	// Thereshold for binary high value (percentage of maxval) // was 3
 	// Generate binary result.
 	for (i=0; i<128; i++) {
-		if (smoothline[i] > ((maxval-minval)/2)+(minval*thresehold)) {
+		if (smoothline[i] > ((maxval-minval)/2)+(minval*WHITE_THRESHOLD)) {
 			binline[i] = 1;
 		} else {
 			binline[i] = 0;
@@ -220,7 +220,7 @@ void calibrate_center() {
 }
 
 BOOLEAN isOffTrack() {
-	int offTrack_Thresehold = 1; // Minimum number of points to be considered on track. -- Was 30
+	int offTrack_Thresehold = 15; // Minimum number of points to be considered on track. -- Was 30
 	int acc = 0;
 	for (i=0; i<128; i++) {
 		acc = acc + binline[i];
