@@ -35,11 +35,9 @@ short tolerance_left;
 short dir;
 double error[3]; // [0] - Current error // [1] - Last Error // [2] - 2nd latest error ... and so on
 double correction=.0725;
-short speed=STANDARD_STRAIGHT_SPEED;
 BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
- 
 double kp_left= 0.0525/22;
 double kp_right= 0.0525/22;
 // double kp = ;
@@ -48,9 +46,9 @@ double kd = 0;
 
 double straight_acc_thresehold = 100;
 unsigned long	straight_count = 0; // Straight state machine
-BOOLEAN been_straight;
 int brake_time= 6; //200;
 int brake_required = 0; // Length of how many cycles to break for.
+short speed= STANDARD_STRAIGHT_SPEED;
 
 short get_current_leftmost() {
 	for (i=0; i<127; i++) {
@@ -149,6 +147,8 @@ float get_PID(float prev_pos, BOOLEAN left){
     return new_pos;
 }
 short update_speed(short prev_speed){
+	if(prev_speed>=MAX_SPEED)
+		return prev_speed;
 	return (MAX_SPEED-prev_speed)*SPEED_GAIN+prev_speed;;
 }
 void steering_adjust() {
@@ -160,7 +160,6 @@ void steering_adjust() {
 	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
 	tolerance_right = center_rightlimit - TOLERANCE_FACTOR;
 	dir = steering_direction(tolerance_left, tolerance_right);
-	speed = update_speed(speed);
 	// Calculate error - e(t)
 	switch(dir) {
 		case(0): // Straight!
@@ -221,32 +220,27 @@ void steering_adjust() {
 		switch(dir) {
 			case(0): // Straight!
 				// If we've been straight longer than the thresehold, full speed!
-				if (straight_count > straight_acc_thresehold) {
-					been_straight = TRUE; // Used to figure out if braking is required.
-				} else {
-					been_straight = FALSE;
-				}
+				speed = update_speed(speed);
 				driveMotors_setSpeed(speed);
 
 				break;
 			case(1): // Turn Right
-				if (been_straight) {
+				if (speed==MAX_SPEED) {
 					// brake(brake_time,dir);
 					brake_required = brake_time;
-				}
-				been_straight = FALSE;
-				if (PID_differential == FALSE) {
 					speed= STANDARD_STRAIGHT_SPEED;
+
+				}
+				if (PID_differential == FALSE) {
 					driveMotors_forwardLeft(TURN_SPEED + MOTOR_FACTOR);
 					driveMotors_forwardRight(TURN_SPEED - MOTOR_FACTOR);
 				}
 				break;
 			case(2): // Turn Left
-				if (been_straight) {
+				if (speed==MAX_SPEED) {
 					// brake(brake_time, dir);
 					brake_required = brake_time;
 				}
-				been_straight = FALSE;
 				if (PID_differential == FALSE) {
 						speed= STANDARD_STRAIGHT_SPEED;
 
