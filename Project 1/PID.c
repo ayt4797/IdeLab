@@ -26,7 +26,7 @@ extern char str[100];
 #define ROCKET_STRAIGHT_SPEED 35
 #define TURN_SPEED 40
 #define MOTOR_FACTOR 15
-#define PRINT_STRAIGHT 0
+#define PRINT_STRAIGHT 1
 short tolerance_right;
 short tolerance_left;
 short dir;
@@ -46,7 +46,7 @@ double correction=.0725;
 #define STRAIGHT_ACC_THRESHOLD 200
 unsigned long	straight_count = 0; // Straight state machine
 BOOLEAN been_straight;
-int brake_time= 2000; //200;
+int brake_time= 20; //200;
 int brake_required = 0; // Length of how many cycles to break for.
 
 short get_current_leftmost() {
@@ -100,7 +100,6 @@ double verify_limit(double c, int dir) {
 		} else if (c < servo_limit_right) {
 			c = servo_limit_right;
 		}
-	/*
 	switch(dir) {
 		case 0: // Straight
 			return c;
@@ -117,8 +116,7 @@ double verify_limit(double c, int dir) {
 		default:
 			return c;
 	}
-		*/
-		return c;
+//		return c;
 }
 
 float get_PID(float prev_pos){
@@ -208,7 +206,7 @@ void steering_adjust() {
 	
 	if (brake_required > 0) {
 		#if(PRINT_STRAIGHT)
-				put("S");
+				put("-B");
 		#endif
 		brake_required--;
 		driveMotors_brake(100);

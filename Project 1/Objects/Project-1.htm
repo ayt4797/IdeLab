@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project-1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project-1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Dec 03 09:51:17 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Dec 03 10:26:53 2021
 <BR><P>
 <H3>Maximum Stack Usage =       1616 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1173,7 +1173,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[ac]"></a>steering_adjust</STRONG> (Thumb, 376 bytes, Stack size 40 bytes, pid.o(i.steering_adjust))
+<P><STRONG><a name="[ac]"></a>steering_adjust</STRONG> (Thumb, 404 bytes, Stack size 40 bytes, pid.o(i.steering_adjust))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = steering_adjust &rArr; driveMotors_setSpeed &rArr; driveMotors_stop &rArr; TIMER_A0_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
@@ -1236,8 +1236,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_put
 </UL>
 
-<P><STRONG><a name="[b2]"></a>verify_limit</STRONG> (Thumb, 78 bytes, Stack size 24 bytes, pid.o(i.verify_limit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = verify_limit &rArr; __aeabi_cdcmple
+<P><STRONG><a name="[b2]"></a>verify_limit</STRONG> (Thumb, 136 bytes, Stack size 32 bytes, pid.o(i.verify_limit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = verify_limit &rArr; __aeabi_cdcmple
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
