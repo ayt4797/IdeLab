@@ -39,8 +39,8 @@ BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
  
-double kp_left= 0.0525/22;
-double kp_right= 0.0525/22;
+double kp_left= 0.0525/44;
+double kp_right= 0.0525/44;
 // double kp = ;
 double ki = 0; //0.0525/(26*0.25);
 double kd = 0;
