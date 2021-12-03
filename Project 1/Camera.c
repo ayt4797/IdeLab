@@ -22,8 +22,6 @@ char str[100];
 int parseMode;
 extern int i;
 int j;
-short OLED_Output=0;
-BOOLEAN debugReporting = FALSE;
 double absolute_white = 0;
 double absolute_dark = 0;
 

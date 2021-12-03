@@ -22,11 +22,11 @@ extern int center_leftlimit;
 extern uint16_t binline[128];
 extern char str[100];
 #define TOLERANCE_FACTOR 0
-#define STANDARD_STRAIGHT_SPEED 25
+#define STANDARD_STRAIGHT_SPEED 15
 #define ROCKET_STRAIGHT_SPEED 35
 #define TURN_SPEED 40
 #define MOTOR_FACTOR 15
-
+#define PRINT_STRAIGHT 0
 short tolerance_right;
 short tolerance_left;
 short dir;
@@ -37,16 +37,16 @@ double correction=.0725;
 //BOOLEAN PID_differential = FALSE;
 //BOOLEAN print_straight_machine = FALSE;
 
-#define KP (0.0525/25)
+#define KP (0.0525/50)
 // double kp = ;
-double ki = 0//.0525/(60*10);
-	;
-double kd = 0;
+#define KI 0//.0525/(60*10);
+	
+#define KD 0
 
 #define STRAIGHT_ACC_THRESHOLD 200
 unsigned long	straight_count = 0; // Straight state machine
 BOOLEAN been_straight;
-int brake_time= 4; //200;
+int brake_time= 2000; //200;
 int brake_required = 0; // Length of how many cycles to break for.
 
 short get_current_leftmost() {
@@ -124,8 +124,8 @@ double verify_limit(double c, int dir) {
 float get_PID(float prev_pos){
 	float new_pos = prev_pos
 			+((KP)*(error[0]-error[1])) 
-		  + ki*((error[0]-error[1])/2)
-		  + kd*(error[0]-2*error[1]+error[2]);
+		  + (KI)*((error[0]-error[1])/2)
+		  + (KD)*(error[0]-2*error[1]+error[2]);
 		
 		// Shift errors to load newest error into error[0]
     error[2] = error[1];
@@ -152,19 +152,25 @@ void steering_adjust() {
 	switch(dir) {
 		case(0): // Straight!
 			straight_count++; // Increment # of cycles its been straight 
-			put("S");
+		#if(PRINT_STRAIGHT)
+				put("S");
+		#endif
 			break;
 		case(1): // Turn Right
 			// Negative error
 			straight_count = 0;
-			put("R");
-			error[0] = tolerance_left - current_leftmost;
+		#if(PRINT_STRAIGHT)
+				put("R");
+		#endif
+		error[0] = tolerance_left - current_leftmost;
 			break;
 		case(2): // Turn Left
 			// Positive error
 		 straight_count = 0;
-		put("L");
-			error[0] = tolerance_right - current_rightmost;
+		#if(PRINT_STRAIGHT)
+				put("L");
+		#endif
+		error[0] = tolerance_right - current_rightmost;
 			break;
 		case(3): // Error case. Something werid is going on.
 			straight_count = 0;
@@ -201,7 +207,9 @@ void steering_adjust() {
 	}
 	
 	if (brake_required > 0) {
-		put("-B\r\n");
+		#if(PRINT_STRAIGHT)
+				put("S");
+		#endif
 		brake_required--;
 		driveMotors_brake(100);
 	} else {

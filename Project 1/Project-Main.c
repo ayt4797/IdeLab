@@ -34,25 +34,15 @@ extern uint16_t binline[128];
 extern BOOLEAN g_sendData;
 static char str[100];
 extern int parseMode;
-extern int i;
-extern int j;
-extern short OLED_Output;
 extern double servo_state_center;
 extern double servo_limit_right;
 extern double servo_limit_left; 
 extern int center_rightlimit;
 extern int center_leftlimit;
-BOOLEAN printCameraOutput;
-BOOLEAN oled_wave;
-char phone_input[2];
-int phone_count =0;	
-double gain = 16.0f;
+#define PRINT_CAMERA_OUTPUT 0
+#define OLED_WAVE 1
+//double gain = 16.0f;
 
-short speed_profile = 0;
-// 0 - Super Wicked Fast
-// 1 - Moderate
-// 2 - Slow and Steady
-short speed_profile_length = 3;
 
 ////////////////////////////////////////////////////
 // Show Camera Output on OLED
@@ -140,6 +130,12 @@ void car_startup() {
 }
 
 void mode_select() {
+	short speed_profile = 0;
+// 0 - Super Wicked Fast
+// 1 - Moderate
+// 2 - Slow and Steady
+	short speed_profile_length = 3;
+
 	OLED_display_on();
 	OLED_Print(1, 1, "Select Mode!");
 	sprintf(str,"Config:%i\r\n",speed_profile);
@@ -167,15 +163,12 @@ void mode_select() {
 int main(void)
 {
 	// Generic Initializations
-	i = 0;
-	j = 0;
-	printCameraOutput = FALSE; // Show Camera Output on Terminal
+	
 	// OLED_Output - Show Camera Values on OLED Display
 	// 0 - Analog unfilter data
 	// 1 - Smooth filtered data
 	// 2 - Binarized Data (1/0)
-	OLED_Output = 2;
-	oled_wave = TRUE;
+	short OLED_Output = 2;
 	
 	// Preform generic initalizations
 	car_startup();
@@ -214,24 +207,27 @@ int main(void)
 		//get_gain();
 		//continue;
 		if (g_sendData == TRUE) {
-			if (printCameraOutput) {
-			for (i=0; i<127; i++) {
+			#if (PRINT_CAMERA_OUTPUT) 
+			for (int i=0; i<127; i++) {
 					if (binline[i] == 1) {
 						uart0_putchar('O');
 					} else {
 						uart0_putchar('-');
 				}
 			}
-		}
-		if (oled_wave) {
+		
+				#endif
+			
+		#if(OLED_WAVE) 
 			OLED_Camera_Debug(OLED_Output);
-		}
+		
+			#endif
 	} 
 		
 		parsedata(); // Binary Edge Detection
 		//
 
-		if (oled_wave) {
+		if (OLED_WAVE) {
 			if (Switch1_Pressed()) {
 				if (OLED_Output < 2) {
 					OLED_Output++;
@@ -245,7 +241,7 @@ int main(void)
 		//
 		
 		if (Switch2_Pressed() || isOffTrack()) {
-			if (oled_wave) {
+			if (OLED_WAVE) {
 				OLED_display_clear();
 				OLED_display_off();
 			}

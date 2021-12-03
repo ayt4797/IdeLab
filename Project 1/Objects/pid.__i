@@ -1,6 +1,0 @@
---c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O2 --apcs=interwork --split_sections
--I.\RTE\_Target_1
--IC:\Users\johnd\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
--IC:\Users\johnd\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include
--D__UVISION_VERSION="535" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__
--o .\objects\pid.o --omf_browse .\objects\pid.crf --depend .\objects\pid.d "PID.c"
