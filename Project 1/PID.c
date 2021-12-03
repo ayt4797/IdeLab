@@ -44,11 +44,9 @@ double kp_right= 0.0525/22;
 double ki = 0; //0.0525/(26*0.25);
 double kd = 0;
 
-double straight_acc_thresehold = 100;
-unsigned long	straight_count = 0; // Straight state machine
 int brake_time= 6; //200;
 int brake_required = 0; // Length of how many cycles to break for.
-short speed= STANDARD_STRAIGHT_SPEED;
+double speed= STANDARD_STRAIGHT_SPEED;
 
 short get_current_leftmost() {
 	for (i=0; i<127; i++) {
@@ -146,7 +144,7 @@ float get_PID(float prev_pos, BOOLEAN left){
 	}
     return new_pos;
 }
-short update_speed(short prev_speed){
+double update_speed(double prev_speed){
 	if(prev_speed>=MAX_SPEED)
 		return prev_speed;
 	return (MAX_SPEED-prev_speed)*SPEED_GAIN+prev_speed;;
@@ -163,23 +161,19 @@ void steering_adjust() {
 	// Calculate error - e(t)
 	switch(dir) {
 		case(0): // Straight!
-			straight_count++; // Increment # of cycles its been straight 
 			put("S");
 			break;
 		case(1): // Turn Right
 			// Negative error
-			straight_count = 0;
 			put("R");
 			error[0] = tolerance_left - current_leftmost;
 			break;
 		case(2): // Turn Left
 			// Positive error
-		 straight_count = 0;
 		put("L");
 			error[0] = tolerance_right - current_rightmost;
 			break;
 		case(3): // Error case. Something werid is going on.
-			straight_count = 0;
 			error[0] = 0;
 			 break;
 		default:
@@ -253,9 +247,5 @@ void steering_adjust() {
 			default:
 				 break;
 		}
-	}
-	if (print_straight_machine) {  // Print the number of cycles we've been straight
-		sprintf(str, "%lu\r\n",straight_count);
-		put(str);
 	}
 }
