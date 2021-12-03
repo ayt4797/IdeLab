@@ -23,9 +23,9 @@ extern uint16_t binline[128];
 extern char str[100];
 #define TOLERANCE_FACTOR 0
 #define STANDARD_STRAIGHT_SPEED 20
-#define MAX_SPEED 30
+#define MAX_SPEED 25
 #define SPEED_GAIN .001
-#define TURN_SPEED 25
+#define TURN_SPEED 15
 #define MOTOR_FACTOR 35
 
 short current_leftmost;
@@ -151,8 +151,6 @@ double update_speed(double prev_speed){
 }
 void steering_adjust() {
 	// New method using 3 basic cases
-	dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
-	error[0] = 0; // Ideally error is 0 so straight
 	
 	//tolerance_right = center_rightlimit+3;
 	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
@@ -161,6 +159,7 @@ void steering_adjust() {
 	// Calculate error - e(t)
 	switch(dir) {
 		case(0): // Straight!
+			speed = update_speed(speed);
 			put("S");
 			break;
 		case(1): // Turn Right
@@ -214,29 +213,30 @@ void steering_adjust() {
 		switch(dir) {
 			case(0): // Straight!
 				// If we've been straight longer than the thresehold, full speed!
-				speed = update_speed(speed);
 				driveMotors_setSpeed(speed);
 
 				break;
 			case(1): // Turn Right
-				if (speed==MAX_SPEED) {
+				if (speed==(MAX_SPEED-1)) {
 					// brake(brake_time,dir);
 					brake_required = brake_time;
-					speed= STANDARD_STRAIGHT_SPEED;
 
 				}
+					speed= STANDARD_STRAIGHT_SPEED;
+
 				if (PID_differential == FALSE) {
 					driveMotors_forwardLeft(TURN_SPEED + MOTOR_FACTOR);
 					driveMotors_forwardRight(TURN_SPEED - MOTOR_FACTOR);
 				}
 				break;
 			case(2): // Turn Left
-				if (speed==MAX_SPEED) {
+				if (speed==(MAX_SPEED-1)) {
 					// brake(brake_time, dir);
 					brake_required = brake_time;
 				}
+					speed= STANDARD_STRAIGHT_SPEED;
+
 				if (PID_differential == FALSE) {
-						speed= STANDARD_STRAIGHT_SPEED;
 
 					driveMotors_forwardLeft(TURN_SPEED - MOTOR_FACTOR);
 					driveMotors_forwardRight(TURN_SPEED + MOTOR_FACTOR);
