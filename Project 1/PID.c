@@ -24,7 +24,7 @@ extern char str[100];
 #define TOLERANCE_FACTOR 0
 #define STANDARD_STRAIGHT_SPEED 25
 #define ROCKET_STRAIGHT_SPEED 35
-#define TURN_SPEED 25
+#define TURN_SPEED 40
 #define MOTOR_FACTOR 15
 
 short tolerance_right;
@@ -37,7 +37,7 @@ double correction=.0725;
 //BOOLEAN PID_differential = FALSE;
 //BOOLEAN print_straight_machine = FALSE;
 
-double kp_left= 0.0525/50;
+#define KP (0.0525/25)
 // double kp = ;
 double ki = 0//.0525/(60*10);
 	;
@@ -123,7 +123,7 @@ double verify_limit(double c, int dir) {
 
 float get_PID(float prev_pos){
 	float new_pos = prev_pos
-			+(kp_left*(error[0]-error[1])) 
+			+((KP)*(error[0]-error[1])) 
 		  + ki*((error[0]-error[1])/2)
 		  + kd*(error[0]-2*error[1]+error[2]);
 		
@@ -140,11 +140,12 @@ void steering_adjust() {
 	dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	error[0] = 0; // Ideally error is 0 so straight
 	//tolerance_right = center_rightlimit+3;
-	tolerance_left = TOLERANCE_FACTOR + 2;
-	tolerance_right = 126 - TOLERANCE_FACTOR;
+	tolerance_left = TOLERANCE_FACTOR + 38;
+	tolerance_right = 96 - TOLERANCE_FACTOR;
 	short current_leftmost = get_current_leftmost();
 	short current_rightmost = get_current_rightmost();
-
+	//sprintf(str, "current_leftmost %d, current_rightmost %d", tolerance_left, tolerance_right);
+	//put(str);
 	dir = steering_direction(tolerance_left, tolerance_right,current_leftmost,current_rightmost);
 
 	// Calculate error - e(t)
@@ -178,7 +179,7 @@ void steering_adjust() {
 	if(dir!=0)
 		correction = get_PID(correction) ; // Cacluate correction using PID
 	else
-		correction = .0725;
+		correction = (.0725);
 
 	// Verify the correction does not exceed the servo limits
 	// If it does, the correction will be clipped
