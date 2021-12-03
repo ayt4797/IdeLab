@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project-1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project-1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Dec 02 17:48:03 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Dec 02 19:26:09 2021
 <BR><P>
 <H3>Maximum Stack Usage =       1624 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1175,7 +1175,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_startup
 </UL>
 
-<P><STRONG><a name="[ad]"></a>steering_adjust</STRONG> (Thumb, 422 bytes, Stack size 40 bytes, pid.o(i.steering_adjust))
+<P><STRONG><a name="[ad]"></a>steering_adjust</STRONG> (Thumb, 404 bytes, Stack size 40 bytes, pid.o(i.steering_adjust))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = steering_adjust &rArr; driveMotors_setSpeed &rArr; driveMotors_stop &rArr; TIMER_A0_PWM_DutyCycle &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put
@@ -1186,8 +1186,6 @@ Global Symbols
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_forwardLeft
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_brake
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_limit
@@ -1241,8 +1239,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_put
 </UL>
 
-<P><STRONG><a name="[b3]"></a>verify_limit</STRONG> (Thumb, 136 bytes, Stack size 32 bytes, pid.o(i.verify_limit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = verify_limit &rArr; __aeabi_cdcmple
+<P><STRONG><a name="[b3]"></a>verify_limit</STRONG> (Thumb, 78 bytes, Stack size 24 bytes, pid.o(i.verify_limit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = verify_limit &rArr; __aeabi_cdcmple
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
@@ -1329,7 +1327,6 @@ Global Symbols
 
 <P><STRONG><a name="[5e]"></a>__aeabi_ui2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu))
 <BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_1d_data
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A2_PWM_Init
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A2_PWM_DutyCycle
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_A0_PWM_Init
@@ -1396,8 +1393,7 @@ Global Symbols
 <P><STRONG><a name="[85]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_cdrcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;steering_adjust
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
+<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driveMotors_setSpeed
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;edge_detection
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_calibration
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_floor

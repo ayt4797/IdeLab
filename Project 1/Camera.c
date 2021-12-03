@@ -220,12 +220,12 @@ void calibrate_center() {
 }
 
 BOOLEAN isOffTrack() {
-	int offTrack_Thresehold = 1; // Minimum number of points to be considered on track. -- Was 30
+	int offTrack_Thrsehold = 30; // Minimum number of points to be considered on track. -- Was 30
 	int acc = 0;
 	for (i=0; i<128; i++) {
 		acc = acc + binline[i];
 	}
-	if (acc < offTrack_Thresehold) {
+	if (acc < offTrack_Thrsehold) {
 		return TRUE;
 	} else {
 		return FALSE;

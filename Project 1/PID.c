@@ -43,7 +43,7 @@ double ki = 0//.0525/(60*10);
 	;
 double kd = 0;
 
-double straight_acc_thresehold = 100;
+#define STRAIGHT_ACC_THRESHOLD 200
 unsigned long	straight_count = 0; // Straight state machine
 BOOLEAN been_straight;
 int brake_time= 4; //200;
@@ -100,7 +100,7 @@ double verify_limit(double c, int dir) {
 		} else if (c < servo_limit_right) {
 			c = servo_limit_right;
 		}
-	
+	/*
 	switch(dir) {
 		case 0: // Straight
 			return c;
@@ -117,6 +117,8 @@ double verify_limit(double c, int dir) {
 		default:
 			return c;
 	}
+		*/
+		return c;
 }
 
 float get_PID(float prev_pos){
@@ -138,8 +140,8 @@ void steering_adjust() {
 	dir = 0; // 0 = straight, // 1 = turn right // 2 = turn left // 3 = error (straight)
 	error[0] = 0; // Ideally error is 0 so straight
 	//tolerance_right = center_rightlimit+3;
-	tolerance_left = TOLERANCE_FACTOR + center_leftlimit;
-	tolerance_right = center_rightlimit - TOLERANCE_FACTOR;
+	tolerance_left = TOLERANCE_FACTOR + 2;
+	tolerance_right = 126 - TOLERANCE_FACTOR;
 	short current_leftmost = get_current_leftmost();
 	short current_rightmost = get_current_rightmost();
 
@@ -205,7 +207,7 @@ void steering_adjust() {
 		switch(dir) {
 			case(0): // Straight!
 				// If we've been straight longer than the thresehold, full speed!
-				if (straight_count > straight_acc_thresehold) {
+				if (straight_count > STRAIGHT_ACC_THRESHOLD) {
 					been_straight = TRUE; // Used to figure out if braking is required.
 					driveMotors_setSpeed(ROCKET_STRAIGHT_SPEED);
 				} else {
