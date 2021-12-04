@@ -26,7 +26,7 @@ short OLED_Output=0;
 BOOLEAN debugReporting = FALSE;
 double absolute_white = 0;
 double absolute_dark = 0;
-#define WHITE_THRESHOLD 3
+#define WHITE_THRESHOLD 3.5
 ///////////////////////////////////////////////////////
 //
 // NOTE: For the camera, you may want to change the default
@@ -220,7 +220,7 @@ void calibrate_center() {
 }
 
 BOOLEAN isOffTrack() {
-	int offTrack_Thresehold = 15; // Minimum number of points to be considered on track. -- Was 30
+	int offTrack_Thresehold = 8; // Minimum number of points to be considered on track. -- Was 30
 	int acc = 0;
 	for (i=0; i<128; i++) {
 		acc = acc + binline[i];

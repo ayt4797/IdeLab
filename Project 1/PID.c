@@ -22,10 +22,10 @@ extern int center_leftlimit;
 extern uint16_t binline[128];
 extern char str[100];
 #define TOLERANCE_FACTOR 0
-#define STANDARD_STRAIGHT_SPEED 20
+#define STANDARD_STRAIGHT_SPEED 25
 #define MAX_SPEED 25
 #define SPEED_GAIN .001
-#define TURN_SPEED 25
+#define TURN_SPEED 10
 #define MOTOR_FACTOR 35
 
 short current_leftmost;
@@ -38,8 +38,8 @@ double correction=.0725;
 BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
-double kp_left= 0.0525/22;
-double kp_right= 0.0525/22;
+double kp_left= 0.0525/11;
+double kp_right= 0.0525/11;
 // double kp = ;
 double ki = 0; //0.0525/(26*0.25);
 double kd = 0;
