@@ -218,7 +218,7 @@ void steering_adjust() {
 
 				break;
 			case(1): // Turn Right
-				if (speed==(MAX_SPEED-1)) {
+				if (speed==(MAX_SPEED-3)) {
 					// brake(brake_time,dir);
 					brake_required = brake_time;
 
@@ -231,7 +231,7 @@ void steering_adjust() {
 				}
 				break;
 			case(2): // Turn Left
-				if (speed==(MAX_SPEED-1)) {
+				if (speed==(MAX_SPEED-3)) {
 					// brake(brake_time, dir);
 					brake_required = brake_time;
 				}

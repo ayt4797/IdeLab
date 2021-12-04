@@ -42,6 +42,7 @@ extern double servo_limit_right;
 extern double servo_limit_left; 
 extern int center_rightlimit;
 extern int center_leftlimit;
+short isOfTrackTracker =0;
 BOOLEAN printCameraOutput;
 BOOLEAN oled_wave;
 char phone_input[2];
@@ -243,7 +244,9 @@ int main(void)
 		}
 		g_sendData = FALSE; // Ready for next signal.
 		//
-		
+		if(isOffTrack()){
+			
+		}
 		if (Switch2_Pressed() || isOffTrack()) {
 			if (oled_wave) {
 				OLED_display_clear();
