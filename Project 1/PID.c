@@ -25,7 +25,7 @@ extern char str[100];
 #define STANDARD_STRAIGHT_SPEED 20
 #define MAX_SPEED 25
 #define SPEED_GAIN .001
-#define TURN_SPEED 15
+#define TURN_SPEED 25
 #define MOTOR_FACTOR 35
 
 short current_leftmost;
@@ -159,7 +159,8 @@ void steering_adjust() {
 	// Calculate error - e(t)
 	switch(dir) {
 		case(0): // Straight!
-			speed = update_speed(speed);
+			speed = 21//update_speed(speed);
+		;
 			put("S");
 			break;
 		case(1): // Turn Right
