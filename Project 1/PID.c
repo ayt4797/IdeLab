@@ -23,8 +23,8 @@ extern uint16_t binline[128];
 extern char str[100];
 #define TOLERANCE_FACTOR 0
 #define STANDARD_STRAIGHT_SPEED 25
-#define MAX_SPEED 25
-#define SPEED_GAIN .001
+#define MAX_SPEED 30
+#define SPEED_GAIN .01
 #define TURN_SPEED 10
 #define MOTOR_FACTOR 35
 
@@ -159,7 +159,7 @@ void steering_adjust() {
 	// Calculate error - e(t)
 	switch(dir) {
 		case(0): // Straight!
-			speed = 21//update_speed(speed);
+			speed = update_speed(speed);
 		;
 			put("S");
 			break;
