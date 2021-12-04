@@ -2,9 +2,9 @@
 #include "uart.h"
 #include "TimerA.h"
 
-double servo_state_center = 0.0725; 
-double servo_limit_left = 0.1; // 0.085
-double servo_limit_right= 0.0475; //0.045
+double servo_state_center = 0.0785; 
+double servo_limit_left = 0.115; // 0.085
+double servo_limit_right= 0.0535; //0.045
 short DC_right_forward = 4;
 short DC_right_reverse = 3;
 short DC_left_forward = 2;

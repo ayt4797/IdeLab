@@ -22,9 +22,9 @@ extern int center_leftlimit;
 extern uint16_t binline[128];
 extern char str[100];
 #define TOLERANCE_FACTOR 0
-#define STANDARD_STRAIGHT_SPEED 25
-#define ROCKET_STRAIGHT_SPEED 35
-#define TURN_SPEED 25
+#define STANDARD_STRAIGHT_SPEED 22
+#define ROCKET_STRAIGHT_SPEED 25
+#define TURN_SPEED 15
 #define MOTOR_FACTOR 15
 
 short current_leftmost;
@@ -33,19 +33,17 @@ short tolerance_right;
 short tolerance_left;
 short dir;
 double error[3]; // [0] - Current error // [1] - Last Error // [2] - 2nd latest error ... and so on
-double correction=.0725;
+double correction=0.0785;
 
 BOOLEAN print_direction = FALSE;
 BOOLEAN PID_differential = FALSE;
 BOOLEAN print_straight_machine = FALSE;
 
-double kp_left= 0.0525/22;
-double kp_right= 0.0525/22;
-// double kp = ;
-double ki = 0; //0.0525/(26*0.25);
-double kd = 0;
+double kp = 0.0525/70; // Was 90
+double ki = 0.0525/360;
+double kd = 0.0525/1440;
 
-double straight_acc_thresehold = 100;
+double straight_acc_thresehold = 1000;
 unsigned long	straight_count = 0; // Straight state machine
 BOOLEAN been_straight;
 int brake_time= 4; //200;
@@ -105,17 +103,26 @@ double verify_limit(double c, int dir) {
 	
 	switch(dir) {
 		case 0: // Straight
+			if (print_direction) {
+				put("S");
+			}
 			return c;
 		case 1: // Right
-			if (c <= 0.0725)
+			if (print_direction) {
+				put("R");
+			}
+			if (c <= 0.0785)
 				return c;
 			else
-				return 0.0725;
+				return 0.0785;
 		case 2: // Left
-			if (c >= 0.0725)
+			if (print_direction) {
+				put("L");
+			}
+			if (c >= 0.0785)
 				return c;
 			else
-				return 0.0725;
+				return 0.0785;
 		default:
 			return c;
 	}
@@ -123,28 +130,16 @@ double verify_limit(double c, int dir) {
 
 float get_PID(float prev_pos, BOOLEAN left){
 	float new_pos;
-	if(left){
-    new_pos 
-			 = prev_pos
-			+(kp_left*(error[0]-error[1])) 
-		  + ki*((error[0]-error[1])/2)
-		  + kd*(error[0]-2*error[1]+error[2]);
-		
-		// Shift errors to load newest error into error[0]
-    error[2] = error[1];
-    error[1] = error[0];
-	}
-	else{
 		new_pos 
 			 = prev_pos
-			+(kp_right*(error[0]-error[1])) 
+			+(kp*(error[0]-error[1])) 
 		  + ki*((error[0]-error[1])/2)
 		  + kd*(error[0]-2*error[1]+error[2]);
 		
 		// Shift errors to load newest error into error[0]
     error[2] = error[1];
     error[1] = error[0];
-	}
+
     return new_pos;
 }
 
@@ -162,18 +157,15 @@ void steering_adjust() {
 	switch(dir) {
 		case(0): // Straight!
 			straight_count++; // Increment # of cycles its been straight 
-			put("S");
 			break;
 		case(1): // Turn Right
 			// Negative error
 			straight_count = 0;
-			put("R");
 			error[0] = tolerance_left - current_leftmost;
 			break;
 		case(2): // Turn Left
 			// Positive error
 		 straight_count = 0;
-		put("L");
 			error[0] = tolerance_right - current_rightmost;
 			break;
 		case(3): // Error case. Something werid is going on.
@@ -181,7 +173,6 @@ void steering_adjust() {
 			error[0] = 0;
 			 break;
 		default:
-			 put("dir out of range");
 			 error[0] = 0;
 			 break;
 	}
@@ -189,7 +180,7 @@ void steering_adjust() {
 	if(dir!=0)
 		correction = get_PID(correction,0); // Cacluate correction using PID
 	else
-		correction = .0725;
+		correction = 0.0785;
 
 	// Verify the correction does not exceed the servo limits
 	// If it does, the correction will be clipped

@@ -128,11 +128,11 @@ void car_startup() {
 	
 	OLED_Print(1,1,"Right         ");
 	servo_right();
-	ms_delay(400);
+	ms_delay(1200);
 	
 	OLED_Print(1,1,"Left          ");
 	servo_left();
-	ms_delay(400);
+	ms_delay(1200);
 	
 	OLED_Print(1,1,"Straight");
 	servo_center();
@@ -174,8 +174,8 @@ int main(void)
 	// 0 - Analog unfilter data
 	// 1 - Smooth filtered data
 	// 2 - Binarized Data (1/0)
-	OLED_Output = 2;
-	oled_wave = TRUE;
+	OLED_Output = 1;
+	oled_wave = FALSE;
 	
 	// Preform generic initalizations
 	car_startup();
@@ -244,14 +244,14 @@ int main(void)
 		g_sendData = FALSE; // Ready for next signal.
 		//
 		
-		if (Switch2_Pressed() || isOffTrack()) {
-			if (oled_wave) {
-				OLED_display_clear();
-				OLED_display_off();
-			}
-			driveMotors_stop();
-			break;
-		}
+//		if (Switch2_Pressed() || isOffTrack()) {
+//			if (oled_wave) {
+//				OLED_display_clear();
+//				OLED_display_off();
+//			}
+//			driveMotors_stop();
+//			break;
+//		}
 
 		// Steering adjustment. Based on how far out the wheels are. Adjust left or right
 		//old_steering_adjust();
